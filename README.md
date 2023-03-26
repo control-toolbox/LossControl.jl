@@ -24,7 +24,7 @@ Harmonic oscillator:
 
 Double integrator:
 
-* [permanent case](harmonic\ oscillator/permanent.ipynb) : In this example, we investigate the double integrator problem under the assumption of permanent control. More precisely, the control input $u(\cdot)$ can be adjusted at any time $t$.
+* [permanent case](harmonic%20oscillator/permanent.ipynb) : In this example, we investigate the double integrator problem under the assumption of permanent control. More precisely, the control input $u(\cdot)$ can be adjusted at any time $t$.
 
 
 * [contro loss case](double\ integrator/loss.ipynb) : In this example, we consider the double integrator problem with a state space divided into two regions: one of type C (control region) and one of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the region of type NC, the control is constrained to a constant value to be determined.
