@@ -1,4 +1,4 @@
-# Zermelo problem with loss control region
+# Zermelo navigation problem
 
 ```@raw html
 <img src="./mri-resources/bloch.jpeg" style="float: left; margin-right: 20px;" width="200px">

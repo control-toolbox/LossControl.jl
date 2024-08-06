@@ -11,6 +11,7 @@ makedocs(
             
             asset("https://control-toolbox.org/assets/js/documentation.js"),
         ],
+        inventory_version = "0.1.0"  # Add this line
     ),
     pages = [
         "Introduction"              => "index.md",
@@ -22,3 +23,5 @@ deploydocs(
     repo = "https://github.com/control-toolbox/control-loss.git",
     devbranch = "main"
 )
+
+
