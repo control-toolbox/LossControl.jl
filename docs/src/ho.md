@@ -1,4 +1,6 @@
-# Zermelo navigation problem
+# Harmonic oscillator problem
+
+## Harmonic oscillator problem with loss control region
 
 ```@raw html
 <img src="./mri-resources/bloch.jpeg" style="float: left; margin-right: 20px;" width="200px">
@@ -62,6 +64,7 @@ $M(\tau) = M_0 S(\tau) q(\tau)$. In the rotating frame the Bloch equation become
         0 \\ 0 \\ {1}/{T_1}
     \end{bmatrix},
 ```
+## Zermelo navigation problem with two loss control region
 
 where $\Delta \omega = \omega_0 - \bar{\omega}$ is the *resonance offset*, 
 $\omega_0 = -\bar{\gamma} B_Z$ is the *resonance frequency* and the new control is

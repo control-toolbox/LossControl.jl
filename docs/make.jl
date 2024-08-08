@@ -5,7 +5,7 @@ makedocs(
     sitename = "Control loss",
     format = Documenter.HTML(
         prettyurls = false, 
-        size_threshold_ignore = ["zermelo1.md"],
+        size_threshold_ignore = ["zermelo.md","statement.md", "ho.md"],
         assets=[
             asset("https://control-toolbox.org/assets/css/documentation.css"),
             
@@ -15,7 +15,10 @@ makedocs(
     ),
     pages = [
         "Introduction"              => "index.md",
-        "Zermelo with loss control" => "zermelo1.md",
+        "PMP with loss control regions and numerical methods" => "statement.md",
+        "Zermelo with loss control regions" => "zermelo.md",
+        "Harmonic oscillator with loss control regions" => "ho.md",
+
     ]
 )
 
