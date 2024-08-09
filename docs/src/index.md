@@ -7,6 +7,20 @@ Typically, optimal control involves *permanent control*, allowing modification o
 
  ![MRI](resources/mri.jpg) 
 
+```math
+    \begin{equation}
+    \begin{aligned}
+    &\text{minimize} && -x_1(8), \\[10pt]
+    &\text{subject to} && (x,u) \in \mathrm{AC}([0,8],\mathbb{R}^2) \times \mathrm{L}^\infty([0,8],\mathbb{R}), \\[6pt]
+    & && \dot{x}_1(t) = x_2(t) + \cos(u(t)), \quad \text{a.e. } t \in [0,8], \\[6pt]
+    & && \dot{x}_2(t) = \sin(u(t)), \quad \text{a.e. } t \in [0,8], \\[6pt]
+    & && x(0)=0_{\mathbb{R}^2}, \quad x_2(8)=4, \\[6pt]
+    & && u(t) \in \left[-\frac{\pi}{2},\frac{\pi}{2}\right], \quad \text{a.e. } t \in [0,8], \\[6pt]
+    & && u \text{ is constant when } x \text{ is in the loss control region } \{x \in \mathbb{R}^2 \mid 0.5 < x_2 < 3.5 \}.
+    \end{aligned}
+    \end{equation}
+```
+
 **Objective and approach.** Here, we address optimal control problems with *loss control regions*[^1], where the state space is divided into *control regions* and *loss control regions*. In control regions, control can change at any time, while in loss control regions, control must remain constant, though its value is to be optimized and can vary with each visit.
 
 We extend our previous work by using a permanent control for control regions and a *regionally switching parameter* for loss control regions. This leads to a discontinuous dynamics framework, fitting into *spatially hybrid optimal control theory*. The *hybrid maximum principle* (HMP) extends the PMP to hybrid settings, with a piecewise absolutely continuous adjoint vector.
