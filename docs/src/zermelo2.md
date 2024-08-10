@@ -37,7 +37,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     using JuMP  
     using Ipopt
     using Plots
@@ -46,7 +46,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     mutable struct DirecTSS
         t; x1; x2 ; λ ; u ; xu ; xv ; p1 ; p2
     end
@@ -57,7 +57,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     distance_squared(x, a, b) = x < a ? (a - x)^2 : x > b ? (x - b)^2 : 0 ;
 
     #Moreau Yosida regularization
@@ -73,15 +73,12 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
 
-
-    
-![svg](resources/zermelo2/output_3_0.svg)
     
 
 
 
 
-```julia
+```@example main
     function ZERMELO(ε=1e-3; x0=[0, 0], nsteps=1000, tol=1e-10, display=true)
         """
             Solve the Zermelo problem with the given parameters.
@@ -214,139 +211,16 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     # Resolution
     ε   = 1e-3
     sol_direct = ZERMELO(ε);
 ```
 
-    Solving...
-    This is Ipopt version 3.14.4, running with linear solver MUMPS 5.4.1.
-    
-    Number of nonzeros in equality constraint Jacobian...:    32005
-    Number of nonzeros in inequality constraint Jacobian.:        0
-    Number of nonzeros in Lagrangian Hessian.............:    34000
-    
-    Total number of variables............................:     7007
-                         variables with only lower bounds:        0
-                    variables with lower and upper bounds:     2002
-                         variables with only upper bounds:        0
-    Total number of equality constraints.................:     5005
-    Total number of inequality constraints...............:        0
-            inequality constraints with only lower bounds:        0
-       inequality constraints with lower and upper bounds:        0
-            inequality constraints with only upper bounds:        0
-    
-    iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-       0  0.0000000e+00 4.00e+00 4.60e-03  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
-       1 -2.4329118e+01 4.17e-03 3.87e+00  -1.0 2.43e+01    -  8.14e-01 1.00e+00f  1
-       2 -2.4025216e+01 1.41e-02 4.00e+01  -1.0 1.27e+00   0.0 9.74e-01 1.00e+00h  1
-       3 -2.3924818e+01 9.15e-04 2.56e+00  -1.0 2.73e-01   0.4 1.00e+00 1.00e+00h  1
-       4 -2.3935056e+01 6.30e-04 3.46e+00  -1.0 2.43e-01  -0.1 1.00e+00 1.00e+00h  1
-       5 -2.4002144e+01 1.25e-04 9.15e-02  -1.0 1.79e-01  -0.5 1.00e+00 1.00e+00f  1
-       6 -2.4071347e+01 1.82e-04 3.06e-02  -2.5 1.02e-01  -1.0 9.64e-01 1.00e+00h  1
-       7 -2.4273503e+01 2.21e-03 2.95e-02  -2.5 1.52e-01  -1.5 1.00e+00 1.00e+00f  1
-       8 -2.4777365e+01 1.75e-02 4.21e-01  -2.5 2.07e+00  -2.0 6.23e-01 1.00e+00f  1
-       9 -2.5228259e+01 2.89e-02 4.26e-01  -2.5 1.38e+04  -2.4 1.12e-04 1.78e-04f  1
-    iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-      10 -2.5741199e+01 1.25e-02 3.49e-01  -2.5 1.50e+00  -2.0 1.00e+00 1.00e+00f  1
-      11 -2.5826478e+01 2.99e-03 8.09e-02  -2.5 5.19e-01  -1.6 1.00e+00 1.00e+00h  1
-      12 -2.6302368e+01 1.93e-02 3.59e-01  -2.5 1.48e+00  -2.1 1.00e+00 1.00e+00f  1
-      13 -2.6428105e+01 5.03e-03 8.31e-02  -2.5 3.65e-01  -1.6 1.00e+00 1.00e+00h  1
-      14 -2.6949724e+01 2.90e-02 3.54e-01  -2.5 1.89e+00  -2.1 1.00e+00 1.00e+00f  1
-      15 -2.7394409e+01 8.14e-02 3.26e-01  -2.5 5.40e+01  -2.6 7.41e-02 7.42e-02f  1
-      16 -2.7823259e+01 3.05e-02 2.95e-01  -2.5 2.22e+00  -2.2 1.00e+00 1.00e+00h  1
-      17 -2.7938174e+01 8.01e-03 1.52e-01  -2.5 5.60e-01  -1.7 1.00e+00 1.00e+00h  1
-      18 -2.8420953e+01 3.85e-02 5.91e-01  -2.5 2.29e+00  -2.2 8.69e-01 8.70e-01f  1
-      19 -2.8535470e+01 6.49e-03 1.43e-01  -2.5 9.79e-01  -1.8 1.00e+00 1.00e+00h  1
-    iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-      20 -2.8907751e+01 3.00e-02 6.33e-01  -2.5 3.67e+00  -2.3 5.44e-01 5.44e-01f  1
-      21 -2.9003583e+01 4.40e-03 1.36e-01  -2.5 9.82e-01  -1.8 1.00e+00 1.00e+00h  1
-      22 -2.9354664e+01 2.79e-02 7.40e-01  -2.5 5.25e+00  -2.3 4.55e-01 4.55e-01f  1
-      23 -2.9324332e+01 1.42e-03 1.18e-01  -2.5 8.46e-01  -1.0 1.00e+00 1.00e+00h  1
-      24 -2.9355055e+01 5.18e-04 8.24e-02  -2.5 1.96e-01  -1.5 9.94e-01 1.00e+00h  1
-      25 -2.9441218e+01 2.89e-03 8.50e-02  -2.5 4.87e-01  -1.9 1.00e+00 1.00e+00h  1
-      26 -2.9673534e+01 2.13e-02 3.08e-01  -2.5 1.93e+00  -2.4 1.00e+00 1.00e+00h  1
-      27 -2.9700502e+01 1.29e-03 2.69e-02  -2.5 6.18e-01  -2.0 1.00e+00 1.00e+00h  1
-      28 -2.9871018e+01 1.44e-02 5.17e-01  -3.8 2.82e+00  -2.5 4.51e-01 6.32e-01f  1
-      29 -3.0002807e+01 2.37e-02 4.07e-01  -3.8 1.04e+01  -2.9 1.16e-01 2.13e-01h  1
-    iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-      30 -2.9951087e+01 8.69e-04 1.92e-01  -3.8 6.66e-01  -1.6 1.19e-01 1.00e+00h  1
-      31 -2.9987506e+01 1.03e-03 1.43e-01  -3.8 7.08e-01  -2.1 8.87e-01 1.00e+00h  1
-      32 -3.0111684e+01 2.73e-02 3.13e-01  -3.8 8.47e+00    -  2.81e-01 2.44e-01f  1
-      33 -3.0248718e+01 3.90e-02 2.81e-01  -3.8 4.22e+00    -  3.89e-02 6.86e-01h  1
-      34 -3.0227281e+01 8.62e-03 1.56e-01  -3.8 1.38e+00    -  3.41e-02 1.00e+00h  1
-      35 -3.0199526e+01 5.77e-04 4.96e-02  -3.8 2.02e+00    -  1.00e+00 1.00e+00H  1
-      36 -3.0200543e+01 2.96e-04 1.58e-01  -3.8 2.91e-01  -2.6 1.00e+00 1.00e+00h  1
-      37 -3.0200315e+01 5.57e-05 6.98e-03  -3.8 1.01e-01  -3.1 1.00e+00 1.00e+00h  1
-      38 -3.0199571e+01 3.92e-03 3.93e-04  -3.8 9.20e-01    -  1.00e+00 1.00e+00h  1
-      39 -3.0199312e+01 1.00e-03 2.01e-05  -3.8 4.68e-01    -  1.00e+00 1.00e+00h  1
-    iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-      40 -3.0200970e+01 1.06e-02 4.63e-03  -5.7 1.16e+00    -  9.29e-01 1.00e+00h  1
-      41 -3.0201731e+01 6.44e-03 4.12e-04  -5.7 1.01e+00    -  9.97e-01 1.00e+00h  1
-      42 -3.0201508e+01 7.33e-04 2.68e-05  -5.7 3.03e-01    -  1.00e+00 1.00e+00h  1
-      43 -3.0201462e+01 1.39e-05 2.12e-07  -5.7 4.64e-02    -  1.00e+00 1.00e+00h  1
-      44 -3.0201487e+01 1.47e-04 3.94e-06  -8.6 1.36e-01    -  9.64e-01 1.00e+00h  1
-      45 -3.0201477e+01 3.23e-06 4.57e-08  -8.6 2.20e-02    -  1.00e+00 1.00e+00h  1
-      46 -3.0201476e+01 1.99e-09 2.83e-11  -8.6 5.96e-04    -  1.00e+00 1.00e+00h  1
-      47 -3.0201476e+01 4.86e-10 9.30e-12 -11.0 2.47e-04    -  1.00e+00 1.00e+00h  1
-      48 -3.0201476e+01 3.55e-15 2.57e-15 -11.0 7.56e-08    -  1.00e+00 1.00e+00h  1
-    
-    Number of Iterations....: 48
-    
-                                       (scaled)                 (unscaled)
-    Objective...............:  -3.0201476324150104e+01   -3.0201476324150104e+01
-    Dual infeasibility......:   2.5684783347499490e-15    2.5684783347499490e-15
-    Constraint violation....:   3.5527136788005009e-15    3.5527136788005009e-15
-    Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
-    Complementarity.........:   9.0909091543481225e-12    9.0909091543481225e-12
-    Overall NLP error.......:   9.0909091543481225e-12    9.0909091543481225e-12
-    
-    
-    Number of objective function evaluations             = 50
-    Number of objective gradient evaluations             = 49
-    Number of equality constraint evaluations            = 50
-    Number of inequality constraint evaluations          = 0
-    Number of equality constraint Jacobian evaluations   = 49
-    Number of inequality constraint Jacobian evaluations = 0
-    Number of Lagrangian Hessian evaluations             = 48
-    Total seconds in IPOPT                               = 3.698
-    
-    EXIT: Optimal Solution Found.
-    
-      (Local) solution found
-      objective value = -30.201476324150104
-    
-    
-
-    [33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mFunction fNC automatically registered with 1 arguments.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mCalling the function with a different number of arguments will result in an
-    [33m[1m│ [22m[39merror.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mWhile you can safely ignore this warning, we recommend that you manually
-    [33m[1m│ [22m[39mregister the function as follows:
-    [33m[1m│ [22m[39m```Julia
-    [33m[1m│ [22m[39mmodel = Model()
-    [33m[1m│ [22m[39mregister(model, :fNC, 1, fNC; autodiff = true)
-    [33m[1m│ [22m[39m```
-    [33m[1m└ [22m[39m[90m@ MathOptInterface.Nonlinear ~/.julia/packages/MathOptInterface/fTxO0/src/Nonlinear/operators.jl:370[39m
-    [33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mFunction fC automatically registered with 1 arguments.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mCalling the function with a different number of arguments will result in an
-    [33m[1m│ [22m[39merror.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mWhile you can safely ignore this warning, we recommend that you manually
-    [33m[1m│ [22m[39mregister the function as follows:
-    [33m[1m│ [22m[39m```Julia
-    [33m[1m│ [22m[39mmodel = Model()
-    [33m[1m│ [22m[39mregister(model, :fC, 1, fC; autodiff = true)
-    [33m[1m│ [22m[39m```
-    [33m[1m└ [22m[39m[90m@ MathOptInterface.Nonlinear ~/.julia/packages/MathOptInterface/fTxO0/src/Nonlinear/operators.jl:370[39m
-    
+  
 
 
-```julia
+```@example main
     # Plots
 
     t  = sol_direct.t
@@ -420,17 +294,13 @@ We consider the Zermelo-type optimal control problem with loss control regions g
     plot(x1x2_plot, x1_plot, x2_plot, u_plot, p1_plot, p2_plot , layout = (2,3), size=(900, 600))
 ```
 
-        xu = 0.01085770813357839
-        xv = 4.401267604621215
         
         
-![svg](resources/zermelo2/output_6_1.svg)
-        
 
 
 
 
-```julia
+```@example main
     v_plot   = plot(t,  v, label = "v(t)", linecolor=:purple, linewidth=2, ylims=(-1.2, 0.5))
     xticks!(v_plot, [2.,t1,t2,t3,t4,8.], ["2",L"$\tau_1$",L"$\tau_2$",L"$\tau_3$",L"$\tau_4$","8"])
     vline!(v_plot, [t1], linestyle=:dash, linecolor=:black, label=nothing, z_order=:back)
@@ -452,13 +322,13 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
     
-![svg](resources/zermelo2/output_7_0.svg)
+
     
 
 
 
 
-```julia
+```@example main
     function H(k)
         return p1[k] * x2[k] + p1[k] * (fNC(x1[k])*cos(λ[k]) + fC(x1[k])*cos(u[k])) +
                             p2[k] * (fNC(x1[k])*sin(λ[k]) + fC(x1[k])*sin(u[k])) +
@@ -474,13 +344,12 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
     
-![svg](resources/zermelo2/output_8_0.svg)
     
 
 
 
 
-```julia
+```@example main
     jmp1 = -(p1[div(index1 + index2, 2)] - p1[div(index1 + 1, 2)])
     jmp2 = -(p1[div(index2 + index3, 2)] - p1[div(index1 + index2, 2)])
     jmp3 = -(p1[div(index3 + index4, 2)] - p1[div(index2 + index3, 2)])
@@ -492,16 +361,12 @@ We consider the Zermelo-type optimal control problem with loss control regions g
     println(" p1(t4+) - p1(t4-) = ", jmp4)
 ```
 
-     p1(t1+) - p1(t1-) = -0.02432108825537127
-     p1(t2+) - p1(t2-) = 0.047288220458145735
-     p1(t3+) - p1(t3-) = -0.01262338370173488
-     p1(t4+) - p1(t4-) = 0.009455063072500547
-    
+
 
 # Indirect method
 
 
-```julia
+```@example main
     using NLsolve
     using Animations
     using Reel
@@ -512,7 +377,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     # Dynamics
     function F(x, u)
         return [ x[2] + cos(u), sin(u) ]
@@ -539,7 +404,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     # parameters
     t0  = 0
     tf  = 8
@@ -591,7 +456,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
+```@example main
     # Solve
 
     S(ξ)    = shoot(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7], ξ[8], ξ[9], ξ[10], ξ[11], ξ[12]) ;
@@ -643,7 +508,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
     
 
 
-```julia
+```@example main
     # jumps from direct solution
     println(" jumps from direct solution")
     println(" p1(t1+) - p1(t1-) = ", jmp1)
@@ -661,21 +526,9 @@ We consider the Zermelo-type optimal control problem with loss control regions g
     println(" p1(t4+) - p1(t4-) = ", j44)
 ```
 
-     jumps from direct solution
-     p1(t1+) - p1(t1-) = -0.02432108825537127
-     p1(t2+) - p1(t2-) = 0.047288220458145735
-     p1(t3+) - p1(t3-) = -0.01262338370173488
-     p1(t4+) - p1(t4-) = 0.009455063072500547
-    
-     jumps from indirect solution
-     p1(t1+) - p1(t1-) = -0.031233366806228707
-     p1(t2+) - p1(t2-) = 0.04478696385887632
-     p1(t3+) - p1(t3-) = -0.0114710409471598
-     p1(t4+) - p1(t4-) = 0.009189735844423754
     
 
-
-```julia
+```@example main
     #Plots
 
     pa0 = 0 
@@ -774,13 +627,12 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
     
-![svg](resources/zermelo2/output_16_0.svg)
     
 
 
 
 
-```julia
+```@example main
     function HH(k)
         return p1[k] * (x2[k] + cos(u[k])) + p2[k] * sin(u[k])
     end
@@ -792,23 +644,9 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
 
-    
-![svg](resources/zermelo2/output_17_0.svg)
-    
 
 
-
-
-```julia
-    p1_plot = plot(t, p1, xlabel = "t", ylabel = "p1", legend=false, linecolor=:orange, linewidth=2)
-    xticks!(p1_plot, [2.,ttt1[end],ttt2[end],ttt3[end],ttt4[end],8.], ["2",L"$\tau^*_1$",L"$\tau^*_2$",L"$\tau^*_3$",L"$\tau^*_4$","8"])
-    xlims!(p1_plot, (ttt1[end]-0.01, ttt1[end]+0.01))
-    ylims!(p1_plot, (0.63,0.65))
-```
-
-
-
-```julia
+```@example main
     # create an animation
     animx = @animate for i = 1:length(t)
         plot(x1[1:i], x2[1:i], xlim=(0.,31.), ylim=(-0.,5.5), xlabel="x1", ylabel="x2", label="optimal trajectory \$x\$", linecolor=:blue,  linewidth=2)
@@ -828,23 +666,23 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
     # create an animation
     animp1 = @animate for i = 1:length(t)
-        plot(t[1:i], p1[1:i], xlim=(0.,8.), ylim=(-1.5, 1.5), xlabel="t", ylabel="p1", label="adjoint vector \$p1\$", linecolor=:orange,  linewidth=2)
+        plot(t[1:i], p1[1:i], xlim=(0.,8.), ylim=(0, 1.5), xlabel="t", ylabel="p1", label="adjoint vector \$p1\$", linecolor=:orange,  linewidth=2)
     end ;
 
     # create an animation
     animp2 = @animate for i = 1:length(t)
-        plot(t[1:i], p2[1:i], xlim=(0.,8.), ylim=(-5.,0.5), xlabel="t", ylabel="p2", label="adjoint vector \$p2\$", linecolor=:orange,  linewidth=2)
+        plot(t[1:i], p2[1:i], xlim=(0.,8.), ylim=(-3.,6.3), xlabel="t", ylabel="p2", label="adjoint vector \$p2\$", linecolor=:orange,  linewidth=2)
     end ;
 ```
 
 
-```julia
+```@example main
     # display the animation
     gif(animx, "zer2_x.gif", fps = 10)
 ```
 
    
-```julia    
+```@example main    
     gif(animu, "zer2_u.gif", fps = 10)
 ```
 
@@ -853,7 +691,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
 
-```julia
+```@example main
     # display the animation
     gif(animp1, "zer2_p1.gif", fps = 10)
 ```
@@ -862,7 +700,7 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 
 
 
-```julia
+```@example main
     # display the animation
     gif(animp2, "zer2_p2.gif", fps = 10)
 ```

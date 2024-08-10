@@ -17,6 +17,7 @@ makedocs(
         "Zermelo example 1"         => "zermelo1.md",
         "Zermelo example 2"         => "zermelo2.md",
         "Harmonic oscillator"       => "ho.md",
+
     ]
 )
 
