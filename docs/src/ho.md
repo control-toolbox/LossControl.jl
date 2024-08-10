@@ -1,4 +1,7 @@
-## Harmonic oscillator (min T) including a control loss region (initial problem)
+# Harmonic oscillator problem
+
+
+
 
 ```math
     \left\{
@@ -13,7 +16,8 @@
     \right.
 ```
 
-## Harmonic oscillator (min T) including a control loss region (regularized problem)
+
+## Reformulation for the direct method
 
 ```math
     \left\{
