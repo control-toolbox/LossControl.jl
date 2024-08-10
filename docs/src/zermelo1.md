@@ -35,16 +35,16 @@ We consider the Zermelo-type optimal control problem with loss control regions g
 ```
 
 
-```julia
-using JuMP 
-using Ipopt
-using Plots
-using Plots.PlotMeasures
-using LaTeXStrings
+```@example main
+    using JuMP 
+    using Ipopt
+    using Plots
+    using Plots.PlotMeasures
+    using LaTeXStrings
 ```
 
 
-```julia
+```@example main
     mutable struct Direct
         t; x1; x2 ; λ ; u ; xu ; xv ; p1 ; p2
     end
@@ -55,7 +55,7 @@ using LaTeXStrings
 ```
 
 
-```julia
+```@example main
     distance_squared(x, a, b) = x < a ? (a - x)^2 : x > b ? (x - b)^2 : 0 ;
 
     # Moreau Yosida regularization
@@ -68,12 +68,9 @@ using LaTeXStrings
 
     plot(fNC, 0, 5)
 ```
-    
-![svg](resources/zermelo1/output_4_0.svg)
-    
 
 
-```julia
+```@example main
     function ZERMELO(ε=1e-3; x0=[0, 0], nsteps=1000, tol=1e-10, display=true)
         """
             Solve the Zermelo problem with the given parameters.
@@ -206,7 +203,7 @@ using LaTeXStrings
 ```
 
 
-```julia
+```@example main
     # Resolution
     ε = 1e-3
     sol_direct = ZERMELO(ε);
@@ -325,34 +322,8 @@ using LaTeXStrings
     
     
 
-    [33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mFunction fNC automatically registered with 1 arguments.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mCalling the function with a different number of arguments will result in an
-    [33m[1m│ [22m[39merror.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mWhile you can safely ignore this warning, we recommend that you manually
-    [33m[1m│ [22m[39mregister the function as follows:
-    [33m[1m│ [22m[39m```Julia
-    [33m[1m│ [22m[39mmodel = Model()
-    [33m[1m│ [22m[39mregister(model, :fNC, 1, fNC; autodiff = true)
-    [33m[1m│ [22m[39m```
-    [33m[1m└ [22m[39m[90m@ MathOptInterface.Nonlinear ~/.julia/packages/MathOptInterface/fTxO0/src/Nonlinear/operators.jl:370[39m
-    [33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mFunction fC automatically registered with 1 arguments.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mCalling the function with a different number of arguments will result in an
-    [33m[1m│ [22m[39merror.
-    [33m[1m│ [22m[39m
-    [33m[1m│ [22m[39mWhile you can safely ignore this warning, we recommend that you manually
-    [33m[1m│ [22m[39mregister the function as follows:
-    [33m[1m│ [22m[39m```Julia
-    [33m[1m│ [22m[39mmodel = Model()
-    [33m[1m│ [22m[39mregister(model, :fC, 1, fC; autodiff = true)
-    [33m[1m│ [22m[39m```
-    [33m[1m└ [22m[39m[90m@ MathOptInterface.Nonlinear ~/.julia/packages/MathOptInterface/fTxO0/src/Nonlinear/operators.jl:370[39m
-    
 
-
-```julia
+```@example main
     # Plots
     t  = sol_direct.t
     x1 = sol_direct.x1
@@ -411,16 +382,10 @@ using LaTeXStrings
     plot(x1x2_plot, x1_plot, x2_plot, u_plot , p1_plot, p2_plot , layout = (2,3), size=(900, 600))
 ```
 
-    xu = 0.019619164191148557
-    xv = 0.010565925235049853
-        
-![svg](resources/zermelo1/output_7_1.svg)
-    
 
 
 
-
-```julia
+```@example main
     # other plots specific to the direct method
 
     v_plot   = plot(t,  v, label = "v(t)", linecolor=:purple, linewidth=2, ylims=(-1, 0.5))
@@ -439,14 +404,7 @@ using LaTeXStrings
 
 
 
-    
-![svg](resources/zermelo1/output_8_0.svg)
-    
-
-
-
-
-```julia
+```@example main
     function H(k)
         return p1[k] * x2[k] + p1[k] * (fNC(x2[k])*cos(λ[k]) + fC(x2[k])*cos(u[k])) +
                             p2[k] * (fNC(x2[k])*sin(λ[k]) + fC(x2[k])*sin(u[k])) +
@@ -461,14 +419,9 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 
 
 
-    
-![svg](resources/zermelo1/output_9_0.svg)
-    
 
 
-
-
-    ```julia
+    ```@example main
     jmp1 = p2[index1+2]  - p2[index1]
     jmp2 = p2[index2+2]  - p2[index2]
 
@@ -476,14 +429,10 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
     println(" p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
-     p2(t1+) - p2(t1-) = -0.337988685006648
-     p2(t2+) - p2(t2-) = 0.3238832176238047
-    
-
 ## Indirect method
 
 
-```julia
+```@example main
     using NLsolve
     using Animations
     using Reel
@@ -494,7 +443,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 ```
 
 
-```julia
+```@example main
     # Dynamics
     function F(x, u)
         return [ x[2] + cos(u), sin(u) ]
@@ -521,7 +470,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 ```
 
 
-```julia
+```@example main
     # parameters
     t0  = 0
     tf  = 8
@@ -555,7 +504,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 ```
 
 
-```julia
+```@example main
     # Solve
 
     S(ξ)    = shoot(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7])
@@ -603,7 +552,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
     
 
 
-```julia
+```@example main
     # jumps from direct solution
     println(" jumps from direct solution")
     println(" p2(t1+) - p2(t1-) = ", jmp1)
@@ -616,17 +565,9 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
     println(" p2(t2+) - p2(t2-) = ", jmp22)
 ```
 
-     jumps from direct solution
-     p2(t1+) - p2(t1-) = -0.337988685006648
-     p2(t2+) - p2(t2-) = 0.3238832176238047
-    
-     jumps from indirect solution
-     p2(t1+) - p2(t1-) = -0.01228198993970171
-     p2(t2+) - p2(t2-) = 0.027541288724319064
-    
 
 
-```julia
+```@example main
     ode_sol = fc((t0, tt1), x0, pp0, saveat=0.1) ;
     ttt1 = ode_sol.t ;
     xx1 = [ ode_sol[1:2, j] for j in 1:size(ttt1, 1) ] ;
@@ -698,14 +639,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 
 
 
-    
-![svg](resources/zermelo1/output_17_0.svg)
-    
-
-
-
-
-```julia
+```@example main
     function HH(k)
         return p1[k] * (x2[k] + cos(u[k])) + p2[k] * sin(u[k])
     end
@@ -717,14 +651,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 
 
 
-    
-![svg](resources/zermelo1/output_18_0.svg)
-    
-
-
-
-
-```julia
+```@example main
     p2_plot = plot(t, p2, xlabel = "t", ylabel = "p2", legend=false, linecolor=:orange, linewidth=2)
     xticks!(p2_plot, [ttt1[end], 2., ttt2[end], 6., 8.], [L"$\tau_1^*$", "2", L"$\tau_2^*$", "6", "8"])
 
@@ -738,7 +665,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 
 
 
-```julia
+```@example main
     p2_plot = plot(t, p2, xlabel = "t", ylabel = "p2", legend=false, linecolor=:orange, linewidth=2)
     xticks!(p2_plot, [ttt1[end], 2., ttt2[end], 6., 8.], [L"$\tau_1^*$", "2", L"$\tau_2^*$", "6", "8"])
 
@@ -748,7 +675,7 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 
 
 
-```julia
+```@example main
     # create an animation
     animx = @animate for i = 1:length(t)
         plot(x1[1:i], x2[1:i], xlim=(0.,31.), ylim=(-0.,5.5), xlabel="x1", ylabel="x2", label="optimal trajectory \$x\$", linecolor=:blue,  linewidth=2)
@@ -776,24 +703,24 @@ ph_plot   = plot(t, H_direct, label = "H(t): direct", linecolor=:green , linewid
 ```
 
 
-```julia
+```@example main
     # display the animation
     gif(animx, "zer1_x.gif", fps = 10)
 ```
 
 
-```julia
+```@example main
     gif(animu, "zer1_u.gif", fps = 10)
 ```
 
 
-```julia
+```@example main
     # display the animation
     gif(animp1, "zer1_p1.gif", fps = 10)
 ```
 
 
-```julia
+```@example main
     # display the animation
     gif(animp2, "zer_p2.gif", fps = 10)
 ```
