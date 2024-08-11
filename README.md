@@ -1,33 +1,20 @@
 # Optimal control problems with loss control: applications
 
-Zermelo:
+[ci-img]: https://github.com/control-toolbox/control-loss/actions/workflows/CI.yml/badge.svg?branch=main
+[ci-url]: https://github.com/control-toolbox/control-loss/actions/workflows/CI.yml?query=branch%3Amain
 
-* [permanent case](zermelo/permanent.ipynb) : In this example, we investigate the Zermelo navigation problem under the assumption of permanent control. More precisely, the control input $u(\cdot)$ can be adjusted at any time $t \in [0,8]$.
+[co-img]: https://codecov.io/gh/control-toolbox/control-loss/branch/main/graph/badge.svg?token=YM5YQQUSO3
+[co-url]: https://codecov.io/gh/control-toolbox/control-loss
 
+[doc-dev-img]: https://img.shields.io/badge/docs-dev-8A2BE2.svg
+[doc-dev-url]: https://control-toolbox.org/control-loss/dev/
 
-* [contro loss case 1: one region of control loss](zermelo/loss1.ipynb) : In this example, we consider the Zermelo navigation problem with a state space divided into two regions: one of type C (control region) and one of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the region of type NC, the control is constrained to a constant value to be determined.
+[doc-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[doc-stable-url]: https://control-toolbox.org/control-loss/stable/
 
-* [control loss case 1: via augmentaion](zermelo/loss1_aug.ipynb) : In this example, we investigate the same problem as in [contro loss case 1: one region of control loss](zermelo/loss1.ipynb) only we use the technique of augmentation.
+This repo is part of the [control-toolbox ecosystem](https://github.com/control-toolbox). 
+The control-toolbox ecosystem gathers `Julia` packages for mathematical control and applications. The root package is [`OptimalControl.jl`](https://github.com/control-toolbox/OptimalControl.jl) which aims to provide tools to modelise and solve optimal control problems by direct and indirect methods. [![doc OptimalControl.jl](https://img.shields.io/badge/doc-OptimalControl.jl-blue)](http://control-toolbox.org/OptimalControl.jl)
 
-* [contro loss case 2: two regions of control loss](zermelo/loss2.ipynb) : In this example, we consider the Zermelo navigation problem with a state space divided into three regions: one of type C (control region) and two of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the regions of type NC, the control is constrained to a constant value to be determined (this constant value may differ between the two regions.)
-
-Harmonic oscillator:
-
-* [permanent case](harmonic%20oscillator/permanent.ipynb)  : In this example, we investigate the harmonic oscillator problem under the assumption of permanent control. More precisely, the control input $u(\cdot)$ can be adjusted at any time $t$.
-
-
-* [control loss case: minimum time problem](harmonic%20oscillator/loss.ipynb) : In this example, we consider the harmonic oscillator problem, where we minimize the final time to reach the origin, with a state space divided into two regions: one of type C (control region) and one of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the region of type NC, the control is constrained to a constant value to be determined.
-
-
-* [contro loss case 2: minimum energy problem](harmonic%20oscillator/loss-energy.ipynb) : In this example, we consider the harmonic oscillator problem, where we minimize the energy to reach the origin, with a state space divided into two regions: one of type C (control region) and one of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the region of type NC, the control is constrained to a constant value to be determined.
-
-
-Double integrator:
-
-* [permanent case](double%20integrator/permanent.ipynb) : In this example, we investigate the double integrator problem under the assumption of permanent control. More precisely, the control input $u(\cdot)$ can be adjusted at any time $t$.
-
-
-* [control loss case](double%20integrator/loss.ipynb) : In this example, we consider the double integrator problem with a state space divided into two regions: one of type C (control region) and one of type NC (loss of control region). Specifically, the control input $u(\cdot)$ can only be modified when $x(\cdot)$ belongs to the region of type C. However, when $x(\cdot)$ belongs to the region of type NC, the control is constrained to a constant value to be determined.
-
-
-
+| **Documentation**  | **Code Status**  |
+|:-------------------|:-----------------|
+| [![Documentation][doc-stable-img]][doc-stable-url] [![Documentation][doc-dev-img]][doc-dev-url] | [![Build Status][ci-img]][ci-url] [![Covering Status][co-img]][co-url] |
