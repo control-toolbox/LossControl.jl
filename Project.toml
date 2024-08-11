@@ -2,6 +2,3 @@ name = "ControlLoss"
 uuid = "6a3a0e7e-9c90-4c26-bc64-8dd630726a7b"
 authors = ["Olivier Cots <olivier.cots@irit.fr>"]
 version = "0.1.0"
-
-[deps]
-NonlinearSolve = "8913a72c-7c03-11eb-0c79-d1a52b167fc9"
