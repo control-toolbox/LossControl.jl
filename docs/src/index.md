@@ -5,7 +5,7 @@
 
 Typically, optimal control involves *permanent control*, allowing modification of the control function at each time instant. However, practical constraints can lead to *nonpermanent control*. For instance, digital controls result in *sampled-data control* with discrete changes. In aerospace, *eclipse constraints* limit control for solar-powered satellites in a shadow region where the control is reduced to zero. Hence, it is desirable to keep the system outside these regions.
 
- ![MRI](resources/mri.jpg) 
+ ![aerospace](resources/aerospace.jpg) 
 
 ```math
     \begin{equation}
@@ -33,16 +33,13 @@ We extend our previous work by using a permanent control for control regions and
     - Provide an indirect method (shooting method) for solving optimal control problems with loss control regions using the PMP with loss control regions.
 
 
-
-
 [^1]: T. Bayen, A. Bouali, L. Bourdin & O. Cots, *Loss control regions in optimal control problems*, Journal of Differential Equations, **12** (2024) 405, 359-397.
 
 ## Dependencies
 
-All the numerical simulations to generate this documentation from `MRI.jl` are performed with the following packages.
+All the numerical simulations to generate this documentation are performed with the following packages.
 
 ```@example
 using Pkg
 Pkg.status()
 ```
->>>>>>> adjoint

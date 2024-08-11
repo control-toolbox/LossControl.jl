@@ -10,7 +10,6 @@ makedocs(
             asset("https://control-toolbox.org/assets/css/documentation.css"),
             asset("https://control-toolbox.org/assets/js/documentation.js"),
         ],
-        inventory_version = "0.1.0"  # Add this line
     ),
     pages = [
         "Introduction"              => "index.md",
