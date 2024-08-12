@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Harmonic oscillator · Control loss</title><meta name="title" content="Harmonic oscillator · Control loss"/><meta property="og:title" content="Harmonic oscillator · Control loss"/><meta property="twitter:title" content="Harmonic oscillator · Control loss"/><meta name="description" content="Documentation for Control loss."/><meta property="og:description" content="Documentation for Control loss."/><meta property="twitter:description" content="Documentation for Control loss."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">Control loss</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="zermelo1.html">Zermelo example 1</a></li><li><a class="tocitem" href="zermelo2.html">Zermelo example 2</a></li><li class="is-active"><a class="tocitem" href="ho.html">Harmonic oscillator</a><ul class="internal"><li><a class="tocitem" href="#Reformulation-for-the-direct-method"><span>Reformulation for the direct method</span></a></li><li class="toplevel"><a class="tocitem" href="#Indirect-method"><span>Indirect method</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="ho.html">Harmonic oscillator</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="ho.html">Harmonic oscillator</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss/blob/main/docs/src/ho.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Harmonic-oscillator-problem"><a class="docs-heading-anchor" href="#Harmonic-oscillator-problem">Harmonic oscillator problem</a><a id="Harmonic-oscillator-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Harmonic-oscillator-problem" title="Permalink"></a></h1><p class="math-container">\[    \left\{
+    \begin{array}{l}
+        \displaystyle \min  T, \\[0.5em]
+        \dot{x}_1(t) = x_2(t), \; t\in [0,T]\\[0.5em]
+        \dot{x}_2(t) = u(t)-x_1(t), t\in [0,T]  \\[0.5em]
+        u(t) \in [-1, 1], \; t\in [0,T]\\[0.5em]
+        x(0) = (4.2,0) , \quad x(T) = 0_{\mathrm{R}^2}, \\[0.5em]
+        \{x \mid x_2 &lt; 0\} \text{ is a control loss reigon.}
+    \end{array}
+    \right.\]</p><h2 id="Reformulation-for-the-direct-method"><a class="docs-heading-anchor" href="#Reformulation-for-the-direct-method">Reformulation for the direct method</a><a id="Reformulation-for-the-direct-method-1"></a><a class="docs-heading-anchor-permalink" href="#Reformulation-for-the-direct-method" title="Permalink"></a></h2><p class="math-container">\[    \left\{
+    \begin{array}{l}
+        \displaystyle \min  T + \varepsilon \int_0^T v^2(t)dt + \int_0^T f_{NC}(x_2(t))u^2(t)dt, \\[0.5em]
+        \dot{x}_1(t) = x_2(t), \; t\in [0,T]\\[0.5em]
+        \dot{x}_2(t) =f_{C}(x_2(t))(u(t) - x_1(t)) + f_{NC}(x_2(t))(\lambda(t) - x_1(t))
+        , t\in [0,T]  \\[0.5em]
+        \dot{\lambda}(t) = f_C(x_2(t))v(t),\; t\in [0,T]\\[0.5em]
+        u(t) \in [-1, 1] \; t\in [0,T]\\[0.5em]
+        x(0) = (4.2,0) , \quad x(T) = 0_{\mathrm{R}^2}.
+    \end{array}
+    \right.\]</p><pre><code class="language-julia hljs">using JuMP
+using Ipopt
+using Plots
+using LaTeXStrings
+using Plots.PlotMeasures</code></pre><pre><code class="language-julia hljs">mutable struct Direct
+    t; x1; x2 ; λ ; u ; xu ; xv ; p1 ; p2
+end
+
+mutable struct DirecttSol
+    t; x1; x2 ; λ ; u ; v ; xu ; xv ; p1 ; p2 ; p3
+end</code></pre><pre><code class="language-julia hljs">distance_squared(x, a) = x &lt; a ? (a - x)^2 : 0 ;
+
+#Moreau Yosida regularization
+function MY_reg(x, a, k)
+    return 1 - exp(-k*distance_squared(x, a))
+end
+
+fNC(x) = MY_reg(x, 0.03, 900)
+fC(x) = 1. - fNC(x)
+
+plot(fNC, -0.5, 0.5)</code></pre><img src="ho-fe45a7b7.svg" alt="Example block output"/><pre><code class="language-julia hljs">function HO(ε=1e-3; x0=[2.5, 4], nsteps=800, tol=1e-8, display=true)
+    &quot;&quot;&quot;
+        Solve the HO problem with the given parameters.
+
+        Parameters
+        ----------
+
+        x0 : array of floats
+            Initial condition
+        nsteps : int
+            Number of steps in the discretization
+        ε : float
+            Regularization parameter
+        tol : float
+            Tolerance for the solver
+        display : bool
+            If true, display the results
+
+        Returns
+        -------
+
+        sol : DirecttSol
+            The (direct) solution of the problem
+            &quot;&quot;&quot;
+
+    # Create JuMP model, using Ipopt as the solver
+    sys = Model(optimizer_with_attributes(Ipopt.Optimizer, &quot;print_level&quot; =&gt; display ? 5 : 1))
+    set_optimizer_attribute(sys,&quot;tol&quot;, tol)
+    set_optimizer_attribute(sys,&quot;constr_viol_tol&quot;, tol)
+    set_optimizer_attribute(sys,&quot;max_iter&quot;,1000)
+
+    # Constants
+    N  = nsteps     # Grid size
+
+    @variables(sys, begin
+                x1[1:N+1]
+                x2[1:N+1]
+        -1.0  ≤  λ[1:N+1]  ≤ 1.0
+        -1.0  ≤  u[1:N+1]  ≤ 1.0
+        0.0  ≤ Δt         ≤ 1.0
+                v[1:N+1]
+        -1e1  ≤ xv[1:N+1]
+        -1e1  ≤ xu[1:N+1]
+    end)
+
+    set_start_value(Δt, 20/N);
+    for i in 1:N+1
+        set_start_value(λ[i] , 1.0);
+        set_start_value(v[i] , 0.0);
+        set_start_value(xv[i], 0.0);
+        set_start_value(xu[i], 0.0);
+    end
+
+    T = Δt*(N+1) ;
+
+    # Objective
+    @objective(sys, Min, T + ε*xv[N+1] + xu[N+1])
+
+    # Boundary constraints
+    @constraints(sys, begin
+        con_xu0, xu[1]   == 0.0
+        con_xv0, xv[1]   == 0.0
+        con_x10, x1[1]   == x0[1]
+        con_x20, x2[1]   == x0[2]
+        con_x1f, x1[N+1] == 0.0
+        con_x2f, x2[N+1] == -1e-5
+    end)
+
+    # Dynamics
+    @NLexpression(sys, dx1[j = 1:N+1], x2[j])
+    @NLexpression(sys, dx2[j = 1:N+1], fC(x2[j])*u[j] +fNC(x2[j])*λ[j] - x1[j])
+    @NLexpression(sys,  dλ[j = 1:N+1], fC(x2[j])*v[j])
+    @NLexpression(sys, dxv[j = 1:N+1], v[j]^2)
+    @NLexpression(sys, dxu[j = 1:N+1], fNC(x2[j])*u[j]^2)
+
+    # Dynamics with Crank-Nicolson scheme
+    @NLconstraints(sys, begin
+        con_dx1[j=1:N], x1[j+1] == x1[j] + 0.5 * Δt * (dx1[j+1] + dx1[j])
+        con_dx2[j=1:N], x2[j+1] == x2[j] + 0.5 * Δt * (dx2[j+1] + dx2[j])
+        con_dx3[j=1:N],  λ[j+1] ==  λ[j] + 0.5 * Δt * (dλ[j+1]  + dλ[j])
+        con_dxv[j=1:N], xv[j+1] == xv[j] + 0.5 * Δt * (dxv[j+1] + dxv[j])
+        con_dxu[j=1:N], xu[j+1] == xu[j] + 0.5 * Δt * (dxu[j+1] + dxu[j])
+    end)
+
+
+    # Solve for the control and state
+    if display
+        println(&quot;Solving...&quot;)
+    end
+    status = optimize!(sys)
+    if display
+        println()
+    end
+
+    # Display results
+    if display
+        if termination_status(sys) == MOI.OPTIMAL
+            println(&quot;  Solution is optimal&quot;)
+        elseif  termination_status(sys) == MOI.LOCALLY_SOLVED
+            println(&quot;  (Local) solution found&quot;)
+        elseif termination_status(sys) == MOI.TIME_LIMIT &amp;&amp; has_values(sys)
+            println(&quot;  Solution is suboptimal due to a time limit, but a primal solution is available&quot;)
+        else
+            error(&quot;  The model was not solved correctly.&quot;)
+        end
+        println(&quot;  objective value = &quot;, objective_value(sys))
+        println()
+    end
+
+    # Retrieves values (including duals)
+    x1 = value.(x1)[:]
+    x2 = value.(x2)[:]
+    λ  = value.(λ)[:]
+    u  = value.(u)[:]
+    v  = value.(v)[:]
+    xu  = value.(xu)[:]
+    xv  = value.(xv)[:]
+    t  = (0:N) * value.(Δt)
+
+
+    px10 = - dual(con_x10)
+    px20 = - dual(con_x20)
+    px1f =   dual(con_x1f)
+    px2f =   dual(con_x2f)
+
+    px30 = 0 # λ(0) is free
+    px3f = 0 # λ(T) is free
+
+
+    # duals of the dynamics
+    px1 = -[ dual(con_dx1[i]) for i in 1:N ]
+    px2 = -[ dual(con_dx2[i]) for i in 1:N ]
+    px3 = -[ dual(con_dx3[i]) for i in 1:N ]
+
+    # adjoint vectors
+    p1 = [px10; (px1[1:N-1]+px1[2:N])/2; px1f]
+    p2 = [px20; (px2[1:N-1]+px2[2:N])/2; px2f]
+    p3 = [px30; (px3[1:N-1]+px3[2:N])/2; px3f]
+
+
+
+    return DirecttSol(t, x1, x2, λ, u, v, xu, xv, p1, p2, p3)
+
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">HO (generic function with 2 methods)</code></pre><pre><code class="language-julia hljs"># Resolution
+ε   = 1e-3
+sol = HO(ε)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Main.DirecttSol(0.0:0.012042594040759412:9.634075232607529, [2.5, 2.547914847354862, 2.5953151811715554, 2.6421941273370573, 2.6885448875223634, 2.734360739995475, 2.779635040596174, 2.824361223699554, 2.8685328031681605, 2.9121433732925985  …  0.004414831786590983, 0.0034586454438031893, 0.002621196212007861, 0.0019025514849296678, 0.001302589828156623, 0.0008206218108132056, 0.000454570776359682, 0.00019992356389476556, 4.988144905579571e-5, -1.1017340504374905e-35], [4.0, 3.957562497363756, 3.9145510449946683, 3.870971909085692, 3.8268314094397438, 3.782135947268054, 3.7368920042618794, 3.6911061416525386, 3.6447849992599184, 3.5979352945295813  …  -0.08432792738515767, -0.07447279936050553, -0.06460840340376506, -0.054742082819695656, -0.04489785434706627, -0.035146032495277896, -0.025646689274564358, -0.01664440043634618, -0.008274170152538026, -1.0e-5], [0.980161943396842, 0.9801694952725156, 0.9801815805787153, 0.9801997133905134, 0.9802238992809376, 0.9802541457074684, 0.9802904620281597, 0.9803328595219617, 0.9803813514133645, 0.9804359529015014  …  0.8223181270295407, 0.8223181278728594, 0.82231815335126, 0.8223186866478509, 0.8223263248238178, 0.8223994524561763, 0.8228495007355172, 0.8245354845905891, 0.8280278768208056, 0.83291387129255], [-0.9999904711331352, -0.9999952405792358, -0.9999952402814725, -0.9999952392917879, -0.9999952376094642, -0.9999952352332799, -0.9999952321615083, -0.9999952283919139, -0.9999952239217489, -0.9999952187477478  …  3.83684742156137e-6, 2.6754749811878173e-5, 0.00015693918473050044, 0.0007744109567020018, 0.0032214491027288124, 0.01138006139264816, 0.03471123515545064, 0.09398339867562111, 0.23334315816586904, 0.5421259776296842], [0.0005016393767260863, 0.0007525548023678632, 0.0012545387123312592, 0.0017569074489821868, 0.0022598169116082173, 0.002763424165608706, 0.00326788778735027, 0.0037733682175461877, 0.004280028125239816, 0.004788032784587519  …  0.0004089928530678898, 0.0025260474786523153, 0.012904371250178907, 0.05415150051276284, 0.18450247179932097, 0.49966018705813525, 1.0352199127307182, 1.532159221000988, 1.3596524435446633, 1.0068578503415624], [-2.9904404811276927e-33, -2.9904404811276927e-33, -2.835884139520458e-33, 5.7286383635474894e-33, 2.030091658299516e-32, 2.560168635107398e-32, 2.5774032653979283e-32, 3.602964800489901e-32, 6.320079191115397e-32, 5.779194789559849e-32  …  0.0014342771415348137, 0.0014342771459333662, 0.0014342772985002107, 0.0014342810521701412, 0.0014343467439880892, 0.0014351715173660418, 0.0014427420959357096, 0.0014952297451428745, 0.0017810435536816573, 0.003004016626324346], [-3.6857160371558214e-37, 4.925305322752528e-9, 1.781212200375e-8, 4.5874925698934264e-8, 9.521040030540546e-8, 1.719415078767493e-7, 2.822251979209225e-7, 4.32260254035644e-7, 6.28295310778645e-7, 8.766370751245515e-7  …  0.03090888720551689, 0.03090892663411996, 0.030909967738733227, 0.030928627183066784, 0.031151255892100105, 0.03285950667576025, 0.0408156907142841, 0.06140366219637884, 0.08667002791736089, 0.10390549386933952], [0.004501084681318548, 0.00029256753670239507, -0.003915828850220874, -0.008123657368290706, -0.01233030780320831, -0.016535170111519115, -0.02073763450908056, -0.024937091559492232, -0.02913293226247566, -0.03332454814219076  …  -0.11066074947867315, -0.0987768171146072, -0.08687632272187512, -0.07495275507087855, -0.06297744468002009, -0.050860797550779394, -0.03838384448303768, -0.02512899288203647, -0.01054815716701352, 0.005299527220280374], [-0.34945400666285303, -0.34947020033273346, -0.3494483836001824, -0.34937589027768795, -0.3492527308781459, -0.3490789232619861, -0.3488544926345829, -0.34857947154259955, -0.34825389986926847, -0.3478778248286074  …  0.9861656037044919, 0.9874843132226301, 0.988916178640441, 0.9913162547771448, 0.9975094667122247, 1.01478906103531, 1.057348059175197, 1.1439802520073914, 1.2775637551512986, 1.368184833357277], [0.0, 1.5026976031287947e-6, 2.5050615580789588e-6, 3.508197966074716e-6, 4.512418132532329e-6, 5.518035693875998e-6, 6.525367306173843e-6, 7.534733350802925e-6, 8.546458661297116e-6, 9.560873275762165e-6  …  0.10512002707494603, 0.09323656504870981, 0.08133838414684044, 0.06942611919140991, 0.057498767842315085, 0.04555480779051835, 0.03360425563893857, 0.021713849568461528, 0.010163411881937843, 0.0])</code></pre><pre><code class="language-julia hljs"># Plots
+t  = sol.t
+x1 = sol.x1
+x2 = sol.x2
+λ  = sol.λ
+u  = sol.u
+v  = sol.v
+xu = sol.xu
+xv = sol.xv
+p1 = sol.p1
+p2 = sol.p2
+p3 = sol.p3
+
+println(&quot;xu = &quot;, xu[end])
+println(&quot;xv = &quot;, xv[end])
+
+# Compute the differences between adjacent elements
+d = diff(u)
+
+switchings = findall(abs.(x2) .&lt; 0.012)
+tc1   = t[switchings[1]]
+tc2   = t[switchings[2]]
+tc3   = t[switchings[3]]
+tstar = t[findall(abs.(d) .&gt; 1.5)[]]
+
+T  = t[end]
+
+x1_plot   = plot(t,  x1, xlabel = &quot;t&quot;, ylabel = &quot;x1&quot;,   legend=false,  linecolor=:blue , linewidth=2)
+x2_plot   = plot(t,  x2, xlabel = &quot;t&quot;, ylabel = &quot;x2&quot;,    legend=false,  linecolor=:blue , linewidth=2)
+xticks!(x2_plot, [tc1,2.,tc2,tc3,8.], [L&quot;$\tau_1$&quot;,&quot;2&quot;,L&quot;$\tau_2$&quot;,L&quot;$\tau_3$&quot;, &quot;8&quot;])
+vline!(x2_plot, [tc1], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(x2_plot, [tc2], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(x2_plot, [tc3], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+hline!([(0., 0), (31., 0)], linecolor=:black, linewidth=2, label=false)
+
+u1 = copy(u)
+
+u1[tc1  .&lt;= t .&lt;= tc2] .= λ[(switchings[1] + switchings[2]) ÷ 2]
+u1[tc3 .&lt;= t .&lt;=   T] .= λ[(switchings[4] + length(t)) ÷ 2]
+
+control_plot = plot(t, u1,  xlabel = &quot;t&quot;, label=L&quot;optimal control $u$&quot;,linecolor=:red ,linewidth=2,legend=:bottomleft)
+plot!(t, λ, xlabel = &quot;t&quot;, ylabel = &quot;(λ,u)&quot;,  label =L&quot;state $\lambda$&quot;, linecolor=:brown,linewidth=2)
+xticks!(control_plot, [tc1,2.,tc2,tstar,tc3,8.], [L&quot;$\tau_1$&quot;,&quot;2&quot;,L&quot;$\tau_2$&quot;,L&quot;$\sigma$&quot;,L&quot;$\tau_3$&quot;, &quot;8&quot;])
+vline!(control_plot, [tc1], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(control_plot, [tc2], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(control_plot, [tc3], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(control_plot, [tstar], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+
+x1x2_plot = plot(x1, x2, xlabel = &quot;x1&quot;, ylabel = &quot;x2&quot;,  legend=false,  linecolor=:blue , linewidth=2)
+plot!(x1x2_plot, [-3, 5], [-4.0, -4.0], fillrange = 0.0, fillalpha = 0.2, fillcolor = :red, label=false)
+plot!(x1x2_plot, [-3, 5], [4.3, 4.3], fillrange = 0.0, fillalpha = 0.2, fillcolor = :green, label=false)
+plot!(x1x2_plot, [-3, 5], [0., 0.], linecolor=:black, linewidth=2, label=false)
+
+λ_plot = plot(t, λ, xlabel = &quot;x1&quot;, ylabel = &quot;λ&quot;,  legend = false)
+
+p1_plot   = plot(t, p1, xlabel = &quot;t&quot;, ylabel = &quot;p1&quot;,  legend=false, linecolor=:orange , linewidth=2)
+p2_plot   = plot(t, p2, xlabel = &quot;t&quot;, ylabel = &quot;p2&quot;,  legend=false, linecolor=:orange , linewidth=2)
+xticks!(p2_plot, [tc1,2,tc2,tstar,tc3,8], [L&quot;$\tau_1$&quot;,&quot;2&quot;,L&quot;$\tau_2$&quot;,L&quot;$\sigma$&quot;,L&quot;$\tau_3$&quot;,&quot;8&quot;])
+vline!(p2_plot, [tc1], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [tc2], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [tc3], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [tstar], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+
+plot(x1x2_plot, x1_plot,x2_plot, control_plot , p1_plot,p2_plot, layout = (2,3), size=(900, 500), left_margin=5mm)</code></pre><img src="ho-f6892d0b.svg" alt="Example block output"/><pre><code class="language-julia hljs">function H(k)
+    return (p1[k] * x2[k]) + (p2[k] * (fC(x2[k])*u[k] +fNC(x2[k])*λ[k] - x1[k])) + p3[k]*fC(x2[k])*v[k] - ε * (v[k])^2 - fNC(x2[k]) * (u[k])^2
+end
+H_direct  = [H(k) for k in 1:length(x1)]
+ph_plot   = plot(t, H_direct, xlabel = &quot;t&quot;, ylabel = &quot;H_direct&quot;,  legend=false, linecolor=:green , linewidth=2)</code></pre><img src="ho-68df4af0.svg" alt="Example block output"/><pre><code class="language-julia hljs">jmp1 = -(p2[switchings[1]+3] - p2[switchings[1]-2])
+jmp3 = -(p2[switchings[3]+3] - p2[switchings[3]-2])
+lambda = λ[(switchings[3] + length(t)) ÷ 2]
+
+println(&quot; p2(t1+) - p2(t1-) = &quot;, jmp1)
+println(&quot; p2(t3+) - p2(t3-) = &quot;, jmp3)
+println(&quot; lambda(t3+) = &quot;, lambda)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"> p2(t1+) - p2(t1-) = 0.05576547966737444
+ p2(t3+) - p2(t3-) = 0.5293730471343672
+ lambda(t3+) = 0.8223181270097474</code></pre><h1 id="Indirect-method"><a class="docs-heading-anchor" href="#Indirect-method">Indirect method</a><a id="Indirect-method-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-method" title="Permalink"></a></h1><pre><code class="language-julia hljs">using NLsolve
+using Plots
+using Plots.PlotMeasures
+include(&quot;flow.jl&quot;);</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Poisson (generic function with 1 method)</code></pre><pre><code class="language-julia hljs"># Dynamics
+function F0(x)
+    return [ x[2], -x[1]]
+end
+
+function F1(x)
+    return [ 0.0 ,   1.0]
+end
+
+H0(x, p) = p&#39; * F0(x)
+H1(x, p) = p&#39; * F1(x)
+
+# Hamiltonians:
+H(x, p, u)  =  H0(x, p) + u*H1(x,p)                             # pseudo-Hamiltonian
+
+up(x, p) =   1.0
+um(x, p) = - 1.0
+
+Hp(x, p) = H(x, p, up(x, p))
+Hm(x, p) = H(x, p, um(x, p))
+
+# Hamiltonians: control loss region 2
+H2(x, b, y, p)  = H0(x, p) + b*H1(x, p) - y*p[2]                # pseudo-Hamiltonian
+Hcl(X, P)       = H2(X[1:2], X[3], X[4], P[1:2])                # control loss 2
+
+# Flows
+fp    = Flow(Hp)
+fm    = Flow(Hm)
+fcl   = Flow(Hcl)</code></pre><pre><code class="language-julia hljs">t0 = 0.0
+x0 = [2.5; 4.0]
+
+# Shooting function
+function SHOOT(p0, tt1, tt2, ttstar, tt3, b1, jump1, jump2, TT)
+
+    pb0    = 0.0
+    py0    = 0.0
+
+    x1, p1 = fm(t0 , x0, p0, tt1)
+    x2, p2 = fp(tt1, x1, p1 - [0. , jump1], tt2)
+    x3, p3 = fp(tt2, x2, p2, ttstar)
+    x4, p4 = fm(ttstar, x3, p3, tt3)
+    X5, P5 = fcl(tt3, [x4 ; b1 ; 0.0], [p4 - [0. , jump2]; pb0 ; py0], TT)
+
+    s = zeros(eltype(p0), 10)
+
+    s[1:2]  = X5[1:2] - [ 0.0 , 0.0 ]                     # target
+    s[3]    = H1(x3, p3)                                  # switching
+    s[4]    = x1[2] - 0.0                                 # first crossing
+    s[5]    = x2[2] - 0.0                                 # second crossing
+    s[6]    = x4[2] - 0.0                                 # third crossing
+    s[7]    = jump1 - p1[2]*(1. + 1.)/(1. - x1[1])        # jump1
+    s[8]    = jump2 - p4[2]*(b1 + 1.)/(b1 - x4[1])        # jump2
+    s[9]    = Hm(x0, p0) - 1.0                            # free final time
+    s[10]   = P5[4]                                       # averaged gradient condition
+
+    return s
+
+end</code></pre><pre><code class="language-julia hljs">S(ξ) = SHOOT(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10]);
+ξ_guess = [p1[1] , p2[1], tc1, tc2, tstar , tc3, lambda, jmp1, jmp3, t[end]]; # initial guess
+S(ξ_guess)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">10-element Vector{Float64}:
+  0.0038644883167807055
+  0.01520665319560188
+ -0.031426782240352204
+ -0.016252668873644856
+  0.021306077616296517
+ -0.013958992610073002
+ -0.08462963210090174
+ -0.33306035690973446
+  0.24109336204525977
+  0.06950771693040582</code></pre><pre><code class="language-julia hljs"># Solve
+indirect_sol = nlsolve(S, ξ_guess; xtol=1e-8, method=:trust_region, show_trace=true)
+println(indirect_sol)
+
+# Retrieves solution
+if indirect_sol.f_converged || indirect_sol.x_converged
+    pp0     = indirect_sol.zero[1:2]
+    tt1     = indirect_sol.zero[3]
+    tt2     = indirect_sol.zero[4]
+    ttstar  = indirect_sol.zero[5]
+    tt3     = indirect_sol.zero[6]
+    b11     = indirect_sol.zero[7]
+    jmp1    = indirect_sol.zero[8]
+    jmp2    = indirect_sol.zero[9]
+    T1      = indirect_sol.zero[10]
+else
+    error(&quot;Not converged&quot;)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Iter     f(x) inf-norm    Step 2-norm
+------   --------------   --------------
+     0     3.330604e-01              NaN
+     1     1.171784e-04     3.191856e-01
+     2     1.777539e-07     6.371000e-04
+     3     8.591875e-15     1.119225e-07
+Results of Nonlinear Solver Algorithm
+ * Algorithm: Trust-region with dogleg and autoscaling
+ * Starting Point: [0.004501084681318548, -0.34945400666285303, 0.8550241768939182, 3.9981412215321246, 4.91337836862984, 6.490958187969323, 0.8223181270097474, 0.05576547966737444, 0.5293730471343672, 9.634075232607529]
+ * Zero: [-0.008674974293920449, -0.29562854205019484, 0.8519663271732711, 3.993558980763059, 4.9167165394226195, 6.487512866217511, 0.8219028306315819, 0.11350831730750112, 0.8384462105284513, 9.629105519807297]
+ * Inf-norm of residuals: 0.000000
+ * Iterations: 3
+ * Convergence: true
+   * |x - x&#39;| &lt; 1.0e-08: false
+   * |f(x)| &lt; 1.0e-08: true
+ * Function Calls (f): 4
+ * Jacobian Calls (df/dx): 4</code></pre><pre><code class="language-julia hljs">t0 = 0.0
+x0 = [2.5; 4.0]
+
+ode_sol = fm((t0, tt1), x0, pp0, saveat=0.1) ;
+ttt1    = ode_sol.t ;
+xx1     = [ ode_sol[1:2, j] for j in 1:size(ttt1, 1) ] ;
+pp1     = [ ode_sol[3:4, j] for j in 1:size(ttt1, 1) ] ;
+uu1     = um.(xx1, pp1);
+
+ode_sol = fp((tt1, tt2), xx1[end], pp1[end] - [0., jmp1], saveat=0.1) ;
+ttt2    = ode_sol.t ;
+xx2     = [ ode_sol[1:2, j] for j in 1:size(ttt2, 1) ] ;
+pp2     = [ ode_sol[3:4, j] for j in 1:size(ttt2, 1) ] ;
+uu2     = up.(xx2, pp2)  ;
+
+ode_sol = fp((tt2, ttstar), xx2[end], pp2[end] , saveat=0.1) ;
+ttt3    = ode_sol.t ;
+xx3     = [ ode_sol[1:2, j] for j in 1:size(ttt3, 1) ] ;
+pp3     = [ ode_sol[3:4, j] for j in 1:size(ttt3, 1) ] ;
+uu3     = up.(xx3, pp3)  ;
+
+ode_sol = fm((ttstar, tt3), xx3[end], pp3[end], saveat=0.1) ;
+ttt4    = ode_sol.t ;
+xx4     = [ ode_sol[1:2, j] for j in 1:size(ttt4, 1) ] ;
+pp4     = [ ode_sol[3:4, j] for j in 1:size(ttt4, 1) ] ;
+uu4     = um.(xx4, pp4)  ;
+
+ode_sol = fcl((tt3, T1), [xx4[end] ; b11 ; 0.0], [pp4[end] - [0., jmp2]; 0. ; 0.], saveat=0.1)
+ttt5    = ode_sol.t
+xx5     = [ ode_sol[1:2, j] for j in 1:size(ttt5, 1) ]
+pp5     = [ ode_sol[5:6, j] for j in 1:size(ttt5, 1) ]
+uu5     = b11.*ones(length(ttt5))</code></pre><pre><code class="language-julia hljs">t = [ ttt1 ; ttt2 ; ttt3 ; ttt4 ; ttt5 ]
+x = [ xx1 ; xx2 ; xx3 ; xx4 ; xx5 ]
+p = [ pp1 ; pp2 ; pp3 ; pp4 ; pp5 ]
+u = [ uu1 ; uu2 ; uu3 ; uu4 ; uu5 ]
+
+m = length(t)
+
+x1 = [ x[i][1] for i=1:m ]
+x2 = [ x[i][2] for i=1:m ]
+p1 = [ p[i][1] for i=1:m ]
+p2 = [ p[i][2] for i=1:m ];
+
+x1_plot   = plot(t,  x1, xlabel = &quot;t&quot;, ylabel = &quot;x1&quot; ,legend=false,  linecolor=:blue , linewidth=2)
+x2_plot   = plot(t,  x2, xlabel = &quot;t&quot;, ylabel = &quot;x2&quot; ,legend=false,  linecolor=:blue , linewidth=2)
+xticks!(x2_plot, [ttt1[end],2,ttt2[end],ttt4[end],8], [L&quot;$\tau_1^*$&quot;,&quot;2&quot;,L&quot;$\tau_2^*$&quot;,L&quot;$\tau_3^*$&quot;,&quot;8&quot;])
+vline!(x2_plot, [ttt1[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(x2_plot, [ttt2[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(x2_plot, [ttt4[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+hline!([(0., 0), (31., 0)], linecolor=:black, linewidth=2, label=false)
+
+p1_plot   = plot(t,  p1,xlabel = &quot;t&quot;, ylabel = &quot;p1&quot;, legend=false, linecolor=:orange , linewidth=2)
+p2_plot   = plot(t,  p2,xlabel = &quot;t&quot;, ylabel = &quot;p2&quot;, legend=false,  linecolor=:orange , linewidth=2)
+xticks!(p2_plot, [ttt1[end],2,ttt2[end],ttt3[end],ttt4[end],8], [L&quot;$\tau_1^*$&quot;,&quot;2&quot;,L&quot;$\tau_2^*$&quot;,L&quot;$\sigma^*$&quot;,L&quot;$\tau_3^*$&quot;,&quot;8&quot;])
+vline!(p2_plot, [ttt1[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [ttt2[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [ttt4[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(p2_plot, [ttt3[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+
+u_plot    = plot(t,   u,xlabel = &quot;t&quot;, ylabel = &quot;u&quot;, legend=false,  linecolor=:red , linewidth=2) #, linetype=:steppre)
+xticks!(u_plot, [ttt1[end],2,ttt2[end],ttt3[end],ttt4[end],8], [L&quot;$\tau_1^*$&quot;,&quot;2&quot;,L&quot;$\tau_2^*$&quot;,L&quot;$\sigma^*$&quot;,L&quot;$\tau_3^*$&quot;,&quot;8&quot;])
+vline!(u_plot, [ttt1[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(u_plot, [ttt2[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(u_plot, [ttt3[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+vline!(u_plot, [ttt4[end]], linestyle=:dash, linecolor=RGBA(0.5, 0.5, 0.5, 0.5), label=nothing)
+
+x1x2_plot = plot(x1, x2, xlabel = &quot;x1&quot;, ylabel = &quot;x2&quot;,legend=false,  linecolor=:blue , linewidth=2)
+plot!(x1x2_plot, [-3, 5], [-4.0, -4.0], fillrange = 0.0, fillalpha = 0.2, fillcolor = :red, label=false)
+plot!(x1x2_plot, [-3, 5], [4.3, 4.3], fillrange = 0.0, fillalpha = 0.2, fillcolor = :green, label=false)
+plot!(x1x2_plot, [-3, 5], [0., 0.], linecolor=:black, linewidth=2, label=false)
+
+x=plot(x1x2_plot, x1_plot,x2_plot, u_plot , p1_plot,p2_plot, layout = (2,3), size=(900, 500), left_margin=5mm)</code></pre><img src="ho-ca1b896c.svg" alt="Example block output"/><pre><code class="language-julia hljs">function trapezoidal_integral(p, tt)
+    integral = 0.0
+    for i in 1:(length(tt) - 1)
+        integral += (p[i] + p[i + 1]) * (tt[i + 1] - tt[i]) / 2
+    end
+    return integral
+end
+p2NC = [v[2] for v in pp2]
+trapezoidal_integral(p2NC, ttt2)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">0.4560197155977067</code></pre><pre><code class="language-julia hljs"># create an animation
+animx = @animate for i = 1:length(t)
+    plot(x1[1:i], x2[1:i], xlim=(-3.,5.), ylim=(-4.,4.3), xlabel=&quot;x1&quot;, ylabel=&quot;x2&quot;, label=&quot;optimal trajectory \$x\$&quot;, linecolor=:blue,  linewidth=2)
+    scatter!([x1[i]], [x2[i]], markersize=4, marker=:circle, color=:black, label=false)
+    plot!( [-3, 5], [-4.0, -4.0], fillrange = 0.0, fillalpha = 0.2, fillcolor = :red, label=false)
+    plot!( [-3, 5], [4.3, 4.3], fillrange = 0.0, fillalpha = 0.2, fillcolor = :green, label=false)
+    plot!( [-3, 5], [0., 0.], linecolor=:black, linewidth=2, label=false)
+
+end
+
+# create an animation
+animu = @animate for i = 1:length(t)
+    plot(t[1:i], u[1:i], xlim=(0.,t[end]), ylim=(-1.2,1.2), xlabel=&quot;t&quot;, ylabel=&quot;u&quot;, label=&quot;opitmal control \$u\$&quot;, linecolor=:red,  linewidth=2)
+end
+
+# create an animation
+animp1 = @animate for i = 1:length(t)
+    plot(t[1:i], p1[1:i], xlim=(0.,t[end]), ylim=(-1.3, 0.5), xlabel=&quot;t&quot;, ylabel=&quot;p1&quot;, label=&quot;adjoint vector \$p1\$&quot;, linecolor=:orange,  linewidth=2)
+end
+
+# create an animation
+animp2 = @animate for i = 1:length(t)
+    plot(t[1:i], p2[1:i], xlim=(0.,t[end]), ylim=(-1.5,1.3), xlabel=&quot;t&quot;, ylabel=&quot;p2&quot;, label=&quot;adjoint vector \$p2\$&quot;, linecolor=:orange,  linewidth=2)
+end</code></pre><pre><code class="language-julia hljs"># display the animation
+gif(animx, &quot;ho_x.gif&quot;, fps = 10)</code></pre><img src="ho-78d1509d.gif" alt="Example block output"/><pre><code class="language-julia hljs"># display the animation
+gif(animu, &quot;ho_u.gif&quot;, fps = 10)</code></pre><img src="ho-6d53ee0b.gif" alt="Example block output"/><pre><code class="language-julia hljs"># display the animation
+gif(animp1, &quot;ho_p1.gif&quot;, fps = 10)</code></pre><img src="ho-73500736.gif" alt="Example block output"/><pre><code class="language-julia hljs"># display the animation
+gif(animp2, &quot;ho_p2.gif&quot;, fps = 10)</code></pre><img src="ho-5902b105.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo2.html">« Zermelo example 2</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Monday 12 August 2024 19:33">Monday 12 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
