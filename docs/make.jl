@@ -21,6 +21,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "https://github.com/control-toolbox/control-loss.git",
+    repo = "github.com/control-toolbox/control-loss.git",
     devbranch = "main"
 )
