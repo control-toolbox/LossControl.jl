@@ -1,4 +1,4 @@
-# Direct method
+# Zermelo problem, example 1
 ```math
 
     \left\{
@@ -12,6 +12,7 @@
     \end{array}
     \right.
 ```
+# Reformulation for the direct method
 
 ```math
 
