@@ -1,4 +1,4 @@
-# Optimal control problems with loss control: applications
+# Optimal control problems with loss control:  applications
 
 [ci-img]: https://github.com/control-toolbox/control-loss/actions/workflows/CI.yml/badge.svg?branch=main
 [ci-url]: https://github.com/control-toolbox/control-loss/actions/workflows/CI.yml?query=branch%3Amain
