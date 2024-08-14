@@ -3,8 +3,6 @@ function flexible_smooth_indicator(x, intervals, ε; mode="bounded_intervals")
         return sum(smooth_indicator_tanh.(x, interval[1], interval[2], ε) for interval in intervals)
     elseif mode == "unbounded_intervals"
         return 0.5 * (tanh((x - intervals[1][1]) / ε) + 1)
-    else
-        error("Invalid mode. Choose 'intervals', 'R+', or 'R-'.")
     end
 end
 
