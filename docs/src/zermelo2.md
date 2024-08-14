@@ -36,49 +36,27 @@ using Ipopt
 using Plots
 using Plots.PlotMeasures
 using LaTeXStrings
-```
-
-
-```@example main
 using OptimalControl
 using NLPModelsIpopt
+include("smooth.jl");
 ```
 
 
+
 ```@example main
-# Hyperbolic tangent function for smooth indicator
-function smooth_indicator_tanh(x, a, b, ε)
-    return 0.5 * (tanh((x - a) / ε) - tanh((x - b) / ε))
-end
-
-# Parameters for the intervals [5, 10] and [20, 25]
-a1, b1 = 5.0, 10.0
-a2, b2 = 20.0, 25.0
-ε2   = 1e-3
-tf  = 8
-
-# Regularization parameter
-ε1 = 0.05 # You can adjust this to control the smoothness
-
-# Define x range
-x = range(0, 30, length=1000)
-
-# Control regions/loss control regions indicator functions
-fNC(x) = smooth_indicator_tanh.(x, a1, b1, ε1) .+ smooth_indicator_tanh.(x, a2, b2, ε1)
-fC(x)  = 1 .- fNC(x)
-
-# Plots
-plot(x, fNC, label="fNC")
-plot!(x, fC, label="fC")
-xlabel!("x")
-ylabel!("y")
-title!("Smooth Indicator Function for [5,10] U [20,25]")
-
+I = [(5, 10), (20, 25)]
+ε1 = 0.05  
+fNC(x) = fNC_bounded(x,I,ε1)
+plot(fNC,0., 30, label="fNC")
 ```
 
 
 ```@example main
 @def ocp begin
+
+    ϵ  = 1e-3
+    
+    tf = 8
 
     t ∈ [ 0., tf ],                  time
 
@@ -102,15 +80,15 @@ title!("Smooth Indicator Function for [5,10] U [20,25]")
     -π/2  ≤  λ(t)  ≤ π/2
 
     #hybrid control system
-     q̇(t) == [fNC(x1(t))*(x2(t) + cos(λ(t))) + fC(x1(t))*(x2(t) + cos(u(t))),
-             fNC(x1(t))*sin(λ(t)) + fC(x1(t))*sin(u(t)),
-             fC(x1(t))*v(t),
+     q̇(t) == [fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
+             fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
+             (1-fNC(x1(t)))*v(t),
              (v(t))^2,
              fNC(x1(t))*(u(t))^2]
 
     #cost function        
-    -x1(tf) + ε2*xv(tf) + xu(tf) → min    
-end;
+    -x1(tf) + ϵ*xv(tf) + xu(tf) → min    
+end
 ```
 
 

@@ -37,60 +37,57 @@
     using LaTeXStrings
     using OptimalControl
     using NLPModelsIpopt
+    include("smooth.jl");
 ```
 
 
 ```@example main
-    function smooth_indicator_tanh(x, a, ε)
-        return 1 - 0.5 * (tanh((x - a) / ε) + 1)
-    end
-    a  = 0.0                   
-    ε1 = 0.02
-    fNC(x) = smooth_indicator_tanh(x, a, ε1) 
-
-    plot(fNC,-0.2, 0.2, label="fNC")
+a  = 0.0 
+ε1 = 0.02
+fNC(x) = fNC_unboundedminus(x,a,ε1)
+plot(fNC,-1., 1, label="fNC")
 ```
 
 
 ```@example main
-    @def ocp begin
+@def ocp begin
         
-        ε2 = 1e-3
+    ε = 1e-3
 
-        tf ∈ R,                          variable
+    tf ∈ R,                          variable
 
-        t ∈ [ 0., tf ],                  time
+    t ∈ [ 0., tf ],                  time
 
-        q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
+    q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
 
-        ω = [u, v] ∈ R^2,                control
+    ω = [u, v] ∈ R^2,                control
 
-        tf ≥ 0.
-        
-        #initial conditions
-        x1(0) == 2.5
-        x2(0) == 4
-        xu(0) == 0
-        xv(0) == 0
+    tf ≥ 0.
+    
+    #initial conditions
+    x1(0) == 2.5
+    x2(0) == 4
+    xu(0) == 0
+    xv(0) == 0
 
-        #final condition
-        x1(tf) ==  1e-6
-        x2(tf) == -1e-6
+    #final condition
+    x1(tf) ==  1e-6
+    x2(tf) == -1e-6
 
-        #control constraint
-        -1. ≤  u(t)  ≤ 1.
+    #control constraint
+    -1. ≤  u(t)  ≤ 1.
 
-        #state constraint
-        -1 ≤  λ(t) ≤ 1,             (1)
-        -5 ≤ x1(t) ≤ 5,             (2)
-        -5 ≤ x2(t) ≤ 5,             (3)
+    #state constraint
+    -1 ≤  λ(t) ≤ 1,             (1)
+    -5 ≤ x1(t) ≤ 5,             (2)
+    -5 ≤ x2(t) ≤ 5,             (3)
 
-        #hybrid control system
-        q̇(t) == [x2(t), (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t), (1-fNC(x2(t)))*v(t), (v(t))^2, fNC(x2(t))*(u(t))^2]
+    #hybrid control system
+    q̇(t) == [x2(t), (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t), (1-fNC(x2(t)))*v(t), (v(t))^2, fNC(x2(t))*(u(t))^2]
 
-        #cost function        
-        tf + (ε2)*xv(tf) + xu(tf) → min    
-    end
+    #cost function        
+    tf + ε*xv(tf) + xu(tf) → min    
+end
 ```
 
 
