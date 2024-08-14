@@ -41,7 +41,7 @@ end
 
 fC(x)  = MY_reg(x, 2, 16, 300) + MY_reg(x, 20, 25, 300) - 1
 fNC(x) = 1- fC(x)
-plot(fNC, -10, 40)</code></pre><img src="zermelo2-cd235b0f.svg" alt="Example block output"/><pre><code class="language-julia hljs">function ZERMELO(ε=1e-3; x0=[0, 0], nsteps=1000, tol=1e-10, display=true)
+plot(fNC, -10, 40)</code></pre><img src="zermelo2-1eb9ae4c.svg" alt="Example block output"/><pre><code class="language-julia hljs">function ZERMELO(ε=1e-3; x0=[0, 0], nsteps=1000, tol=1e-10, display=true)
     &quot;&quot;&quot;
         Solve the Zermelo problem with the given parameters.
 
@@ -241,7 +241,7 @@ plot!(x1x2_plot, [25., 32.], [0.0, 0.0], fillrange = 6, fillalpha = 0.2, fillcol
 vline!([5., 10., 20., 25.], linecolor=:black, linewidth=2, label=false)
 ylims!(0, 6)
 
-plot(x1x2_plot, x1_plot, x2_plot, u_plot, p1_plot, p2_plot , layout = (2,3), size=(900, 600))</code></pre><img src="zermelo2-04d28ce7.svg" alt="Example block output"/><pre><code class="language-julia hljs">v_plot   = plot(t,  v, label = &quot;v(t)&quot;, linecolor=:purple, linewidth=2, ylims=(-1.2, 0.5))
+plot(x1x2_plot, x1_plot, x2_plot, u_plot, p1_plot, p2_plot , layout = (2,3), size=(900, 600))</code></pre><img src="zermelo2-d4c5ba4d.svg" alt="Example block output"/><pre><code class="language-julia hljs">v_plot   = plot(t,  v, label = &quot;v(t)&quot;, linecolor=:purple, linewidth=2, ylims=(-1.2, 0.5))
 xticks!(v_plot, [2.,t1,t2,t3,t4,8.], [&quot;2&quot;,L&quot;$\tau_1$&quot;,L&quot;$\tau_2$&quot;,L&quot;$\tau_3$&quot;,L&quot;$\tau_4$&quot;,&quot;8&quot;])
 vline!(v_plot, [t1], linestyle=:dash, linecolor=:black, label=nothing, z_order=:back)
 vline!(v_plot, [t2], linestyle=:dash, linecolor=:black, label=nothing, z_order=:back)
@@ -255,7 +255,7 @@ vline!(p3_plot, [t2], linestyle=:dash, linecolor=:black, label=nothing, z_order=
 vline!(p3_plot, [t3], linestyle=:dash, linecolor=:black, label=nothing, z_order=:back)
 vline!(p3_plot, [t4], linestyle=:dash, linecolor=:black, label=nothing, z_order=:back)
 
-plot(v_plot, p3_plot, p1_plot, p2_plot, layout = (2,2), size=(900, 600)) #, left_margin=10mm)</code></pre><img src="zermelo2-3bf39524.svg" alt="Example block output"/><pre><code class="language-julia hljs">function H(k)
+plot(v_plot, p3_plot, p1_plot, p2_plot, layout = (2,2), size=(900, 600)) #, left_margin=10mm)</code></pre><img src="zermelo2-428a33ee.svg" alt="Example block output"/><pre><code class="language-julia hljs">function H(k)
     return p1[k] * x2[k] + p1[k] * (fNC(x1[k])*cos(λ[k]) + fC(x1[k])*cos(u[k])) +
                         p2[k] * (fNC(x1[k])*sin(λ[k]) + fC(x1[k])*sin(u[k])) +
                         p3[k] * fC(x1[k]) * v[k] -
@@ -263,7 +263,7 @@ plot(v_plot, p3_plot, p1_plot, p2_plot, layout = (2,2), size=(900, 600)) #, left
 end
 
 H_direct  = [H(k) for k in 1:length(x1)]
-ph_plot   = plot(t, H_direct, label = &quot;H(t): direct&quot;, linecolor=:green , linewidth=2, ylims=(5.5, 7))</code></pre><img src="zermelo2-2a9136f0.svg" alt="Example block output"/><pre><code class="language-julia hljs">jmp1 = -(p1[div(index1 + index2, 2)] - p1[div(index1 + 1, 2)])
+ph_plot   = plot(t, H_direct, label = &quot;H(t): direct&quot;, linecolor=:green , linewidth=2, ylims=(5.5, 7))</code></pre><img src="zermelo2-d1530414.svg" alt="Example block output"/><pre><code class="language-julia hljs">jmp1 = -(p1[div(index1 + index2, 2)] - p1[div(index1 + 1, 2)])
 jmp2 = -(p1[div(index2 + index3, 2)] - p1[div(index1 + index2, 2)])
 jmp3 = -(p1[div(index3 + index4, 2)] - p1[div(index2 + index3, 2)])
 jmp4 = -(p1[div(index4 + length(t), 2)] - p1[div(index3 + index4, 2)])
@@ -488,12 +488,12 @@ plot!(x1x2_plot, [25., 31.], [0.0, 0.0], fillrange = 6, fillalpha = 0.2, fillcol
 vline!([5., 10., 20., 25.], linecolor=:black, linewidth=2, label=false)
 ylims!(0, 6)
 
-plot(x1x2_plot, x1_plot, x2_plot, u_plot, p1_plot, p2_plot , layout = (2,3), size=(900, 600))</code></pre><img src="zermelo2-acc50596.svg" alt="Example block output"/><pre><code class="language-julia hljs">function HH(k)
+plot(x1x2_plot, x1_plot, x2_plot, u_plot, p1_plot, p2_plot , layout = (2,3), size=(900, 600))</code></pre><img src="zermelo2-a5a57dfc.svg" alt="Example block output"/><pre><code class="language-julia hljs">function HH(k)
     return p1[k] * (x2[k] + cos(u[k])) + p2[k] * sin(u[k])
 end
 
 H_indirect  = [HH(k) for k in 1:length(x2)]
-ph_plot   = plot(t, H_indirect, label = &quot;H(t): indirect&quot;, linecolor=:green , linewidth=2, ylims=(5.5, 7))</code></pre><img src="zermelo2-4981afc9.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+ph_plot   = plot(t, H_indirect, label = &quot;H(t): indirect&quot;, linecolor=:green , linewidth=2, ylims=(5.5, 7))</code></pre><img src="zermelo2-aca6b0ad.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animx = @animate for i = 1:length(t)
     plot(x1[1:i], x2[1:i], xlim=(0.,31.), ylim=(-0.,5.5), xlabel=&quot;x1&quot;, ylabel=&quot;x2&quot;, label=&quot;optimal trajectory \$x\$&quot;, linecolor=:blue,  linewidth=2)
     scatter!([x1[i]], [x2[i]], markersize=4, marker=:circle, color=:black, label=false)
@@ -518,7 +518,7 @@ end ;
 # create an animation
 animp2 = @animate for i = 1:length(t)
     plot(t[1:i], p2[1:i], xlim=(0.,8.), ylim=(-3.,6.3), xlabel=&quot;t&quot;, ylabel=&quot;p2&quot;, label=&quot;adjoint vector \$p2\$&quot;, linecolor=:orange,  linewidth=2)
-end ;</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Plots.Animation(&quot;/tmp/jl_TL958y&quot;, [&quot;000001.png&quot;, &quot;000002.png&quot;, &quot;000003.png&quot;, &quot;000004.png&quot;, &quot;000005.png&quot;, &quot;000006.png&quot;, &quot;000007.png&quot;, &quot;000008.png&quot;, &quot;000009.png&quot;, &quot;000010.png&quot;  …  &quot;000079.png&quot;, &quot;000080.png&quot;, &quot;000081.png&quot;, &quot;000082.png&quot;, &quot;000083.png&quot;, &quot;000084.png&quot;, &quot;000085.png&quot;, &quot;000086.png&quot;, &quot;000087.png&quot;, &quot;000088.png&quot;])</code></pre><pre><code class="language-julia hljs"># display the animation
+end ;</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Plots.Animation(&quot;/tmp/jl_o0eSbu&quot;, [&quot;000001.png&quot;, &quot;000002.png&quot;, &quot;000003.png&quot;, &quot;000004.png&quot;, &quot;000005.png&quot;, &quot;000006.png&quot;, &quot;000007.png&quot;, &quot;000008.png&quot;, &quot;000009.png&quot;, &quot;000010.png&quot;  …  &quot;000079.png&quot;, &quot;000080.png&quot;, &quot;000081.png&quot;, &quot;000082.png&quot;, &quot;000083.png&quot;, &quot;000084.png&quot;, &quot;000085.png&quot;, &quot;000086.png&quot;, &quot;000087.png&quot;, &quot;000088.png&quot;])</code></pre><pre><code class="language-julia hljs"># display the animation
 gif(animx, &quot;zer2_x.gif&quot;, fps = 10)</code></pre><img src="zermelo2-a51947bd.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animu, &quot;zer2_u.gif&quot;, fps = 10)</code></pre><img src="zermelo2-b0cbc68c.gif" alt="Example block output"/><pre><code class="language-julia hljs"># display the animation
 gif(animp1, &quot;zer2_p1.gif&quot;, fps = 10)</code></pre><img src="zermelo2-5298b32b.gif" alt="Example block output"/><pre><code class="language-julia hljs"># display the animation
-gif(animp2, &quot;zer2_p2.gif&quot;, fps = 10)</code></pre><img src="zermelo2-9326145b.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo1.html">« Zermelo example 1</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Monday 12 August 2024 19:33">Monday 12 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+gif(animp2, &quot;zer2_p2.gif&quot;, fps = 10)</code></pre><img src="zermelo2-9326145b.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo1.html">« Zermelo example 1</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Wednesday 14 August 2024 20:46">Wednesday 14 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
