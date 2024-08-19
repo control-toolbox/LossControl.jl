@@ -1,4 +1,4 @@
 name = "ControlLoss"
 uuid = "6a3a0e7e-9c90-4c26-bc64-8dd630726a7b"
 authors = ["Olivier Cots <olivier.cots@irit.fr>"]
-version = "0.1.1"
+version = "0.1.3"
