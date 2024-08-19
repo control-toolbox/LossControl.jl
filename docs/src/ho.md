@@ -1,6 +1,3 @@
-
-
-
 ## Harmonic oscillator problem
 
 ```math
@@ -41,6 +38,7 @@
     using OptimalControl
     using NLPModelsIpopt
     include("smooth.jl");
+    nothing # hide
 ```
 
 
@@ -90,35 +88,36 @@ plot(fNC,-1., 1, label="fNC")
 
     #cost function        
     tf + ε*xv(tf) + xu(tf) → min    
-end
+end;
+nothing # hide
 ```
 
 
 ```@example main
-sol = solve(ocp; init = (state = t -> [0.1, 0.1, 1, 0, 0], control =[-1, 0], variable =15), max_iter=650)
+N = 400 
+sol = solve(ocp; init = (state = t -> [0.1, 0.1, 1, 0, 0], control =[-1, 0], variable =15), grid_size=N);
+nothing # hide
 ```
 
-
 ```@example main
-    plot(sol; layout=:group, size=(800, 300))
+plot(sol; layout=:group, size=(800, 300))
 ```
 
 ```@example main
 tt    = sol.times
 tf    = tt[end] 
-
 x1(t) = sol.state(t)[1]
 x2(t) = sol.state(t)[2]
 λ(t)  = sol.state(t)[3]
-u(t)  = sol.control(t)[1]
-
-# Plot the optimal trajectory
-plot(x1, x2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
-
-# Add vertical lines at x = 5, x = 10, x = 20, x = 25
-plot!([-4, 4], [0, 0], color=:black, label=false, linewidth=2)
+u(t)  = sol.control(t)[1];
+nothing # hide
 ```
 
+```@example main
+# Plot the optimal trajectory
+plot(x1, x2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
+plot!([-4, 4], [0, 0], color=:black, label=false, linewidth=2)
+```
 
 ```@example main
 plot(tt, u, label="optimal control", color="red", linewidth=2)

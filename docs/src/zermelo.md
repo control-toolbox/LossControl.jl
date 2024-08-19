@@ -38,6 +38,7 @@ using LaTeXStrings
 using OptimalControl
 using NLPModelsIpopt
 include("smooth.jl");
+nothing # hide
 ```
 
 
@@ -88,33 +89,39 @@ plot(fNC,0., 5, label="fNC")
 
     #cost function        
     -x1(tf) + ε*xv(tf) + xu(tf) → min    
-end
+end;
+nothing # hide
 ```
 
 
 ```@example main
 N = 500
-sol = solve(ocp; grid_size=N);
+sol = solve(ocp; grid_size=N); 
+nothing # hide
 ```
-
 
 
 
 ```@example main
 plot(sol; layout=:group, size=(800, 300))
 ```
+
 ```@example main
 tt    = sol.times
 tf    = 8
 x1(t) = sol.state(t)[1]
 x2(t) = sol.state(t)[2]
 λ(t)  = sol.state(t)[3]
-u(t) = sol.control(t)[1]; 
+u(t) = sol.control(t)[1]
+nothing # hide
+```
 
+```@example main
 plot(x1, x2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
 plot!([0, 31], [0.5, 0.5], color=:black, label = false, linewidth=2)
 plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)
 ```
+
 
 ```@example main
 plot(tt, u, label="optimal control", color="red", linewidth=2)
@@ -172,17 +179,6 @@ println("second crossing time: ", t2)
 ```
 
 
-```@example main
-using JuMP  
-using Ipopt
-using Plots
-using Plots.PlotMeasures
-using LaTeXStrings
-using OptimalControl
-using NLPModelsIpopt
-include("smooth.jl");
-```
-
 
 
 ```@example main
@@ -230,13 +226,15 @@ plot(fNC,0., 30, label="fNC")
 
     #cost function        
     -x1(tf) + ϵ*xv(tf) + xu(tf) → min    
-end
+end;
+nothing # hide
 ```
 
 
 ```@example main
 N = 400
 sol1 = solve(ocp1; grid_size=N);
+nothing # hide
 ```
 
 
@@ -250,11 +248,13 @@ tf    = 8
 x1(t) = sol1.state(t)[1]
 x2(t) = sol1.state(t)[2]
 λ(t)  = sol1.state(t)[3]
-u(t)  = sol1.control(t)[1]; 
+u(t)  = sol1.control(t)[1];
+nothing # hide
+```
+
+```@example main 
 # Plot the optimal trajectory
 plot(x1, x2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
-
-# Add vertical lines at x = 5, x = 10, x = 20, x = 25
 plot!([5, 5], [0, 5], color=:black, label=false, linewidth=2)
 plot!([10, 10],  [0, 5], color=:black, label=false, linewidth=2)
 plot!([20, 20],  [0, 5], color=:black, label=false, linewidth=2)
