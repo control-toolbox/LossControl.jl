@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Harmonic oscillator problem · Control loss</title><meta name="title" content="Harmonic oscillator problem · Control loss"/><meta property="og:title" content="Harmonic oscillator problem · Control loss"/><meta property="twitter:title" content="Harmonic oscillator problem · Control loss"/><meta name="description" content="Documentation for Control loss."/><meta property="og:description" content="Documentation for Control loss."/><meta property="twitter:description" content="Documentation for Control loss."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">Control loss</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="zermelo.html">Zermelo navigation problem</a></li><li class="is-active"><a class="tocitem" href="ho.html">Harmonic oscillator problem</a><ul class="internal"><li><a class="tocitem" href="#Harmonic-oscillator-problem"><span>Harmonic oscillator problem</span></a></li><li><a class="tocitem" href="#Reformulation-for-the-direct-method"><span>Reformulation for the direct method</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="ho.html">Harmonic oscillator problem</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="ho.html">Harmonic oscillator problem</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss/blob/main/docs/src/ho.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h2 id="Harmonic-oscillator-problem"><a class="docs-heading-anchor" href="#Harmonic-oscillator-problem">Harmonic oscillator problem</a><a id="Harmonic-oscillator-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Harmonic-oscillator-problem" title="Permalink"></a></h2><p class="math-container">\[    \left\{
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Harmonic oscillator problem · Control loss</title><meta name="title" content="Harmonic oscillator problem · Control loss"/><meta property="og:title" content="Harmonic oscillator problem · Control loss"/><meta property="twitter:title" content="Harmonic oscillator problem · Control loss"/><meta name="description" content="Documentation for Control loss."/><meta property="og:description" content="Documentation for Control loss."/><meta property="twitter:description" content="Documentation for Control loss."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">Control loss</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="statement.html">Statement of the problem</a></li><li><a class="tocitem" href="numerical.html">Numerical approach</a></li><li><a class="tocitem" href="zermelo.html">Zermelo navigation problem</a></li><li class="is-active"><a class="tocitem" href="ho.html">Harmonic oscillator problem</a><ul class="internal"><li><a class="tocitem" href="#Harmonic-oscillator-problem"><span>Harmonic oscillator problem</span></a></li><li><a class="tocitem" href="#Reformulation-for-the-direct-method"><span>Reformulation for the direct method</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="ho.html">Harmonic oscillator problem</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="ho.html">Harmonic oscillator problem</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss/blob/main/docs/src/ho.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h2 id="Harmonic-oscillator-problem"><a class="docs-heading-anchor" href="#Harmonic-oscillator-problem">Harmonic oscillator problem</a><a id="Harmonic-oscillator-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Harmonic-oscillator-problem" title="Permalink"></a></h2><p class="math-container">\[    \left\{
     \begin{array}{l}
         \displaystyle \min  T, \\[0.5em]
         \dot{x}_1(t) = x_2(t), \; t\in [0,T]\\[0.5em]
@@ -25,10 +25,10 @@
     using LaTeXStrings
     using OptimalControl
     using NLPModelsIpopt
-    include(&quot;smooth.jl&quot;);</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">#8 (generic function with 1 method)</code></pre><pre><code class="language-julia hljs">a  = 0.0
+    include(&quot;smooth.jl&quot;);</code></pre><pre><code class="language-julia hljs">a  = 0.0
 ε1 = 0.02
 fNC(x) = fNC_unboundedminus(x,a,ε1)
-plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-bb4f8970.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp begin
+plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-af01f1b6.svg" alt="Example block output"/><pre><code class="language-julia hljs">  @def ocp begin
 
     ε = 1e-3
 
@@ -49,8 +49,8 @@ plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-bb4f8970.svg" a
     xv(0) == 0
 
     #final condition
-    x1(tf) ==  1e-6
-    x2(tf) == -1e-6
+    x1(tf) == 0
+    x2(tf) == 0
 
     #control constraint
     -1. ≤  u(t)  ≤ 1.
@@ -65,44 +65,289 @@ plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-bb4f8970.svg" a
 
     #cost function
     tf + ε*xv(tf) + xu(tf) → min
-end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"><span class="sgr1">The (autonomous) optimal control problem is given by:</span>
+end;</code></pre><pre><code class="language-julia hljs">N = 400
+sol = solve(ocp; init = (state = t -&gt; [0.1, 0.1, 1, 0, 0], control =[-1, 0], variable =15), grid_size=N);</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">This is Ipopt version 3.14.16, running with linear solver MUMPS 5.7.3.
 
-    ε = 0.001
-    tf ∈ R, variable
-    t ∈ [0.0, tf], time
-    q = ([x1, x2, λ, xu, xv] ∈ R ^ 5, state)
-    ω = ([u, v] ∈ R ^ 2, control)
-    tf ≥ 0.0
-    x1(0) == 2.5
-    x2(0) == 4
-    xu(0) == 0
-    xv(0) == 0
-    x1(tf) == 1.0e-6
-    x2(tf) == -1.0e-6
-    -1.0 ≤ u(t) ≤ 1.0
-    -1 ≤ λ(t) ≤ 1, 1
-    -5 ≤ x1(t) ≤ 5, 2
-    -5 ≤ x2(t) ≤ 5, 3
-    q̇(t) == [x2(t), ((1 - fNC(x2(t))) * u(t) + fNC(x2(t)) * λ(t)) - x1(t), (1 - fNC(x2(t))) * v(t), v(t) ^ 2, fNC(x2(t)) * u(t) ^ 2]
-    tf + ε * xv(tf) + xu(tf) → min
+Number of nonzeros in equality constraint Jacobian...:    13206
+Number of nonzeros in inequality constraint Jacobian.:        0
+Number of nonzeros in Lagrangian Hessian.............:     4411
 
-<span class="sgr1">The (autonomous) optimal control problem is of the form:</span>
+Total number of variables............................:     2808
+                     variables with only lower bounds:        1
+                variables with lower and upper bounds:     1604
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:     2006
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
 
-<span class="sgr34">    minimize  </span>J(q, ω, tf) = g(q(0.0), q(tf), tf)
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0  1.5000000e+01 3.90e+00 1.96e-07   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  2.4380223e+01 1.80e+00 1.81e+03   0.5 1.74e+01    -  1.49e-02 5.39e-01f  1
+   2  2.2246832e+01 1.43e+00 1.88e+03   0.4 1.04e+01   2.0 3.24e-01 2.05e-01f  1
+   3  2.0735577e+01 1.23e+00 2.31e+03   0.4 1.07e+01   2.4 1.50e-01 1.43e-01f  1
+   4  2.0366102e+01 1.17e+00 2.20e+03   0.4 8.33e+00   1.9 4.08e-01 4.52e-02f  1
+   5  1.9728236e+01 1.07e+00 2.01e+03   0.4 7.76e+00   2.4 1.85e-01 8.40e-02f  1
+   6  1.9326206e+01 1.02e+00 2.16e+03   0.9 7.95e+00   2.8 1.00e+00 5.16e-02f  1
+   7  1.7840511e+01 7.41e-01 8.34e+03   1.9 5.53e+00   2.3 3.97e-01 2.71e-01f  1
+   8  1.7730288e+01 7.15e-01 1.29e+04   1.8 3.29e+00   3.7 7.80e-01 3.52e-02h  1
+   9  1.7176637e+01 5.56e-01 6.19e+03   1.8 2.67e+00   3.2 9.25e-01 2.21e-01f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  10  1.6879104e+01 4.42e-01 1.08e+04   1.9 1.68e+00   3.6 1.00e+00 2.05e-01h  1
+  11  1.6142805e+01 3.62e-02 1.26e+04   2.0 8.76e-01   3.1 1.00e+00 1.00e+00h  1
+  12  1.6665797e+01 7.16e-02 6.66e+04   1.6 1.72e+00   3.6 9.90e-01 1.00e+00f  1
+  13  1.6621630e+01 1.31e-02 1.41e+04   1.4 4.71e-01   4.0 9.99e-01 1.00e+00f  1
+  14  1.6688082e+01 2.38e-03 1.30e+04   0.6 8.07e-02   3.5 1.00e+00 1.00e+00f  1
+  15  1.6691161e+01 6.48e-07 1.24e+01  -0.6 3.23e-03   3.0 1.00e+00 1.00e+00f  1
+  16  1.6691055e+01 9.66e-09 4.97e-02  -2.7 9.76e-05   2.5 9.98e-01 1.00e+00h  1
+  17  1.6690728e+01 6.47e-08 3.31e-02  -4.7 2.84e-04   2.1 9.98e-01 1.00e+00f  1
+  18  1.6689743e+01 5.94e-07 3.33e-02  -6.2 8.54e-04   1.6 1.00e+00 1.00e+00f  1
+  19  1.6686776e+01 5.68e-06 3.34e-02  -7.8 2.57e-03   1.1 1.00e+00 1.00e+00f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  20  1.6677751e+01 6.15e-05 3.40e-02  -9.2 7.85e-03   0.6 1.00e+00 1.00e+00f  1
+  21  1.6649000e+01 9.16e-04 3.87e-02 -10.6 2.53e-02   0.2 1.00e+00 1.00e+00f  1
+  22  1.6562584e+01 5.44e-04 7.33e-01  -8.5 1.07e-01  -0.3 1.00e+00 7.42e-01f  1
+  23  1.6561720e+01 5.42e-04 7.29e-01  -6.5 1.49e-01  -0.8 1.00e+00 5.27e-03h  1
+  24  1.6550783e+01 1.88e-03 7.04e-01  -5.9 3.72e+00  -1.3 1.00e+00 2.86e-02f  1
+  25  1.6537478e+01 1.73e-03 6.43e-01  -5.4 1.82e-01  -0.8 1.00e+00 7.81e-02h  1
+  26  1.6506498e+01 1.61e-03 5.73e-01  -5.2 5.57e-01  -1.3 1.00e+00 7.91e-02f  1
+  27  1.6477307e+01 1.35e-03 4.74e-01  -5.3 2.49e-01  -0.9 1.00e+00 1.58e-01h  1
+  28  1.6448485e+01 1.28e-03 4.45e-01  -5.0 1.03e+00  -1.4 1.00e+00 5.67e-02f  1
+  29  1.6397105e+01 2.88e-03 3.38e-01  -5.6 3.75e-01  -0.9 1.00e+00 2.31e-01f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  30  1.6260789e+01 1.05e-02 1.36e+00  -4.4 1.49e-01  -0.5 1.00e+00 1.00e+00f  1
+  31  1.6225205e+01 8.06e-03 1.04e+00  -4.6 3.81e-01  -1.0 1.00e+00 2.36e-01h  1
+  32  1.5853570e+01 2.12e-02 2.54e-01  -4.4 7.13e-01  -1.5 1.00e+00 1.00e+00f  1
+  33  1.5686486e+01 1.84e-02 7.68e-01  -4.1 3.73e-01  -1.1 1.00e+00 1.00e+00h  1
+  34  1.5634962e+01 1.98e-03 4.07e-01  -3.9 1.13e-01  -0.6 1.00e+00 1.00e+00h  1
+  35  1.5521936e+01 9.04e-03 1.46e-01  -3.4 4.94e-01  -1.1 1.00e+00 7.11e-01f  1
+  36  1.5441284e+01 1.25e-02 1.18e-01  -3.4 1.25e+00  -1.6 9.90e-01 3.32e-01h  1
+  37  1.5313431e+01 1.89e-02 5.88e-01  -2.6 7.26e-01  -1.2 5.39e-01 1.00e+00f  1
+  38  1.5243723e+01 4.55e-03 9.19e-02  -3.8 8.85e-02  -0.7 1.00e+00 1.00e+00h  1
+  39  1.5154153e+01 7.79e-03 5.75e-01  -3.4 3.28e-01  -1.2 6.49e-01 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  40  1.5103505e+01 2.89e-03 1.61e-01  -4.4 1.05e-01  -0.8 1.00e+00 6.68e-01h  1
+  41  1.5052582e+01 8.45e-03 1.82e-01  -4.2 6.03e-01  -1.3 4.42e-01 2.31e-01h  1
+  42  1.4973905e+01 1.97e-02 7.63e-01  -3.5 1.53e+01  -1.7 7.42e-03 5.17e-02f  1
+  43  1.4937803e+01 1.67e-02 6.45e-01  -3.7 4.11e-01  -1.3 1.00e+00 1.54e-01h  1
+  44  1.4907037e+01 1.45e-02 5.58e-01  -3.7 1.25e+00  -1.8 9.81e-01 1.34e-01h  1
+  45  1.4855523e+01 2.71e-02 5.14e-01  -9.7 1.05e+01  -2.3 5.15e-04 6.97e-02h  1
+  46  1.4838701e+01 2.62e-02 4.89e-01  -3.9 2.75e+00    -  2.78e-01 3.41e-02h  1
+  47  1.4714035e+01 1.72e-02 8.74e-02  -3.9 4.66e-01  -1.8 1.00e+00 4.43e-01h  1
+  48  1.4651716e+01 1.10e-02 9.48e-02  -3.4 3.45e-01  -1.4 9.53e-01 4.49e-01h  1
+  49  1.4620184e+01 2.04e-02 2.17e-01  -3.1 1.24e+00  -1.9 7.45e-01 6.98e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  50  1.4548385e+01 3.32e-02 5.03e-01  -2.8 8.24e-01  -1.5 9.86e-01 1.00e+00f  1
+  51  1.4542400e+01 1.05e-02 4.11e-01  -2.5 2.17e-01  -1.0 1.00e+00 1.00e+00h  1
+  52  1.4428715e+01 1.99e-02 6.56e-01  -2.5 9.97e-01  -1.5 7.09e-01 9.02e-01h  1
+  53  1.4427376e+01 6.77e-04 1.55e-01  -3.2 5.06e-02  -0.2 9.97e-01 1.00e+00h  1
+  54  1.4339905e+01 1.47e-02 1.28e+00  -3.8 4.51e-01  -0.7 9.96e-01 7.68e-01h  1
+  55  1.4309339e+01 1.95e-04 1.04e-01  -4.7 7.65e-02  -0.2 1.00e+00 9.87e-01h  1
+  56  1.4284912e+01 9.27e-04 1.35e-01  -5.5 1.12e-01  -0.7 1.00e+00 2.64e-01h  1
+  57  1.4269915e+01 9.44e-04 1.12e-01  -5.5 3.58e-02  -0.3 1.00e+00 5.70e-01h  1
+  58  1.4257636e+01 1.12e-03 1.13e-01  -6.3 1.19e-01  -0.8 1.00e+00 2.76e-01h  1
+  59  1.4238797e+01 8.48e-04 4.44e-02  -4.0 3.80e-01  -1.2 5.59e-01 2.91e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  60  1.4226036e+01 1.03e-03 1.13e-02  -4.6 1.25e-01  -0.8 1.00e+00 4.15e-01h  1
+  61  1.4197407e+01 1.51e-02 2.98e-01  -3.1 7.70e-01  -1.3 7.25e-01 6.15e-01f  1
+  62  1.4147314e+01 2.18e-03 1.45e-01  -4.1 1.34e-01  -0.9 1.00e+00 1.00e+00h  1
+  63  1.4093795e+01 7.23e-03 9.92e-02  -4.3 2.13e-01  -1.3 1.00e+00 7.20e-01h  1
+  64  1.4093574e+01 5.41e-03 1.57e-01  -3.3 2.23e-01  -0.9 8.91e-01 1.00e+00f  1
+  65  1.4071675e+01 2.99e-02 1.27e-01  -2.7 8.90e-01  -1.4 7.03e-01 1.00e+00f  1
+  66  1.4006043e+01 6.38e-03 1.83e-01  -3.7 9.91e-02  -1.0 9.37e-01 1.00e+00h  1
+  67  1.4123250e+01 2.87e-03 6.35e-01  -2.2 1.64e+00  -1.4 3.90e-01 1.42e-01f  1
+  68  1.3971620e+01 4.58e-02 5.25e-01  -2.6 1.64e+00  -1.9 5.40e-01 6.10e-01f  1
+  69  1.3804568e+01 1.56e-02 1.08e+00  -2.6 1.22e+00  -1.5 7.95e-01 8.20e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  70  1.3755440e+01 8.60e-03 7.35e-02  -2.8 2.41e-01  -1.1 9.95e-01 1.00e+00h  1
+  71  1.3718844e+01 3.20e-03 1.08e-01  -3.2 1.02e-01  -0.6 7.63e-01 1.00e+00h  1
+  72  1.3614501e+01 1.00e-02 1.06e-01  -3.8 1.31e-01  -1.1 9.96e-01 1.00e+00h  1
+  73  1.3627365e+01 2.50e-02 7.90e-01  -2.5 1.31e+00  -1.6 3.48e-01 7.51e-01f  1
+  74  1.3505113e+01 6.22e-03 9.88e-02  -3.0 4.92e-01  -1.2 1.00e+00 1.00e+00h  1
+  75  1.3456609e+01 1.71e-02 1.06e+00  -9.0 1.77e+01  -1.6 4.58e-02 5.44e-02h  1
+  76  1.3341289e+01 8.50e-03 1.88e-01  -2.7 6.61e-01  -1.2 1.00e+00 1.00e+00h  1
+  77  1.3288554e+01 5.32e-03 5.70e-02  -3.8 6.03e-02  -0.8 9.96e-01 1.00e+00h  1
+  78  1.3208763e+01 2.10e-02 2.19e-01  -3.2 2.62e-01  -1.3 7.89e-01 1.00e+00h  1
+  79  1.3129067e+01 1.23e-02 1.33e-01  -3.2 8.86e-01  -1.7 9.32e-01 3.92e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  80  1.3343750e+01 2.47e-02 1.07e+00  -1.2 9.41e+00  -1.3 1.69e-01 4.19e-02f  1
+  81  1.3189432e+01 3.85e-02 5.30e-01  -2.1 3.92e+00    -  9.18e-01 4.29e-01f  1
+  82  1.3143053e+01 3.49e-02 2.03e-01  -2.1 9.77e-01  -1.8 1.00e+00 1.00e+00h  1
+  83  1.2899571e+01 4.04e-02 1.06e+00  -2.1 2.64e+00  -2.3 3.51e-01 4.33e-01h  1
+  84  1.2842995e+01 1.07e-02 5.17e-01  -2.6 4.15e-01  -0.9 1.00e+00 1.00e+00h  1
+  85  1.2673827e+01 4.26e-03 1.35e-01  -3.0 2.80e-01  -1.4 9.96e-01 1.00e+00h  1
+  86  1.2585700e+01 1.94e-02 3.02e-01  -2.5 3.18e+00  -1.9 3.41e-01 3.97e-01h  1
+  87  1.2430555e+01 9.84e-03 4.80e-02  -3.3 2.59e-01  -1.5 9.93e-01 1.00e+00h  1
+  88  1.2351917e+01 9.56e-03 4.68e-01  -3.0 3.37e-01  -2.0 5.64e-01 1.00e+00h  1
+  89  1.2249252e+01 1.12e-02 5.84e-01  -3.4 6.01e-01  -1.5 9.96e-01 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  90  1.2189403e+01 5.27e-03 1.57e-01  -4.4 1.49e-01  -1.1 1.00e+00 8.89e-01h  1
+  91  1.2181238e+01 2.62e-03 1.80e-01  -2.8 1.52e+00  -1.6 7.74e-01 1.72e-01f  1
+  92  1.2132933e+01 1.96e-02 4.86e-01  -2.6 4.03e+00  -2.1 1.18e-01 2.44e-01f  1
+  93  1.2117367e+01 1.59e-03 4.82e-02  -3.2 1.51e-01  -0.7 9.94e-01 1.00e+00h  1
+  94  1.2108186e+01 3.21e-04 1.53e-02  -3.8 3.11e-02  -0.3 9.95e-01 1.00e+00h  1
+  95  1.2062757e+01 7.39e-03 5.50e-01  -4.6 2.41e-01  -0.8 1.00e+00 7.98e-01f  1
+  96  1.2028377e+01 3.57e-03 2.65e-01  -4.2 1.33e-01  -1.3 1.00e+00 5.20e-01h  1
+  97  1.2014229e+01 1.85e-03 6.55e-02  -4.6 3.80e-02  -0.8 1.00e+00 9.21e-01h  1
+  98  1.2011299e+01 1.18e-02 1.20e-01  -3.1 3.09e-01  -1.3 7.62e-01 1.00e+00f  1
+  99  1.1947440e+01 2.93e-02 5.15e-01  -2.7 1.28e+00  -1.8 4.48e-01 9.88e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 100  1.2004950e+01 2.68e-02 3.86e-01  -2.1 3.98e+00  -2.3 6.98e-01 2.49e-01f  1
+ 101  1.1952361e+01 1.05e-02 2.16e-01  -2.4 4.30e-01  -1.8 9.67e-01 1.00e+00h  1
+ 102  1.1905493e+01 3.48e-03 1.26e-01  -2.5 1.62e+00    -  6.08e-01 4.26e-01h  1
+ 103  1.1794065e+01 5.52e-03 4.02e-01  -3.1 2.28e-01  -1.4 9.98e-01 1.00e+00h  1
+ 104  1.1757552e+01 3.74e-03 1.02e-01  -3.1 1.27e-01  -1.0 9.90e-01 1.00e+00h  1
+ 105  1.1619803e+01 1.45e-02 2.37e-01  -3.4 2.52e-01  -1.5 9.83e-01 9.54e-01h  1
+ 106  1.1644904e+01 5.63e-04 1.64e-01  -2.9 1.76e-01  -1.0 1.00e+00 1.00e+00h  1
+ 107  1.1603737e+01 7.24e-03 1.54e-01  -3.0 2.82e-01  -1.5 8.31e-01 1.00e+00h  1
+ 108  1.1583250e+01 2.40e-03 6.44e-02  -3.0 1.17e-01  -1.1 9.25e-01 1.00e+00h  1
+ 109  1.1482697e+01 1.28e-02 3.03e-01  -3.4 3.45e-01  -1.6 7.37e-01 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 110  1.1473338e+01 3.95e-03 2.97e-01  -3.0 1.36e-01  -1.1 8.97e-01 1.00e+00h  1
+ 111  1.1462737e+01 7.85e-03 3.21e-01  -2.8 4.35e-01  -1.6 9.34e-01 1.00e+00h  1
+ 112  1.1491502e+01 1.64e-02 4.75e-01  -2.4 1.56e+00  -2.1 6.67e-01 5.21e-01h  1
+ 113  1.1451443e+01 9.02e-03 6.14e-01  -2.6 1.58e+00  -1.7 5.81e-01 6.02e-01h  1
+ 114  1.1488387e+01 8.96e-03 4.41e-01  -2.2 3.27e+00  -2.1 6.21e-01 2.69e-01f  1
+ 115  1.1454440e+01 4.26e-03 2.14e-01  -2.4 5.86e-01    -  7.22e-01 6.80e-01h  1
+ 116  1.1412688e+01 8.38e-04 7.83e-02  -3.6 6.33e-02  -0.8 9.95e-01 1.00e+00h  1
+ 117  1.1390132e+01 5.15e-04 1.26e-02  -4.5 3.55e-02  -0.4 9.97e-01 1.00e+00h  1
+ 118  1.1323238e+01 2.10e-03 1.78e-01  -5.3 1.06e-01  -0.9 1.00e+00 8.54e-01f  1
+ 119  1.1275950e+01 1.55e-03 1.28e-01  -4.8 2.74e-01  -1.3 1.00e+00 2.71e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 120  1.1265214e+01 1.33e-03 1.11e-01  -3.5 1.60e+00  -1.8 1.00e+00 1.36e-01f  1
+ 121  1.1201182e+01 7.60e-03 3.03e-01  -3.7 1.95e+00  -1.4 9.95e-01 4.22e-01h  1
+ 122  1.1214651e+01 1.54e-02 7.20e-01  -2.9 7.26e-01  -1.9 9.86e-01 1.00e+00f  1
+ 123  1.1107297e+01 1.32e-02 5.13e-01  -3.0 7.04e-01  -1.4 1.00e+00 1.00e+00h  1
+ 124  1.1048872e+01 1.83e-03 5.81e-02  -3.9 1.19e-01  -1.0 9.98e-01 1.00e+00h  1
+ 125  1.0976278e+01 8.41e-03 1.89e-01  -3.4 3.51e-01  -1.5 1.00e+00 1.00e+00h  1
+ 126  1.0963011e+01 5.87e-03 1.31e-01  -4.2 8.16e-02  -1.1 1.00e+00 3.09e-01h  1
+ 127  1.0910125e+01 7.33e-03 1.34e-01  -4.6 2.82e-01  -1.5 1.00e+00 6.85e-01h  1
+ 128  1.0870248e+01 1.97e-02 4.21e-01  -3.3 8.59e+00  -2.0 5.54e-02 7.81e-02f  1
+ 129  1.0860217e+01 4.27e-03 1.88e-01  -3.2 4.99e-01  -1.6 1.00e+00 1.00e+00f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 130  1.0989970e+01 1.74e-02 3.03e-01  -1.2 2.93e+01  -2.1 6.80e-02 1.08e-02f  1
+ 131  1.0915087e+01 3.77e-02 7.23e-01  -2.4 4.21e+00    -  1.53e-01 4.13e-01f  1
+ 132  1.0760742e+01 3.80e-02 6.34e-01  -2.4 1.22e+00  -1.6 2.04e-01 3.75e-01h  1
+ 133  1.0649574e+01 1.56e-02 3.60e-01  -8.4 1.39e+00  -2.1 3.35e-01 5.89e-01h  1
+ 134  1.0576456e+01 4.08e-02 5.69e-01  -2.6 4.91e-01  -1.7 8.59e-01 1.00e+00f  1
+ 135  1.0558905e+01 2.60e-02 8.13e-01  -2.7 1.10e+00  -1.3 9.74e-01 3.64e-01h  1
+ 136  1.0374666e+01 1.80e-02 5.60e-01  -2.9 8.41e-01  -1.8 9.99e-01 1.00e+00h  1
+ 137  1.0309430e+01 2.04e-02 8.12e-02  -2.9 1.51e-01  -1.3 9.93e-01 1.00e+00h  1
+ 138  1.0141397e+01 2.63e-02 2.54e-01  -3.2 5.60e-01  -1.8 9.79e-01 1.00e+00h  1
+ 139  1.0103068e+01 2.95e-02 6.65e-01  -2.8 4.79e-01  -1.4 1.00e+00 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 140  1.0068937e+01 2.49e-02 5.61e-01  -3.3 3.20e+00    -  3.50e-01 1.58e-01h  1
+ 141  1.0046534e+01 1.77e-02 5.14e-01  -3.0 2.66e-01  -1.0 9.92e-01 1.00e+00h  1
+ 142  1.0002824e+01 1.70e-02 4.28e-01  -3.5 3.02e-01  -1.4 9.97e-01 1.00e+00h  1
+ 143  9.9993190e+00 1.02e-02 1.39e-01  -2.8 5.17e-01  -1.9 9.59e-01 8.86e-01h  1
+ 144  9.9531712e+00 1.31e-02 4.17e-01  -2.8 1.32e+00  -2.4 7.52e-01 7.42e-01h  1
+ 145  9.9126318e+00 7.22e-03 1.93e-01  -3.0 1.18e+00    -  9.90e-01 5.07e-01h  1
+ 146  9.9238964e+00 7.13e-03 1.91e-01  -2.8 2.12e+01  -2.9 7.33e-02 1.13e-02h  2
+ 147  9.8627898e+00 5.79e-03 1.48e+00  -3.4 1.10e+00    -  8.04e-01 7.15e-01h  1
+ 148  9.8710482e+00 6.38e-03 1.32e+00  -2.9 6.18e+00    -  9.67e-01 1.02e-01h  1
+ 149  9.8565703e+00 2.25e-03 9.71e-02  -3.0 5.04e-01    -  1.00e+00 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 150  9.8089049e+00 5.52e-03 7.99e-01  -3.4 6.50e-01    -  1.00e+00 1.00e+00h  1
+ 151  9.8335757e+00 6.58e-04 7.00e-02  -3.1 2.10e-01  -2.4 1.00e+00 1.00e+00h  1
+ 152  9.8031968e+00 3.62e-03 2.29e-01  -3.2 1.76e-01  -2.0 9.87e-01 1.00e+00h  1
+ 153  9.7703679e+00 6.72e-03 4.24e-02  -3.3 7.43e-01    -  1.00e+00 1.00e+00h  1
+ 154  9.7430454e+00 2.60e-03 4.87e-01  -3.5 1.06e+00    -  9.98e-01 8.62e-01h  1
+ 155  9.7820375e+00 2.62e-03 3.15e-01  -3.3 5.03e-01  -2.5 1.00e+00 1.00e+00h  1
+ 156  9.7608847e+00 2.15e-03 1.14e-01  -3.4 1.31e-01    -  1.00e+00 1.00e+00h  1
+ 157  9.7527723e+00 1.73e-03 1.35e-01  -3.4 1.36e+00    -  4.06e-01 1.53e-01h  3
+ 158  9.7450177e+00 2.64e-03 8.12e-02  -3.5 7.71e-01  -2.1 1.00e+00 3.87e-01H  1
+ 159  9.7036166e+00 7.17e-03 4.60e-01  -3.6 1.61e+00  -2.5 1.47e-01 5.28e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 160  9.6970882e+00 4.61e-04 3.49e-02  -3.7 5.48e-01  -3.0 9.98e-01 1.00e+00f  1
+ 161  9.6865985e+00 3.85e-04 1.23e-01  -3.9 1.86e+00    -  9.94e-01 4.68e-01h  1
+ 162  9.6880910e+00 3.05e-04 1.17e-01  -3.6 7.40e-01  -2.6 1.00e+00 6.27e-02h  1
+ 163  9.6830702e+00 2.64e-04 4.62e-02  -3.8 6.99e-01    -  1.00e+00 8.23e-01h  1
+ 164  9.6765696e+00 7.47e-04 2.87e-02  -3.8 1.31e+00    -  1.00e+00 6.42e-01h  1
+ 165  9.6773724e+00 6.96e-04 2.87e-02  -3.5 1.60e+01    -  6.01e-02 5.69e-03h  1
+ 166  9.6738216e+00 3.21e-04 8.42e-03  -3.8 1.34e+00    -  9.82e-01 7.16e-01h  1
+ 167  9.6677338e+00 2.87e-04 7.14e-03  -3.9 8.34e-01    -  9.67e-01 1.00e+00h  1
+ 168  9.6600908e+00 1.13e-03 1.43e-02  -4.0 8.87e-01    -  9.91e-01 7.04e-01h  1
+ 169  9.6541936e+00 4.45e-03 1.47e-02  -4.1 2.20e+00    -  9.97e-01 4.77e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 170  9.6497394e+00 1.39e-03 7.05e-03  -4.1 1.83e+00    -  1.00e+00 7.81e-01h  1
+ 171  9.6456521e+00 3.00e-04 3.32e-03  -4.2 4.48e-01    -  9.62e-01 1.00e+00h  1
+ 172  9.6408067e+00 3.92e-04 8.00e-03  -4.8 5.70e+00    -  8.50e-01 2.51e-01h  1
+ 173  9.6386350e+00 5.88e-05 1.24e-03  -4.3 7.49e-01    -  1.00e+00 1.00e+00h  1
+ 174  9.6346155e+00 1.47e-04 1.63e-03  -4.5 7.01e-01    -  7.77e-01 1.00e+00h  1
+ 175  9.6334273e+00 1.03e-04 9.07e-04  -4.6 7.75e-01    -  9.81e-01 3.79e-01h  1
+ 176  9.6297422e+00 1.29e-04 2.24e-03  -5.5 4.57e+00    -  9.99e-01 3.77e-01h  1
+ 177  9.6290461e+00 1.14e-04 8.15e-04  -4.8 3.86e-01    -  1.00e+00 1.00e+00h  1
+ 178  9.6276287e+00 2.42e-05 1.82e-03  -4.9 4.55e-01    -  9.90e-01 8.50e-01h  1
+ 179  9.6250929e+00 1.03e-04 7.29e-03  -6.0 2.73e+00    -  9.96e-01 6.15e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+ 180  9.6241531e+00 2.30e-04 3.10e-03  -6.0 1.68e-01    -  1.00e+00 7.86e-01h  1
+ 181  9.6236510e+00 1.01e-04 4.26e-04  -6.5 2.40e-01    -  1.00e+00 1.00e+00h  1
+ 182  9.6235663e+00 3.01e-05 9.25e-06  -7.9 1.07e-01    -  1.00e+00 9.99e-01h  1
+ 183  9.6235645e+00 6.69e-06 9.45e-08  -9.9 2.37e-02    -  1.00e+00 1.00e+00h  1
+ 184  9.6235645e+00 5.71e-07 2.37e-08 -11.0 6.92e-03    -  1.00e+00 1.00e+00h  1
+ 185  9.6235645e+00 6.44e-09 5.92e-09 -11.0 6.99e-04    -  1.00e+00 1.00e+00h  1
 
-<span class="sgr34">    subject to</span>
+Number of Iterations....: 185
 
-        q̇(t) = f(q(t), ω(t), tf), t in [0.0, tf] a.e.,
+                                   (scaled)                 (unscaled)
+Objective...............:   9.6235644968649368e+00    9.6235644968649368e+00
+Dual infeasibility......:   5.9225467454735169e-09    5.9225467454735169e-09
+Constraint violation....:   6.4411608496726693e-09    6.4411608496726693e-09
+Variable bound violation:   8.8426455047141417e-09    8.8426455047141417e-09
+Complementarity.........:   2.9719282389137602e-09    2.9719282389137602e-09
+Overall NLP error.......:   6.4411608496726693e-09    6.4411608496726693e-09
 
-        ηl ≤ η(q(t), tf) ≤ ηu, 
-        ϕl ≤ ϕ(q(0.0), q(tf), tf) ≤ ϕu, 
 
-    where q(t) = (x1(t), x2(t), λ(t), xu(t), xv(t)) ∈ R⁵, ω(t) = (u(t), v(t)) ∈ R² and tf ∈ R.
+Number of objective function evaluations             = 193
+Number of objective gradient evaluations             = 186
+Number of equality constraint evaluations            = 193
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 186
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 185
+Total seconds in IPOPT                               = 6.645
 
-<span class="sgr1">Declarations </span>(* required):
-╭────────┬────────┬──────────┬──────────┬───────────┬────────────┬─────────────╮
-│<span class="sgr33"> times* │ state* │ control* │ variable │ dynamics* │ objective* │ constraints │
-├────────┼────────┼──────────┼──────────┼───────────┼────────────┼─────────────┤
-│</span><span class="sgr32"><span class="sgr1">   V    │   V    │    V     │    V     │     V     │     V      │      V      │
-╰────────┴────────┴──────────┴──────────┴───────────┴────────────┴─────────────╯
-</span></span></code></pre><pre><code class="language-julia hljs">    sol = solve(ocp; init = (state = t -&gt; [0.1, 0.1, 1, 0, 0], control =[-1, 0], variable =15), max_iter=650)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">    plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-18058603.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo.html">« Zermelo navigation problem</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Wednesday 14 August 2024 21:01">Wednesday 14 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-acef3c2a.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt    = sol.times
+tf    = tt[end]
+x1(t) = sol.state(t)[1]
+x2(t) = sol.state(t)[2]
+λ(t)  = sol.state(t)[3]
+u(t)  = sol.control(t)[1];</code></pre><pre><code class="language-julia hljs"># Plot the optimal trajectory
+plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
+plot!([-4, 4], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-57c50345.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="ho-af9924d6.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+t1_index = findfirst(t -&gt; x2(t) ≤ 0, tt)
+t2_index = nothing
+t3_index = nothing
+t4_index = nothing
+
+# If t1 is found, find the next crossing times
+if t1_index !== nothing
+    t2_index = findfirst(t -&gt; x2(t) ≥ 0, tt[t1_index+1:end])
+    t2_index = t2_index !== nothing ? t2_index + t1_index : nothing
+end
+
+if t2_index !== nothing
+    t3_index = findfirst(t -&gt; x2(t) ≤ 0, tt[t2_index+1:end])
+    t3_index = t3_index !== nothing ? t3_index + t2_index : nothing
+end
+
+if t3_index !== nothing
+    t4_index = findfirst(t -&gt; x2(t) ≥ 0, tt[t3_index+1:end])
+    t4_index = t4_index !== nothing ? t4_index + t3_index : nothing
+end
+
+# Convert indices to times
+t11 = t1_index !== nothing ? tt[t1_index] : &quot;No such t1 found&quot;
+t22 = t2_index !== nothing ? tt[t2_index] : &quot;No such t2 found&quot;
+t33 = t3_index !== nothing ? tt[t3_index] : &quot;No such t3 found&quot;
+t44 = t4_index !== nothing ? tt[t4_index] : &quot;No such t4 found&quot;
+
+println(&quot;First crossing time: &quot;, t11)
+println(&quot;Second crossing time: &quot;, t22)
+println(&quot;Third crossing time: &quot;, t33)
+println(&quot;Fourth crossing time: &quot;, t44)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">First crossing time: 0.8657506162825221
+Second crossing time: 4.0161209144217
+Third crossing time: 6.517178250348986
+Fourth crossing time: 9.619451292028025</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo.html">« Zermelo navigation problem</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Monday 19 August 2024 23:13">Monday 19 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
