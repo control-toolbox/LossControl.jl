@@ -29,7 +29,7 @@ using NLPModelsIpopt
 include(&quot;smooth.jl&quot;);</code></pre><pre><code class="language-julia hljs">I = [(0.5, 3.5)]
 ε1 = 0.01
 fNC(x) = fNC_bounded(x,I,ε1)
-plot(fNC,0., 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo-dda4c3e7.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp begin
+plot(fNC,0., 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo-a4468344.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp begin
 
     ε   = 1e-3
     tf  = 8
@@ -151,17 +151,17 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 45
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 44
-Total seconds in IPOPT                               = 1.335
+Total seconds in IPOPT                               = 1.478
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo-73de0db3.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt    = sol.times
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo-b5b03f7d.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt    = sol.times
 tf    = 8
 x1(t) = sol.state(t)[1]
 x2(t) = sol.state(t)[2]
 λ(t)  = sol.state(t)[3]
 u(t) = sol.control(t)[1]</code></pre><pre><code class="language-julia hljs">plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
 plot!([0, 31], [0.5, 0.5], color=:black, label = false, linewidth=2)
-plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-453da502.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-72199161.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
+plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-73ae893b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-dd69bd3a.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
 t1_index = findfirst(t -&gt; x2(t) ≥ 0.5, tt)
 
 # If t1 is found, find the next crossing time
@@ -200,7 +200,7 @@ second crossing time: 3.6</code></pre><h1 id="Zermelo-problem,-example-2"><a cla
     \right.\]</p><pre><code class="language-julia hljs">I = [(5, 10), (20, 25)]
 ε1 = 0.05
 fNC(x) = fNC_bounded(x,I,ε1)
-plot(fNC,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo-78b827e7.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp1 begin
+plot(fNC,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo-8447b1aa.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp1 begin
 
     ϵ  = 1e-3
 
@@ -320,9 +320,9 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 43
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 42
-Total seconds in IPOPT                               = 1.019
+Total seconds in IPOPT                               = 1.648
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo-df48dbaf.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt    = sol1.times
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo-32a26a7d.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt    = sol1.times
 tf    = 8
 x1(t) = sol1.state(t)[1]
 x2(t) = sol1.state(t)[2]
@@ -332,8 +332,8 @@ plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;
 plot!([5, 5], [0, 5], color=:black, label=false, linewidth=2)
 plot!([10, 10],  [0, 5], color=:black, label=false, linewidth=2)
 plot!([20, 20],  [0, 5], color=:black, label=false, linewidth=2)
-plot!([25, 25],  [0, 5], color=:black, label=false, linewidth=2)</code></pre><img src="zermelo-89a4feea.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-4fb860c6.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([25, 25],  [0, 5], color=:black, label=false, linewidth=2)</code></pre><img src="zermelo-405e2439.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-6a49a03c.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 t1_index = findfirst(t -&gt; x1(t) &gt; 5, tt)
 t2_index = nothing
 t3_index = nothing
@@ -367,4 +367,4 @@ println(&quot;Third crossing time: &quot;, t33)
 println(&quot;Fourth crossing time: &quot;, t44)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">First crossing time: 2.98
 Second crossing time: 4.24
 Third crossing time: 6.12
-Fourth crossing time: 6.98</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="numerical.html">« Numerical approach</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator problem »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Monday 19 August 2024 23:13">Monday 19 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+Fourth crossing time: 6.98</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="numerical.html">« Numerical approach</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator problem »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.6.0 on <span class="colophon-date" title="Thursday 22 August 2024 11:30">Thursday 22 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
