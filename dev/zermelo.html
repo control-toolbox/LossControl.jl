@@ -29,7 +29,7 @@ using NLPModelsIpopt
 include(&quot;smooth.jl&quot;)</code></pre><pre><code class="language-julia hljs">I1 = [(0.5, 3.5)]
 ε1 = 0.01
 fNC1(x) = fNC_bounded(x,I1,ε1)
-plot(fNC1,0., 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo-c603ec9d.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp1 begin
+plot(fNC1,0., 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo-8f3a0024.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp1 begin
 
     ε   = 1e-3
     tf  = 8
@@ -66,7 +66,7 @@ plot(fNC1,0., 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo-c603ec9d.s
     #cost function
     -x1(tf) + ε*xv(tf) + xu(tf) → min
 end</code></pre><pre><code class="language-julia hljs">N = 500
-sol1 = solve(ocp1; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">plot(sol1; layout=:group, size=(800, 300))</code></pre><img src="zermelo-2ed6146d.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt1   = sol1.times
+sol1 = solve(ocp1; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">plot(sol1; layout=:group, size=(800, 300))</code></pre><img src="zermelo-32a26a7d.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt1   = sol1.times
 tf    = 8
 x1(t) = sol1.state(t)[1]
 x2(t) = sol1.state(t)[2]
@@ -76,9 +76,9 @@ p1(t) = sol1.costate(t)[1]
 p2(t) = sol1.costate(t)[2]
 a     = λ(tf)</code></pre><pre><code class="language-julia hljs">plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
 plot!([0, 31], [0.5, 0.5], color=:black, label = false, linewidth=2)
-plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-4e905a22.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(u, 0, tf, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(λ, 0, tf, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-9ad62dfd.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(p1,  0, tf, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
-plot!(p2, 0, tf, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo-d6947c54.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
+plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-69014325.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(u, 0, tf, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(λ, 0, tf, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-ebd0fc7b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(p1,  0, tf, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
+plot!(p2, 0, tf, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo-3cb55067.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
 t1_index = findfirst(t -&gt; x2(t) ≥ 0.5, tt1)
 
 # If t1 is found, find the next crossing time
@@ -204,8 +204,8 @@ x22 = [ xsol[i][2] for i=1:m ]
 p11 = [ psol[i][1] for i=1:m ]
 p22 = [ psol[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs">plot(x11, x22, label=&quot;optimal trajectory&quot;, legend=false, linecolor=:blue, linewidth=2)
 hline!([(0., 0.5), (31., 0.5)], linecolor=:black, linewidth=2, label=false)
-hline!([(0., 3.5), (31., 3.5)], linecolor=:black, linewidth=2, label=false)</code></pre><img src="zermelo-f0d2996b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol,   usol, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo-fbcdd311.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol, p11, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
-plot!(tsol,  p22, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo-421871ff.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+hline!([(0., 3.5), (31., 3.5)], linecolor=:black, linewidth=2, label=false)</code></pre><img src="zermelo-4a9e589b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol,   usol, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo-0e83d5d7.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol, p11, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
+plot!(tsol,  p22, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo-0cbefb0b.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animx = @animate for i = 1:length(tsol)
     plot(x11[1:i], x22[1:i],  xlim=(0.,31.), ylim=(-0.,5.5),  label=&quot;optimal trajectory&quot;, linecolor=:blue,  linewidth=2)
     scatter!([x11[i]], [x22[i]], markersize=4, marker=:circle, color=:black, label=false)
@@ -248,7 +248,7 @@ gif(animx, &quot;zer1_x.gif&quot;, fps = 10)</code></pre><img src="zermelo-9b1fc
     \right.\]</p><pre><code class="language-julia hljs">I2 = [(5, 10), (20, 25)]
 ε2 = 0.05
 fNC2(x) = fNC_bounded(x,I2,ε2)
-plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo-1b0e190a.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp2 begin
+plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo-0a391a26.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp2 begin
 
     ϵ  = 1e-3
 
@@ -285,7 +285,7 @@ plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo-1b0e190a.
     #cost function
     -x1(tf) + ϵ*xv(tf) + xu(tf) → min
 end</code></pre><pre><code class="language-julia hljs">N = 400
-sol2 = solve(ocp2; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">plot(sol2; layout=:group, size=(800, 300))</code></pre><img src="zermelo-5bd11bd9.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2   = sol2.times
+sol2 = solve(ocp2; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">plot(sol2; layout=:group, size=(800, 300))</code></pre><img src="zermelo-9cd060d5.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2   = sol2.times
 tf    = 8
 y1(t) = sol2.state(t)[1]
 y2(t) = sol2.state(t)[2]
@@ -296,9 +296,9 @@ q2(t) = sol2.costate(t)[2]</code></pre><pre><code class="language-julia hljs">pl
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-645aabef.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-66182fe9.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
-plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo-78dbd0cf.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-a327f419.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo-5dfe6ef4.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
+plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo-ec3e00c0.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 s1_index = findfirst(t -&gt; x1(t) &gt; 5, tt2)
 s2_index = nothing
 s3_index = nothing
@@ -499,8 +499,8 @@ qq2 = [ qqq[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs"
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-58812d24.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,   vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo-2dad229f.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
-plot!(ttt,  qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo-ac55bf39.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo-1e719072.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,   vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo-6bae89f6.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
+plot!(ttt,  qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo-06f68975.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animy = @animate for i = 1:length(ttt)
     plot(yy1[1:i], yy2[1:i],  xlim=(0.,31.), ylim=(-0.,5.5),  label=&quot;optimal trajectory&quot;, linecolor=:blue,  linewidth=2)
     scatter!([yy1[i]], [yy2[i]], markersize=4, marker=:circle, color=:black, label=false)
