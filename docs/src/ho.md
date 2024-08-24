@@ -174,10 +174,13 @@ println(" p2(t1+) - p2(t1-) = ", jmp1)
 println(" p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
+## Indirect Method 
+
+
 ```@example main
-using NLsolve
-using Animations
+using NonlinearSolve  
 using OrdinaryDiffEq
+using Animations
 ``` 
 
 ```@example main
@@ -260,33 +263,29 @@ nothing # hide
 ``` 
 
 ```@example main
-S(ξ) = shoot(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10]);
+nle! =  (ξ, λ) -> shoot(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10])
 ξ_guess = [p1(0) , p2(0), t1, t2, tstar , t3, a, jmp1, jmp2, t4]; # initial guess
-S(ξ_guess)  
+prob = NonlinearProblem(nle!, ξ_guess)
 ```
 
 ```@example main
-# Solve
+#solve
+indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+```
 
-indirect_sol = nlsolve(S, ξ_guess; xtol=1e-8, method=:trust_region, show_trace=true)
-println(indirect_sol)
 
+```@example main
 # Retrieves solution
-if indirect_sol.f_converged || indirect_sol.x_converged
-    pp0     = indirect_sol.zero[1:2]
-    tt1     = indirect_sol.zero[3]
-    tt2     = indirect_sol.zero[4]
-    ttstar  = indirect_sol.zero[5]
-    tt3     = indirect_sol.zero[6]
-    b11     = indirect_sol.zero[7]
-    jmp1    = indirect_sol.zero[8]
-    jmp2    = indirect_sol.zero[9]
-    T1      = indirect_sol.zero[10]
-
-else
-    error("Not converged")
-end
-nothing # hide
+     pp0     = indirect_sol[1:2]
+     tt1     = indirect_sol[3]
+     tt2     = indirect_sol[4]
+     ttstar  = indirect_sol[5]
+     tt3     = indirect_sol[6]
+     b11     = indirect_sol[7]
+     jmp1    = indirect_sol[8]
+     jmp2    = indirect_sol[9]
+     T1      = indirect_sol[10]
+ nothing # hide
 ```
 
 ```@example main

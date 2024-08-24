@@ -63,7 +63,7 @@ u \text{ is constant when } x \text{ is in a loss control region}.
 The PMP with loss control regions is based on some regularity assumptions made on the optimal pair of the optimal control problem with loss control regions given above at each of its crossing times. These hypotheses are made more precise in the next definition.
 
 !!! note "Definition (Regular solution to (CS))"
-    Following the notations introduced in Definition given above, a solution $(x,u) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{L}^\infty([0,T],\R^m)$ to(CS), associated with a finite number $N \in \mathbb{N}^*$, a partition $\mathbb{T} = \{ \tau_k \}_{k=0,\ldots,N}$ and a switching sequence $\{j(1), \ldots, j(N)\}$, is said to be *regular* if the following conditions are both satisfied:
+    Following the notations introduced in Definition given above, a solution $(x,u) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{L}^\infty([0,T],\R^m)$ to (CS), associated with a finite number $N \in \mathbb{N}^*$, a partition $\mathbb{T} = \{ \tau_k \}_{k=0,\ldots,N}$ and a switching sequence $\{j(1), \ldots, j(N)\}$, is said to be *regular* if the following conditions are both satisfied:
     - At each crossing time $\tau_k$, there exists a $\mathrm{C}^1$ function $F_k : \R^n \to \R$ such that 
     ```math
         \begin{equation}
