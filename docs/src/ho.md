@@ -30,17 +30,16 @@
 ```
 
 ```@example main
-    using JuMP  
-    using Ipopt
-    using Plots
-    using Plots.PlotMeasures
-    using LaTeXStrings
-    using OptimalControl
-    using NLPModelsIpopt
-    include("smooth.jl");
-    nothing # hide
+using JuMP  
+using Ipopt
+using Plots
+using Plots.PlotMeasures
+using LaTeXStrings
+using OptimalControl
+using NLPModelsIpopt
+include("smooth.jl");
+nothing # hide
 ```
-
 
 ```@example main
 a0  = 0.0 
@@ -49,9 +48,8 @@ fNC(x) = fNC_unboundedminus(x,a0,ε1)
 plot(fNC,-1., 1, label="fNC")
 ```
 
-
 ```@example main
-  @def ocp begin
+@def ocp begin
         
     ε = 1e-3
 
@@ -88,10 +86,9 @@ plot(fNC,-1., 1, label="fNC")
 
     #cost function        
     tf + ε*xv(tf) + xu(tf) → min    
-end;
+end
 nothing # hide
 ```
-
 
 ```@example main
  N = 630 
@@ -176,15 +173,14 @@ println(" p2(t2+) - p2(t2-) = ", jmp2)
 
 ## Indirect Method 
 
-
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
+nothing # hide
 ``` 
 
 ```@example main
-
 # Dynamics
 function F0(x)
     return [ x[2], -x[1]]
@@ -193,7 +189,6 @@ end
 function F1(x)
     return [ 0.0 ,   1.0]
 end
-
 
 H0(x, p) = p' * F0(x) 
 H1(x, p) = p' * F1(x)
@@ -207,12 +202,9 @@ um(x, p) = - 1.0
 Hp(x, p) = H(x, p, up(x, p))
 Hm(x, p) = H(x, p, um(x, p))
 
-
 # Hamiltonians: control loss region 2
 H2(x, b, y, p)  = H0(x, p) + b*H1(x, p) - y*p[2]                # pseudo-Hamiltonian
 Hcl(X, P)       = H2(X[1:2], X[3], X[4], P[1:2])                # control loss 2
-
-
 
 # Flows
 fp    = Flow(Hamiltonian(Hp))
@@ -225,6 +217,7 @@ nothing # hide
 # parameters
 t0 = 0.0
 x0 = [2.5; 4.0]
+nothing # hide
 ```
 
 ```@example main 
@@ -266,26 +259,27 @@ nothing # hide
 nle! =  (ξ, λ) -> shoot(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10])
 ξ_guess = [p1(0) , p2(0), t1, t2, tstar , t3, a, jmp1, jmp2, t4]; # initial guess
 prob = NonlinearProblem(nle!, ξ_guess)
+nothing # hide
 ```
 
 ```@example main
 #solve
 indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+nothing # hide
 ```
-
 
 ```@example main
 # Retrieves solution
-     pp0     = indirect_sol[1:2]
-     tt1     = indirect_sol[3]
-     tt2     = indirect_sol[4]
-     ttstar  = indirect_sol[5]
-     tt3     = indirect_sol[6]
-     b11     = indirect_sol[7]
-     jmp1    = indirect_sol[8]
-     jmp2    = indirect_sol[9]
-     T1      = indirect_sol[10]
- nothing # hide
+pp0     = indirect_sol[1:2]
+tt1     = indirect_sol[3]
+tt2     = indirect_sol[4]
+ttstar  = indirect_sol[5]
+tt3     = indirect_sol[6]
+b11     = indirect_sol[7]
+jmp1    = indirect_sol[8]
+jmp2    = indirect_sol[9]
+T1      = indirect_sol[10]
+nothing # hide
 ```
 
 ```@example main
@@ -353,7 +347,6 @@ plot!(tt0,  p22, label="costate p2",  linecolor=:violet , linewidth=2)
 
 ```@example main
 # create an animation
-
 animx = @animate for i = 1:length(tt0)
     plot(x11[1:i], x22[1:i], xlim=(-3.,5.), ylim=(-4.,4.3), label="optimal trajectory", linecolor=:blue,  linewidth=2)
     scatter!([x11[i]], [x22[i]], markersize=4, marker=:circle, color=:black, label=false)
@@ -370,7 +363,8 @@ end ;
 
 animp2 = @animate for i = 1:length(tt0)
     plot(tt0[1:i], p22[1:i], xlim=(0.,tt0[end]), ylim=(-1.5,1.3), label="costate p2", linecolor=:violet,  linewidth=2)
-end 
+end
+nothing # hide
 ```
 
 ```@example main
