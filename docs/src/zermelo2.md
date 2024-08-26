@@ -30,7 +30,6 @@
     \right.
 ```
 
-
 ```@example main
 using JuMP  
 using Ipopt
@@ -43,15 +42,12 @@ include("smooth.jl")
 nothing # hide
 ```
 
-
-
 ```@example main
 I2 = [(5, 10), (20, 25)]
 ε2 = 0.05  
 fNC2(x) = fNC_bounded(x,I2,ε2)
 plot(fNC2,0., 30, label="fNC")
 ```
-
 
 ```@example main
 @def ocp2 begin
@@ -94,12 +90,11 @@ end
 nothing # hide
 ```
 
-
 ```@example main
 N = 400
 sol2 = solve(ocp2; grid_size=N, print_level=4)
+nothing # hide
 ```
-
 
 ```@example main
 plot(sol2; layout=:group, size=(800, 300))
@@ -184,7 +179,6 @@ jmp2 = q1(s2+0.1)  - q1(s2-0.1)
 jmp3 = q1(s3+0.1)  - q1(s3-0.1)
 jmp4 = q1(s4+0.1)  - q1(s4-0.1)
 
-
 println(" p1(t1+) - p1(t1-) = ", jmp1)
 println(" p1(t2+) - p1(t2-) = ", jmp2)
 println(" p1(t3+) - p1(t3-) = ", jmp3)
@@ -193,11 +187,11 @@ println(" p1(t4+) - p1(t4-) = ", jmp4)
 
 ## Indirect Method 
 
-
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
+nothing # hide
 ``` 
 
 ```@example main
@@ -286,29 +280,30 @@ nothing # hide
 nle! =  (ξ, λ) -> shoot2(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7], ξ[8], ξ[9], ξ[10], ξ[11], ξ[12])
 ξ_guess =[q1(0), q2(0), s1, s2, s3, s4, b1, b2, jmp1, jmp2, jmp3, jmp4];            # initial guess
 prob = NonlinearProblem(nle!, ξ_guess)
+nothing # hide
 ```
 
 ```@example main
 #solve
 indirect_sol2 = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+nothing # hide
 ```
 
 ```@example main
 # Retrieves solution
-    qq0 = indirect_sol2[1:2]
-    ss1 = indirect_sol2[3]
-    ss2 = indirect_sol2[4]
-    ss3 = indirect_sol2[5]
-    ss4 = indirect_sol2[6]
-    bb1 = indirect_sol2[7]
-    bb2 = indirect_sol2[8]
-    j11 = indirect_sol2[9]
-    j22 = indirect_sol2[10]
-    j33 = indirect_sol2[11]
-    j44 = indirect_sol2[12]
+qq0 = indirect_sol2[1:2]
+ss1 = indirect_sol2[3]
+ss2 = indirect_sol2[4]
+ss3 = indirect_sol2[5]
+ss4 = indirect_sol2[6]
+bb1 = indirect_sol2[7]
+bb2 = indirect_sol2[8]
+j11 = indirect_sol2[9]
+j22 = indirect_sol2[10]
+j33 = indirect_sol2[11]
+j44 = indirect_sol2[12]
+nothing # hide
 ```
-
-
 
 ```@example main
 # jumps from indirect solution

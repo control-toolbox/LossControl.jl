@@ -1,4 +1,5 @@
-# Zermelo problem, example 1
+# Zermelo navigation problem, example 1
+
 ```math
     \left\{
     \begin{array}{l}
@@ -11,6 +12,7 @@
     \end{array}
     \right.
 ```
+
 ## Reformulation for the direct method
 
 ```math
@@ -28,7 +30,6 @@
     \right.
 ```
 
-
 ```@example main
 using JuMP  
 using Ipopt
@@ -41,16 +42,12 @@ include("smooth.jl")
 nothing # hide
 ```
 
-
-
-
 ```@example main
 I1 = [(0.5, 3.5)]
 ε1 = 0.01  
 fNC1(x) = fNC_bounded(x,I1,ε1)
 plot(fNC1,0., 5, label="fNC")
 ```
-
 
 ```@example main
 @def ocp1 begin
@@ -93,13 +90,11 @@ end
 nothing # hide
 ```
 
-
 ```@example main
 N = 500
 sol1 = solve(ocp1; grid_size=N, print_level=4)
+nothing # hide
 ```
-
-
 
 ```@example main
 plot(sol1; layout=:group, size=(800, 300))
@@ -124,7 +119,6 @@ plot!([0, 31], [0.5, 0.5], color=:black, label = false, linewidth=2)
 plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)
 ```
 
-
 ```@example main
 plot(u, 0, tf, label="optimal control", color="red", linewidth=2)
 plot!(λ, 0, tf, label="state λ", color="green", linewidth=2)
@@ -134,8 +128,6 @@ plot!(λ, 0, tf, label="state λ", color="green", linewidth=2)
 plot(p1,  0, tf, label="costate p1", color="purple", linewidth=2)
 plot!(p2, 0, tf, label="costate p2", color="violet", linewidth=2)
 ``` 
-
-
 
 ```@example main
 # Find the first crossing time
@@ -237,22 +229,25 @@ nothing # hide
 nle! =  (ξ, λ) -> shoot1(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7])
 ξ_guess = [p1(0), p2(0), t1, t2, a, jmp1, jmp2]            # initial guess
 prob = NonlinearProblem(nle!, ξ_guess)
+nothing # hide
 ```
 
 ```@example main
 #solve
 indirect_sol1 = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+nothing # hide
 
 ```
 
 ```@example main
 # Retrieves solution
-    pp0   = indirect_sol1[1:2]
-    tt1   = indirect_sol1[3]
-    tt2   = indirect_sol1[4]
-    aa    = indirect_sol1[5]
-    jmp11 = indirect_sol1[6]
-    jmp22 = indirect_sol1[7]
+pp0   = indirect_sol1[1:2]
+tt1   = indirect_sol1[3]
+tt2   = indirect_sol1[4]
+aa    = indirect_sol1[5]
+jmp11 = indirect_sol1[6]
+jmp22 = indirect_sol1[7]
+nothing # hide
 ```
 
 ```@example main
@@ -335,9 +330,8 @@ end
 nothing # hide
 ```
 
-
- ```@example main
- # display the animation
+```@example main
+# display the animation
 gif(animx, "zer1_x.gif", fps = 10)
 ```
 

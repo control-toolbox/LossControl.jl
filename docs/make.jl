@@ -21,8 +21,8 @@ makedocs(
         "Introduction" => "index.md",
         "Statement of the problem" => "statement.md",
         "Numerical approach" => "numerical.md",
-        "Zermelo navigation problem: Example 1" => "zermelo1.md",
-        "Zermelo navigation problem: Example 2" => "zermelo2.md",
+        "Zermelo navigation: Example 1" => "zermelo1.md",
+        "Zermelo navigation: Example 2" => "zermelo2.md",
         "Harmonic oscillator problem" => "ho.md",
     ],
 )
