@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Zermelo navigation problem: Example 2 · Control loss</title><meta name="title" content="Zermelo navigation problem: Example 2 · Control loss"/><meta property="og:title" content="Zermelo navigation problem: Example 2 · Control loss"/><meta property="twitter:title" content="Zermelo navigation problem: Example 2 · Control loss"/><meta name="description" content="Documentation for Control loss."/><meta property="og:description" content="Documentation for Control loss."/><meta property="twitter:description" content="Documentation for Control loss."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">Control loss</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="statement.html">Statement of the problem</a></li><li><a class="tocitem" href="numerical.html">Numerical approach</a></li><li><a class="tocitem" href="zermelo1.html">Zermelo navigation problem: Example 1</a></li><li class="is-active"><a class="tocitem" href="zermelo2.html">Zermelo navigation problem: Example 2</a><ul class="internal"><li><a class="tocitem" href="#Reformulation-for-the-direct-method"><span>Reformulation for the direct method</span></a></li><li><a class="tocitem" href="#Indirect-Method"><span>Indirect Method</span></a></li></ul></li><li><a class="tocitem" href="ho.html">Harmonic oscillator problem</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="zermelo2.html">Zermelo navigation problem: Example 2</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="zermelo2.html">Zermelo navigation problem: Example 2</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss/blob/main/docs/src/zermelo2.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Zermelo-problem,-example-2"><a class="docs-heading-anchor" href="#Zermelo-problem,-example-2">Zermelo problem, example 2</a><a id="Zermelo-problem,-example-2-1"></a><a class="docs-heading-anchor-permalink" href="#Zermelo-problem,-example-2" title="Permalink"></a></h1><p class="math-container">\[
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Zermelo navigation: Example 2 · Control loss</title><meta name="title" content="Zermelo navigation: Example 2 · Control loss"/><meta property="og:title" content="Zermelo navigation: Example 2 · Control loss"/><meta property="twitter:title" content="Zermelo navigation: Example 2 · Control loss"/><meta name="description" content="Documentation for Control loss."/><meta property="og:description" content="Documentation for Control loss."/><meta property="twitter:description" content="Documentation for Control loss."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">Control loss</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="statement.html">Statement of the problem</a></li><li><a class="tocitem" href="numerical.html">Numerical approach</a></li><li><a class="tocitem" href="zermelo1.html">Zermelo navigation: Example 1</a></li><li class="is-active"><a class="tocitem" href="zermelo2.html">Zermelo navigation: Example 2</a><ul class="internal"><li><a class="tocitem" href="#Reformulation-for-the-direct-method"><span>Reformulation for the direct method</span></a></li><li><a class="tocitem" href="#Indirect-Method"><span>Indirect Method</span></a></li></ul></li><li><a class="tocitem" href="ho.html">Harmonic oscillator problem</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="zermelo2.html">Zermelo navigation: Example 2</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="zermelo2.html">Zermelo navigation: Example 2</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/control-toolbox/control-loss/blob/main/docs/src/zermelo2.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Zermelo-problem,-example-2"><a class="docs-heading-anchor" href="#Zermelo-problem,-example-2">Zermelo problem, example 2</a><a id="Zermelo-problem,-example-2-1"></a><a class="docs-heading-anchor-permalink" href="#Zermelo-problem,-example-2" title="Permalink"></a></h1><p class="math-container">\[
     \left\{
     \begin{array}{l}
         \displaystyle \min - x_1(8), \\[0.5em]
@@ -30,7 +30,7 @@ using NLPModelsIpopt
 include(&quot;smooth.jl&quot;)</code></pre><pre><code class="language-julia hljs">I2 = [(5, 10), (20, 25)]
 ε2 = 0.05
 fNC2(x) = fNC_bounded(x,I2,ε2)
-plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo2-1a30db75.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp2 begin
+plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo2-b8d9e2e0.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp2 begin
 
     ϵ  = 1e-3
 
@@ -67,7 +67,38 @@ plot(fNC2,0., 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo2-1a30db75
     #cost function
     -x1(tf) + ϵ*xv(tf) + xu(tf) → min
 end</code></pre><pre><code class="language-julia hljs">N = 400
-sol2 = solve(ocp2; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">CTBase.OptimalControlSolution</code></pre><pre><code class="language-julia hljs">plot(sol2; layout=:group, size=(800, 300))</code></pre><img src="zermelo2-f801ac08.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2   = sol2.times
+sol2 = solve(ocp2; grid_size=N, print_level=4)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Total number of variables............................:     2807
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:      802
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:     2005
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
+
+
+Number of Iterations....: 42
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -2.9792303771910330e+01   -2.9792303771910330e+01
+Dual infeasibility......:   5.5118792268284231e-11    5.5118792268284231e-11
+Constraint violation....:   5.8486437914950784e-11    5.8486437914950784e-11
+Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
+Complementarity.........:   2.0573569436357918e-11    2.0573569436357918e-11
+Overall NLP error.......:   5.8486437914950784e-11    5.8486437914950784e-11
+
+
+Number of objective function evaluations             = 44
+Number of objective gradient evaluations             = 43
+Number of equality constraint evaluations            = 44
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 43
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 42
+Total seconds in IPOPT                               = 1.216
+
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol2; layout=:group, size=(800, 300))</code></pre><img src="zermelo2-ee6737b2.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2   = sol2.times
 tf    = 8
 y1(t) = sol2.state(t)[1]
 y2(t) = sol2.state(t)[2]
@@ -78,9 +109,9 @@ q2(t) = sol2.costate(t)[2]</code></pre><pre><code class="language-julia hljs">pl
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-caa494e4.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo2-c0baa3c6.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
-plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo2-7582a021.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-dca1b9e7.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo2-83d51994.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
+plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo2-12e07d01.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 s1_index = findfirst(t -&gt; y1(t) &gt; 5, tt2)
 s2_index = nothing
 s3_index = nothing
@@ -123,7 +154,6 @@ Second constant value of λ: 0.15563455899807904</code></pre><pre><code class="l
 jmp2 = q1(s2+0.1)  - q1(s2-0.1)
 jmp3 = q1(s3+0.1)  - q1(s3-0.1)
 jmp4 = q1(s4+0.1)  - q1(s4-0.1)
-
 
 println(&quot; p1(t1+) - p1(t1-) = &quot;, jmp1)
 println(&quot; p1(t2+) - p1(t2-) = &quot;, jmp2)
@@ -201,45 +231,34 @@ function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4)
 
 end</code></pre><pre><code class="language-julia hljs">nle! =  (ξ, λ) -&gt; shoot2(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7], ξ[8], ξ[9], ξ[10], ξ[11], ξ[12])
 ξ_guess =[q1(0), q2(0), s1, s2, s3, s4, b1, b2, jmp1, jmp2, jmp3, jmp4];            # initial guess
-prob = NonlinearProblem(nle!, ξ_guess)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"><span class="sgr38_2" style="color:#56b6c2">NonlinearProblem</span> with uType <span class="sgr38_2" style="color:#56b6c2">Vector{Float64}</span>. In-place: <span class="sgr38_2" style="color:#56b6c2">false</span>
-u0: 12-element Vector{Float64}:
-  1.0674656156008022
-  6.329459963216919
-  2.98
-  4.24
-  6.12
-  6.98
-  0.9062052305238603
-  0.15563455899807904
-  0.05374079471410642
- -0.03643059069611043
-  0.03173715491824303
- -0.11651469483065457</code></pre><pre><code class="language-julia hljs">#solve
-indirect_sol2 = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">retcode: Success
-u: 12-element Vector{Float64}:
-  1.0112722921649264
-  6.166542188543138
-  1.8315586753330058
-  5.459536646392478
-  6.105719912824304
-  6.947171980116251
-  1.1645203848147483
- -0.48912139698623824
- -0.031233366854844475
-  0.04478696425564532
- -0.01147104111749472
-  0.009189735881620437</code></pre><pre><code class="language-julia hljs"># Retrieves solution
-    qq0 = indirect_sol2[1:2]
-    ss1 = indirect_sol2[3]
-    ss2 = indirect_sol2[4]
-    ss3 = indirect_sol2[5]
-    ss4 = indirect_sol2[6]
-    bb1 = indirect_sol2[7]
-    bb2 = indirect_sol2[8]
-    j11 = indirect_sol2[9]
-    j22 = indirect_sol2[10]
-    j33 = indirect_sol2[11]
-    j44 = indirect_sol2[12]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">0.009189735881620437</code></pre><pre><code class="language-julia hljs"># jumps from indirect solution
+prob = NonlinearProblem(nle!, ξ_guess)</code></pre><pre><code class="language-julia hljs">#solve
+indirect_sol2 = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+Algorithm: NewtonRaphson(
+   descent = NewtonDescent()
+)
+
+----     -------------        -----------
+Iter     f(u) inf-norm        Step 2-norm
+----     -------------        -----------
+0        5.92197250e+00       2.40412172e-309
+1        3.87565739e+00       1.97048170e+00
+2        1.86441355e+00       9.95641703e-01
+3        4.55777230e-02       6.32273320e-01
+4        1.18960248e-04       1.07853844e-02
+5        1.50749451e-10       3.44407475e-05
+Final    1.50749451e-10
+----------------------</code></pre><pre><code class="language-julia hljs"># Retrieves solution
+qq0 = indirect_sol2[1:2]
+ss1 = indirect_sol2[3]
+ss2 = indirect_sol2[4]
+ss3 = indirect_sol2[5]
+ss4 = indirect_sol2[6]
+bb1 = indirect_sol2[7]
+bb2 = indirect_sol2[8]
+j11 = indirect_sol2[9]
+j22 = indirect_sol2[10]
+j33 = indirect_sol2[11]
+j44 = indirect_sol2[12]</code></pre><pre><code class="language-julia hljs"># jumps from indirect solution
 println(&quot; jumps from indirect solution&quot;)
 println(&quot; p1(t1+) - p1(t1-) = &quot;, j11)
 println(&quot; p1(t2+) - p1(t2-) = &quot;, j22)
@@ -297,8 +316,8 @@ qq2 = [ qqq[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs"
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-1e99035b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,   vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo2-2b310d1c.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
-plot!(ttt,  qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo2-81464c13.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-e08a6d99.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,   vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo2-2a732ef2.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
+plot!(ttt,  qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo2-cabad1a4.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animy = @animate for i = 1:length(ttt)
     plot(yy1[1:i], yy2[1:i],  xlim=(0.,31.), ylim=(-0.,5.5),  label=&quot;optimal trajectory&quot;, linecolor=:blue,  linewidth=2)
     scatter!([yy1[i]], [yy2[i]], markersize=4, marker=:circle, color=:black, label=false)
@@ -318,4 +337,4 @@ end ;
 
 animq2 = @animate for i = 1:length(ttt)
     plot(ttt[1:i], qq2[1:i], xlim=(0.,8.), ylim=(-2.2,6.), label=&quot;costate p2&quot;, linecolor=:violet,  linewidth=2)
-end</code></pre><pre><code class="language-julia hljs">gif(animy, &quot;zer2_y.gif&quot;,   fps = 10)</code></pre><img src="zermelo2-18e8d111.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animv, &quot;zer2_v.gif&quot;,   fps = 10)</code></pre><img src="zermelo2-7212833a.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animq1, &quot;zer2_q1.gif&quot;, fps = 10)</code></pre><img src="zermelo2-9af04ce8.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo1.html">« Zermelo navigation problem: Example 1</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator problem »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.6.0 on <span class="colophon-date" title="Monday 26 August 2024 16:49">Monday 26 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+end</code></pre><pre><code class="language-julia hljs">gif(animy, &quot;zer2_y.gif&quot;,   fps = 10)</code></pre><img src="zermelo2-18e8d111.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animv, &quot;zer2_v.gif&quot;,   fps = 10)</code></pre><img src="zermelo2-7212833a.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animq1, &quot;zer2_q1.gif&quot;, fps = 10)</code></pre><img src="zermelo2-c06b9b27.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo1.html">« Zermelo navigation: Example 1</a><a class="docs-footer-nextpage" href="ho.html">Harmonic oscillator problem »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.6.0 on <span class="colophon-date" title="Monday 26 August 2024 21:08">Monday 26 August 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
