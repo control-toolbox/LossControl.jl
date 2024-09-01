@@ -101,15 +101,16 @@ plot(sol; layout=:group, size=(800, 300))
 ```
 
 ```@example main
-tt    = sol.times
-tf    = tt[end] 
-x1(t) = sol.state(t)[1]
-x2(t) = sol.state(t)[2]
-λ(t)  = sol.state(t)[3]
-u(t)  = sol.control(t)[1]
-p1(t) = sol.costate(t)[1]
-p2(t) = sol.costate(t)[2]
-a     = λ(tt[end])
+tf     = sol.variable
+tt = (0:N+1) * value.(tf/(N+1))
+
+x1(t)  = sol.state(t)[1]
+x2(t)  = sol.state(t)[2]
+λ(t)   = sol.state(t)[3]
+u(t)   = sol.control(t)[1]
+p1(t)  = sol.costate(t)[1]
+p2(t)  = sol.costate(t)[2]
+a      = λ(tf)
 nothing # hide
 ```
 
@@ -159,7 +160,7 @@ println("Fourth crossing/final time: ", t4)
 
 ```@example main
 d = diff(u.(tt))
-tstar = tt[findall(abs.(d) .> 1.5)[]]
+tstar = tt[findall(abs.(d) .> 0.9)[]]
 println("the switching time: ", tstar)
 ```
 
