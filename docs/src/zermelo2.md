@@ -101,8 +101,8 @@ plot(sol2; layout=:group, size=(800, 300))
 ```
 
 ```@example main
-tt2   = sol2.times
 tf    = 8
+tt2 = (0:N+1) * value.(tf/(N+1))
 y1(t) = sol2.state(t)[1]
 y2(t) = sol2.state(t)[2]
 μ(t)  = sol2.state(t)[3]
