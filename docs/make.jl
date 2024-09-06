@@ -2,7 +2,7 @@ using Documenter
 
 makedocs(
     warnonly = :cross_references,
-    sitename = "Control loss",
+    sitename = "Loss control",
     format = Documenter.HTML(
         prettyurls = false,
         size_threshold_ignore = [
