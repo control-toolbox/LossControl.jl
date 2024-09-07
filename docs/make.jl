@@ -23,4 +23,4 @@ makedocs(;
     ],
 )
 
-deploydocs(; repo="github.com/control-toolbox/control-loss.git", devbranch="main")
+deploydocs(; repo="github.com/control-toolbox/LossControl.jl.git", devbranch="main")

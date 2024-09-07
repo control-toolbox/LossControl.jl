@@ -1,7 +1,7 @@
 # Contributing
 
-[issue-url]: https://github.com/control-toolbox/control-loss/issues
-[first-good-issue-url]: https://github.com/control-toolbox/control-loss/contribute
+[issue-url]: https://github.com/control-toolbox/LossControl.jl/issues
+[first-good-issue-url]: https://github.com/control-toolbox/LossControl.jl/contribute
 
 If you think you found a bug or if you have a feature request / suggestion, feel free to open an [issue][issue-url].
 Before opening a pull request, please start an issue or a discussion on the topic. 
