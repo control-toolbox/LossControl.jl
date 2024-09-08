@@ -28,7 +28,7 @@ using NLPModelsIpopt
 include(&quot;smooth.jl&quot;);</code></pre><pre><code class="language-julia hljs">a0  = 0.0
 ε1 = 0.018
 fNC(x) = fNC_unboundedminus(x,a0,ε1)
-plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-0968a3a7.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp begin
+plot(fNC,-1., 1, label=&quot;fNC&quot;)</code></pre><img src="ho-17c0698a.svg" alt="Example block output"/><pre><code class="language-julia hljs">@def ocp begin
 
     ε = 1e-3
 
@@ -95,9 +95,9 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 211
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 210
-Total seconds in IPOPT                               = 9.200
+Total seconds in IPOPT                               = 9.675
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-ed1c6535.svg" alt="Example block output"/><pre><code class="language-julia hljs">tf     = sol.variable
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-df7d3838.svg" alt="Example block output"/><pre><code class="language-julia hljs">tf     = sol.variable
 tt = (0:N+1) * value.(tf/(N+1))
 
 x1(t)  = sol.state(t)[1]
@@ -107,8 +107,8 @@ u(t)   = sol.control(t)[1]
 p1(t)  = sol.costate(t)[1]
 p2(t)  = sol.costate(t)[2]
 a      = λ(tf)</code></pre><pre><code class="language-julia hljs">plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
-plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-4453ddee.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="ho-86e5a78e.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-528dbfa4.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="ho-8e59a585.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 t1_index = findfirst(t -&gt; x2(t) ≤ 0, tt)
 t2_index = nothing
 t3_index = nothing
@@ -150,34 +150,7 @@ println(&quot; p2(t1+) - p2(t1-) = &quot;, jmp1)
 println(&quot; p2(t2+) - p2(t2-) = &quot;, jmp2)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"> p2(t1+) - p2(t1-) = -0.12074360564904785
  p2(t2+) - p2(t2-) = -0.03912258385015749</code></pre><h2 id="Indirect-Method"><a class="docs-heading-anchor" href="#Indirect-Method">Indirect Method</a><a id="Indirect-Method-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-Method" title="Permalink"></a></h2><pre><code class="language-julia hljs">using NonlinearSolve
 using OrdinaryDiffEq
-using Animations</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">WARNING: Method definition default_nlsolve(Nothing, Base.Val{true}, Any, SciMLBase.NonlinearProblem{uType, isinplace, P, F, K, PT} where PT where K where F where P where isinplace where uType) in module OrdinaryDiffEqCore at /home/runner/.julia/packages/OrdinaryDiffEqCore/rRqPh/src/initialize_dae.jl:123 overwritten in module OrdinaryDiffEqNonlinearSolve at /home/runner/.julia/packages/OrdinaryDiffEqNonlinearSolve/0gbhD/src/initialize_dae.jl:1.
-ERROR: Method overwriting is not permitted during Module precompilation. Use `__precompile__(false)` to opt-out of precompilation.
-WARNING: Method definition default_nlsolve(Nothing, Base.Val{true}, Any, SciMLBase.NonlinearProblem{uType, isinplace, P, F, K, PT} where PT where K where F where P where isinplace where uType) in module OrdinaryDiffEqCore at /home/runner/.julia/packages/OrdinaryDiffEqCore/rRqPh/src/initialize_dae.jl:123 overwritten in module OrdinaryDiffEqNonlinearSolve at /home/runner/.julia/packages/OrdinaryDiffEqNonlinearSolve/0gbhD/src/initialize_dae.jl:1.
-ERROR: Method overwriting is not permitted during Module precompilation. Use `__precompile__(false)` to opt-out of precompilation.
-┌ Warning: Module OrdinaryDiffEqNonlinearSolve with build ID ffffffff-ffff-ffff-0000-009db1ef76b8 is missing from the cache.
-│ This may mean OrdinaryDiffEqNonlinearSolve [127b3ac7-2247-4354-8eb6-78cf4e7c58e8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqNonlinearSolve with build ID ffffffff-ffff-ffff-0000-009db1ef76b8 is missing from the cache.
-│ This may mean OrdinaryDiffEqNonlinearSolve [127b3ac7-2247-4354-8eb6-78cf4e7c58e8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqSDIRK with build ID ffffffff-ffff-ffff-0000-009f03ce29ec is missing from the cache.
-│ This may mean OrdinaryDiffEqSDIRK [2d112036-d095-4a1e-ab9a-08536f3ecdbf] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqBDF with build ID ffffffff-ffff-ffff-0000-009f8c61c1e5 is missing from the cache.
-│ This may mean OrdinaryDiffEqBDF [6ad6398a-0878-4a85-9266-38940aa047c8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqNonlinearSolve with build ID ffffffff-ffff-ffff-0000-009db1ef76b8 is missing from the cache.
-│ This may mean OrdinaryDiffEqNonlinearSolve [127b3ac7-2247-4354-8eb6-78cf4e7c58e8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqNonlinearSolve with build ID ffffffff-ffff-ffff-0000-009db1ef76b8 is missing from the cache.
-│ This may mean OrdinaryDiffEqNonlinearSolve [127b3ac7-2247-4354-8eb6-78cf4e7c58e8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEqNonlinearSolve with build ID ffffffff-ffff-ffff-0000-009db1ef76b8 is missing from the cache.
-│ This may mean OrdinaryDiffEqNonlinearSolve [127b3ac7-2247-4354-8eb6-78cf4e7c58e8] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948
-┌ Warning: Module OrdinaryDiffEq with build ID ffffffff-ffff-ffff-0000-009ce1859678 is missing from the cache.
-│ This may mean OrdinaryDiffEq [1dea7af3-3e70-54e6-95c3-0bf5283fa5ed] does not support precompilation but is imported by a module that does.
-└ @ Base loading.jl:1948</code></pre><pre><code class="language-julia hljs"># Dynamics
+using Animations</code></pre><pre><code class="language-julia hljs"># Dynamics
 function F0(x)
     return [ x[2], -x[1]]
 end
@@ -248,7 +221,7 @@ Algorithm: NewtonRaphson(
 ----     -------------        -----------
 Iter     f(u) inf-norm        Step 2-norm
 ----     -------------        -----------
-0        3.18079990e-01       2.18273036e-309
+0        3.18079990e-01       NaN
 1        1.43981655e-01       1.04464353e+00
 2        4.98715849e-02       3.08271443e-01
 3        6.13796786e-04       4.95916373e-02
@@ -304,8 +277,8 @@ x11 = [ xx[i][1] for i=1:m ]
 x22 = [ xx[i][2] for i=1:m ]
 p11 = [ pp[i][1] for i=1:m ]
 p22 = [ pp[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs">plot(x11, x22, label=&quot;optimal trajectory&quot;,  linecolor=:blue , linewidth=2)
-plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-2b141101.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,   uu, label=&quot;optimal control&quot;,  linecolor=:red , linewidth=2)</code></pre><img src="ho-83f90746.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,  p11, label=&quot;costate p1&quot;, linecolor=:purple , linewidth=2)
-plot!(tt0,  p22, label=&quot;costate p2&quot;,  linecolor=:violet , linewidth=2)</code></pre><img src="ho-e9bec821.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-98cb799b.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,   uu, label=&quot;optimal control&quot;,  linecolor=:red , linewidth=2)</code></pre><img src="ho-23f3a6a2.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,  p11, label=&quot;costate p1&quot;, linecolor=:purple , linewidth=2)
+plot!(tt0,  p22, label=&quot;costate p2&quot;,  linecolor=:violet , linewidth=2)</code></pre><img src="ho-c9e781fa.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animx = @animate for i = 1:length(tt0)
     plot(x11[1:i], x22[1:i], xlim=(-3.,5.), ylim=(-4.,4.3), label=&quot;optimal trajectory&quot;, linecolor=:blue,  linewidth=2)
     scatter!([x11[i]], [x22[i]], markersize=4, marker=:circle, color=:black, label=false)
@@ -323,4 +296,4 @@ end ;
 animp2 = @animate for i = 1:length(tt0)
     plot(tt0[1:i], p22[1:i], xlim=(0.,tt0[end]), ylim=(-1.5,1.3), label=&quot;costate p2&quot;, linecolor=:violet,  linewidth=2)
 end</code></pre><pre><code class="language-julia hljs"># display the animation
-gif(animx, &quot;ho_x.gif&quot;,   fps = 10)</code></pre><img src="ho-e8abe0e8.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animu, &quot;ho_u.gif&quot;,   fps = 10)</code></pre><img src="ho-5353f092.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animp2, &quot;ho_p2.gif&quot;, fps = 10)</code></pre><img src="ho-fe2cf93d.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo2.html">« Zermelo navigation: Example 2</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Saturday 7 September 2024 08:05">Saturday 7 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+gif(animx, &quot;ho_x.gif&quot;,   fps = 10)</code></pre><img src="ho-e8abe0e8.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animu, &quot;ho_u.gif&quot;,   fps = 10)</code></pre><img src="ho-5353f092.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animp2, &quot;ho_p2.gif&quot;, fps = 10)</code></pre><img src="ho-fe2cf93d.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="zermelo2.html">« Zermelo navigation: Example 2</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Sunday 8 September 2024 10:17">Sunday 8 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
