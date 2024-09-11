@@ -6,7 +6,7 @@ makedocs(;
     warnonly=:cross_references,
     sitename="Loss control",
     format=Documenter.HTML(;
-        repolink = "https://"*repo_url,
+        repolink="https://" * repo_url,
         prettyurls=false,
         size_threshold_ignore=[
             "statement.md", "numerical.md", "zermelo1.md", "zermelo2.md", "ho.md"
@@ -26,6 +26,4 @@ makedocs(;
     ],
 )
 
-deploydocs(;
-    repo=repo_url*".git", devbranch="main"
-)
+deploydocs(; repo=repo_url * ".git", devbranch="main")
