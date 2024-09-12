@@ -58,15 +58,13 @@ plot(fNC2,0., 30, label="fNC")
 
     t ∈ [ 0., tf ],                  time
 
-    q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
+    q = [ x1, x2, λ ] ∈ R^3,         state
 
     ω = [u, v] ∈ R^2,                control
 
     #initial conditions
     x1(0) == 0
     x2(0) == 0
-    xu(0) == 0
-    xv(0) == 0
 
     #final condition
     x2(tf) == 4
