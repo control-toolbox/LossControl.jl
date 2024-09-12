@@ -25,7 +25,7 @@ using Plots.PlotMeasures
 using OptimalControl
 using NLPModelsIpopt
 include(&quot;smooth.jl&quot;)</code></pre><pre><code class="language-julia hljs">fNC(x) = fNC_bounded(x, [(5, 10), (20, 25)], 0.05)
-plot(fNC, 0, 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo2-7fd3ce58.svg" alt="Example block output"/><pre><code class="language-julia hljs">ε  = 1e-3
+plot(fNC, 0, 30, label=&quot;fNC&quot;)</code></pre><img src="zermelo2-af44448b.svg" alt="Example block output"/><pre><code class="language-julia hljs">ε  = 1e-3
 tf = 8
 
 @def ocp begin
@@ -77,9 +77,9 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 48
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 47
-Total seconds in IPOPT                               = 1.500
+Total seconds in IPOPT                               = 1.496
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo2-044f099c.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2 = (0:N+1) * (tf/(N+1))
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo2-aa2f5d08.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt2 = (0:N+1) * (tf/(N+1))
 y1(t) = sol.state(t)[1]
 y2(t) = sol.state(t)[2]
 μ(t)  = sol.state(t)[3]
@@ -89,9 +89,9 @@ q2(t) = sol.costate(t)[2]</code></pre><pre><code class="language-julia hljs">plo
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-c8740d07.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo2-b437941e.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
-plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo2-b806ee93.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-1ee4acf3.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( tt2, v, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt2, μ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo2-1d595833.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( tt2, q1, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
+plot!(tt2, q2, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo2-20d53d47.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 s1_index = findfirst(t -&gt; y1(t) &gt; 5, tt2)
 s2_index = nothing
 s3_index = nothing
@@ -223,7 +223,7 @@ Algorithm: NewtonRaphson(
 ----     -------------        -----------
 Iter     f(u) inf-norm        Step 2-norm
 ----     -------------        -----------
-0        6.00219763e+00       NaN
+0        6.00219763e+00       1.38242240e-309
 1        7.71192349e-01       1.64646799e+00
 2        3.54799824e-02       2.84549746e-01
 3        1.78391948e-04       1.48529602e-02
@@ -298,8 +298,8 @@ qq2 = [ qqq[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs"
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
 plot!([20, 20], [0, 6], color=:black, label = false, linewidth=2)
-plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-ef96dd98.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo2-d01be2d1.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,  qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
-plot!(ttt, qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo2-f14701a7.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo2-0b36969f.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt, vvv, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo2-52073c93.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(ttt,  qq1, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
+plot!(ttt, qq2, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo2-fef8629f.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animy = @animate for i = 1:length(ttt)
     plot(yy1[1:i], yy2[1:i],  xlim=(0.,31.), ylim=(-0.,5.5), label=&quot;optimal trajectory&quot;,
         linecolor=:blue,  linewidth=2, legend=:topleft)
