@@ -92,7 +92,7 @@ nothing # hide
 
 ```@example main
  N = 630 
-sol = solve(ocp; init = (state = t -> [0.1, 0.1, 1, 0, 0], control =[-1, 0], variable =15), grid_size=N, print_level=4)
+sol = solve(ocp; init = (state = t -> [0.1, 0.1, 1], control =[-1, 0], variable =15), grid_size=N, print_level=4)
 nothing # hide
 ```
 
