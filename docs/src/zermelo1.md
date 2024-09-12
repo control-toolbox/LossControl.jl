@@ -65,8 +65,6 @@ plot(fNC1,0., 5, label="fNC")
     #initial conditions
     x1(0) == 0
     x2(0) == 0
-    xu(0) == 0
-    xv(0) == 0
 
     #final condition
     x2(tf) == 4
