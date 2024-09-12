@@ -77,15 +77,13 @@ plot(fNC2,0., 30, label="fNC")
     #state constraints
     -π/2  ≤  λ(t)  ≤ π/2
 
-    #hybrid control system
+    #control system
      q̇(t) == [fNC2(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC2(x1(t)))*(x2(t) + cos(u(t))),
              fNC2(x1(t))*sin(λ(t)) + (1-fNC2(x1(t)))*sin(u(t)),
-             (1-fNC2(x1(t)))*v(t),
-             (v(t))^2,
-             fNC2(x1(t))*(u(t))^2]
+             (1-fNC2(x1(t)))*v(t)]
 
     #cost function        
-    -x1(tf) + ϵ*xv(tf) + xu(tf) → min    
+    -x1(tf) + ∫(ϵ*(v(t))^2+fNC2(x1(t))*(u(t))^2)  → min    
 end
 nothing # hide
 ```
