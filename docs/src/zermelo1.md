@@ -58,7 +58,7 @@ plot(fNC1,0., 5, label="fNC")
 
     t ∈ [ 0., tf ],                  time
 
-    q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
+    q = [ x1, x2, λ ] ∈ R^3, state
 
     ω = [u, v] ∈ R^2,                control
 
