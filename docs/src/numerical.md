@@ -8,12 +8,11 @@ It is important to note that neither of these methods is fundamentally better th
 
 Often in the literature, one proceeds in two steps. The first step is to implement a direct method to determine the optimal solution's structure and extract the associated adjoint vector. The second step involves constructing an indirect shooting method, where the initial condition is based on the numerical results obtained from the direct method.
 
-
 ## Description of the direct method
 
 For some $\omega_0 \in \mathrm{U}$, some $\varepsilon_0>0$ and $\varepsilon>0$ small enough, we introduce the *regularized problem* given by
 ```math
-\begin{equation}
+\begin{equation*}
 \begin{array}{lcl}
      \text{minimize}&  & \phi(x(0),x(T)) + \varepsilon_0 \displaystyle\int_0^T v^2(t) \, dt + \displaystyle\int_0^T (1- \Psi_{\varepsilon}(x(t)))\|u(t)-\omega_0\|_{\R^m}^2 \, dt,\\[10pt]
      \text{subject to}& &  (x,\lambda,u,v) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{AC}([0,T],\R^m) \times \mathrm{L}^\infty([0,T],\R^m)\times \mathrm{L}^\infty([0,T],\R), \\[2pt]
@@ -23,7 +22,7 @@ For some $\omega_0 \in \mathrm{U}$, some $\varepsilon_0>0$ and $\varepsilon>0$ s
      &  & \lambda(t)   \in \mathrm{U}, \quad \text{a.e.\ } t\in [0,T],\\[2pt]
      &  & (u(t),v(t)) \in  \mathrm{U} \times \R , \quad \text{a.e.\ } t\in [0,T],
      \end{array}
-\end{equation}
+\end{equation*}
 ```
 where $\Psi_{\epsilon} : \R^n \to \R$ is the regularization of the characteristic function of $\cup_{q_j = 1} \overline{X_j}$ given by 
 ```math
@@ -34,7 +33,7 @@ for all $x\in \R^n$, where $\mathrm{d}_{j}: \R^n \to \R$ stands for the distance
 ## Description of the indirect method
 
 Recall that the direct method has captured the structure of the optimal pair $(x^*,u^*)$. In the indirect method, we address each arc separately. 
-We begin by defining the **flow** of the Hamiltonian associated with each arc. To accomplish this, we use the function `Flow` that can be found in the [CTFlows.jl](https://github.com/control-toolbox/CTFlows.jl) package. This latter allows to solve the Hamiltonian system over a given time interval from given initial values of the state and the adjoint vector. This function requires necessary libraries such as  ForwardDiff for calculating gradients and Jacobians and  OrdinaryDiffEq for solving ordinary differential equations. 
+We begin by defining the **flow** of the Hamiltonian associated with each arc. To accomplish this, we use the function `Flow` that can be found in the [OptimalControl.jl](https://github.com/control-toolbox/OptimalControl.jl) package. This latter allows to solve the Hamiltonian system over a given time interval from given initial values of the state and the adjoint vector. This function requires necessary libraries such as ForwardDiff.jl for calculating gradients and Jacobians and  OrdinaryDiffEq.jl for solving ordinary differential equations. 
     
 In the setting of the present paper (including control regions and loss control regions), we distinguish between two types of Hamiltonian flows:
     
@@ -66,25 +65,6 @@ Second, since  $u_k^*$ is assumed to be an interior value to  $\mathrm{U}$, we g
 \end{equation*}
 ```    
 Hence there is no need to compute an integral in order to take into account the averaged Hamiltonian gradient condition. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [^1]: S. Aronna, F. Bonnans, P. Martinon, *A shooting algorithm for optimal control problems with singular arcs*, Journal of Optimization Theory and Applications, **158**, pp. 419–459, Springer, 2013.
 [^2]: J.F. Bonnans, *The shooting approach to optimal control problems*, IFAC Proceedings Volumes, **46**, no. 11, pp. 281–292, Elsevier, 2013.

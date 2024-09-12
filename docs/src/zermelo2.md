@@ -31,11 +31,8 @@
 ```
 
 ```@example main
-using JuMP  
-using Ipopt
 using Plots
 using Plots.PlotMeasures
-using LaTeXStrings
 using OptimalControl
 using NLPModelsIpopt
 include("smooth.jl")
@@ -43,68 +40,55 @@ nothing # hide
 ```
 
 ```@example main
-I2 = [(5, 10), (20, 25)]
-ε2 = 0.05  
-fNC2(x) = fNC_bounded(x,I2,ε2)
-plot(fNC2,0., 30, label="fNC")
+fNC(x) = fNC_bounded(x, [(5, 10), (20, 25)], 0.05)
+plot(fNC, 0, 30, label="fNC")
 ```
 
 ```@example main
-@def ocp2 begin
+ε  = 1e-3
+tf = 8
 
-    ϵ  = 1e-3
-    
-    tf = 8
+@def ocp begin
 
-    t ∈ [ 0., tf ],                  time
+    t ∈ [ 0, tf ],           time
+    q = [ x1, x2, λ ] ∈ R^3, state
+    ω = [u, v] ∈ R^2,        control
 
-    q = [ x1, x2, λ ] ∈ R^3,         state
-
-    ω = [u, v] ∈ R^2,                control
-
-    #initial conditions
     x1(0) == 0
     x2(0) == 0
-
-    #final condition
     x2(tf) == 4
 
-    #control constraint
-    -π/2  ≤  u(t)  ≤ π/2
+    -π/2 ≤ u(t) ≤ π/2
+    -π/2 ≤ λ(t) ≤ π/2
 
-    #state constraints
-    -π/2  ≤  λ(t)  ≤ π/2
+    q̇(t) == [fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
+             fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
+             (1-fNC(x1(t)))*v(t)]
 
-    #control system
-     q̇(t) == [fNC2(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC2(x1(t)))*(x2(t) + cos(u(t))),
-             fNC2(x1(t))*sin(λ(t)) + (1-fNC2(x1(t)))*sin(u(t)),
-             (1-fNC2(x1(t)))*v(t)]
+    -x1(tf) + ∫(ε*(v(t))^2+fNC(x1(t))*(u(t))^2)  → min    
 
-    #cost function        
-    -x1(tf) + ∫(ϵ*(v(t))^2+fNC2(x1(t))*(u(t))^2)  → min    
 end
 nothing # hide
 ```
 
 ```@example main
 N = 400
-sol2 = solve(ocp2; grid_size=N, print_level=4)
+sol = solve(ocp; grid_size=N, print_level=4)
 nothing # hide
 ```
 
 ```@example main
-plot(sol2; layout=:group, size=(800, 300))
+plot(sol; layout=:group, size=(800, 300))
 ```
 
 ```@example main
-tf    = 8
-tt2 = (0:N+1) * value.(tf/(N+1))
-y1(t) = sol2.state(t)[1]
-y2(t) = sol2.state(t)[2]
-μ(t)  = sol2.state(t)[3]
-v(t)  = sol2.control(t)[1]
-q1(t) = sol2.costate(t)[1]
-q2(t) = sol2.costate(t)[2]
+tt2 = (0:N+1) * (tf/(N+1))
+y1(t) = sol.state(t)[1]
+y2(t) = sol.state(t)[2]
+μ(t)  = sol.state(t)[3]
+v(t)  = sol.control(t)[1]
+q1(t) = sol.costate(t)[1]
+q2(t) = sol.costate(t)[2]
 nothing # hide
 ```
 
@@ -117,12 +101,12 @@ plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)
 ```
 
 ```@example main
-plot(tt2, v, label="optimal control", color="red", linewidth=2)
+plot( tt2, v, label="optimal control", color="red", linewidth=2)
 plot!(tt2, μ, label="state λ", color="green", linewidth=2)
 ```
 
 ```@example main
-plot(tt2, q1, label="costate p1", color="purple", linewidth=2)
+plot( tt2, q1, label="costate p1", color="purple", linewidth=2)
 plot!(tt2, q2, label="costate p2", color="violet", linewidth=2)
 ``` 
 
@@ -175,10 +159,10 @@ jmp2 = q1(s2+0.1)  - q1(s2-0.1)
 jmp3 = q1(s3+0.1)  - q1(s3-0.1)
 jmp4 = q1(s4+0.1)  - q1(s4-0.1)
 
-println(" p1(t1+) - p1(t1-) = ", jmp1)
-println(" p1(t2+) - p1(t2-) = ", jmp2)
-println(" p1(t3+) - p1(t3-) = ", jmp3)
-println(" p1(t4+) - p1(t4-) = ", jmp4)
+println("p1(t1+) - p1(t1-) = ", jmp1)
+println("p1(t2+) - p1(t2-) = ", jmp2)
+println("p1(t3+) - p1(t3-) = ", jmp3)
+println("p1(t4+) - p1(t4-) = ", jmp4)
 ```
 
 ## Indirect Method 
@@ -193,24 +177,24 @@ nothing # hide
 ```@example main
 # Dynamics
 function F(x, u)
-    return [ x[2] + cos(u), sin(u) ]
+    return [x[2] + cos(u), sin(u)]
 end
 
 function G(λ)
-    return [ sin(λ), - cos(λ) ]
+    return [sin(λ), -cos(λ)]
 end
 
 # Hamiltonian: permanent region
-H1(x, u, p)  = p' * F(x, u)                 # pseudo-Hamiltonian
-u11(x, p)    = atan(p[2]/p[1])              # maximizing control
-Hc(x, p)     = H1(x, u11(x, p) , p )        # Hamiltonian
+H1(x, u, p) = p' * F(x, u)               # pseudo-Hamiltonian
+u11(x, p)   = atan(p[2]/p[1])            # maximizing control
+Hc(x, p)    = H1(x, u11(x, p), p)        # Hamiltonian
 
 # Flow
-fc  = Flow(Hamiltonian(Hc))
+fc = Flow(Hamiltonian(Hc))
 
 # Hamiltonian: control loss region
-H2(x, λ, y, p)   = p' * F(x, λ)   + y* p' *G(λ)    # pseudo-Hamiltonian
-Hcl(X, P)        = H2(X[1:2], X[3], X[4], P[1:2])  # Hamiltonian
+H2(x, λ, y, p) = p' * F(x, λ) + y* p' *G(λ)      # pseudo-Hamiltonian
+Hcl(X, P)      = H2(X[1:2], X[3], X[4], P[1:2])  # Hamiltonian
 
 # Flow
 fcl = Flow(Hamiltonian(Hcl))
@@ -230,8 +214,8 @@ nothing # hide
 # Shooting function
 function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4) 
     
-    pλ0    = 0
-    qy0    = 0
+    pλ0 = 0
+    qy0 = 0
     
     y1, q1 =  fc(t0, x0, p0, tt1)
     Y2, Q2 = fcl(tt1, [y1; λ1; 0], [q1 - [j1 , 0]; pλ0 ; qy0], tt2) 
@@ -273,41 +257,44 @@ nothing # hide
 
 
 ```@example main
-nle! =  (ξ, λ) -> shoot2(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7], ξ[8], ξ[9], ξ[10], ξ[11], ξ[12])
-ξ_guess =[q1(0), q2(0), s1, s2, s3, s4, b1, b2, jmp1, jmp2, jmp3, jmp4];            # initial guess
+# auxiliary function with aggregated inputs
+nle! = (ξ, λ) -> shoot2(ξ[1:2], ξ[3], ξ[4], ξ[5], ξ[6], ξ[7], ξ[8], ξ[9], ξ[10], ξ[11], ξ[12])
+
+# initial guess
+ξ_guess =[q1(0), q2(0), s1, s2, s3, s4, b1, b2, jmp1, jmp2, jmp3, jmp4]
+
 prob = NonlinearProblem(nle!, ξ_guess)
 nothing # hide
 ```
 
 ```@example main
-#solve
-indirect_sol2 = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
 nothing # hide
 ```
 
 ```@example main
-# Retrieves solution
-qq0 = indirect_sol2[1:2]
-ss1 = indirect_sol2[3]
-ss2 = indirect_sol2[4]
-ss3 = indirect_sol2[5]
-ss4 = indirect_sol2[6]
-bb1 = indirect_sol2[7]
-bb2 = indirect_sol2[8]
-j11 = indirect_sol2[9]
-j22 = indirect_sol2[10]
-j33 = indirect_sol2[11]
-j44 = indirect_sol2[12]
+# retrieves solution
+qq0 = indirect_sol[1:2]
+ss1 = indirect_sol[3]
+ss2 = indirect_sol[4]
+ss3 = indirect_sol[5]
+ss4 = indirect_sol[6]
+bb1 = indirect_sol[7]
+bb2 = indirect_sol[8]
+j11 = indirect_sol[9]
+j22 = indirect_sol[10]
+j33 = indirect_sol[11]
+j44 = indirect_sol[12]
 nothing # hide
 ```
 
 ```@example main
 # jumps from indirect solution
-println(" jumps from indirect solution")
-println(" p1(t1+) - p1(t1-) = ", j11)
-println(" p1(t2+) - p1(t2-) = ", j22)
-println(" p1(t3+) - p1(t3-) = ", j33)
-println(" p1(t4+) - p1(t4-) = ", j44)
+println("jumps from indirect solution")
+println("p1(t1+) - p1(t1-) = ", j11)
+println("p1(t2+) - p1(t2-) = ", j22)
+println("p1(t3+) - p1(t3-) = ", j33)
+println("p1(t4+) - p1(t4-) = ", j44)
 ```
 
 ```@example main
@@ -360,7 +347,6 @@ qq2 = [ qqq[i][2] for i=1:m ]
 nothing # hide
 ```
 
-
 ```@example main 
 plot(yy1, yy2, label="optimal trajectory", legend=false, linecolor=:blue, linewidth=2)
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
@@ -370,18 +356,19 @@ plot!([25, 25], [0,6], color=:black, label = false, linewidth=2)
 ```
 
 ```@example main
-plot(ttt,   vvv, label="optimal control" ,linecolor=:red ,linewidth=2)
+plot(ttt, vvv, label="optimal control" ,linecolor=:red ,linewidth=2)
 ```
 
 ```@example main
-plot(ttt, qq1, label="costate p1", linecolor=:purple, linewidth=2)
-plot!(ttt,  qq2, label="costate p2", linecolor=:violet, linewidth=2)
+plot(ttt,  qq1, label="costate p1", linecolor=:purple, linewidth=2)
+plot!(ttt, qq2, label="costate p2", linecolor=:violet, linewidth=2)
 ``` 
 
 ```@example main
 # create an animation
 animy = @animate for i = 1:length(ttt)
-    plot(yy1[1:i], yy2[1:i],  xlim=(0.,31.), ylim=(-0.,5.5),  label="optimal trajectory", linecolor=:blue,  linewidth=2)
+    plot(yy1[1:i], yy2[1:i],  xlim=(0.,31.), ylim=(-0.,5.5), label="optimal trajectory", 
+        linecolor=:blue,  linewidth=2, legend=:topleft)
     scatter!([yy1[i]], [yy2[i]], markersize=4, marker=:circle, color=:black, label=false)
     plot!([5,   5], [0, 6], color=:black, label = false, linewidth=2)
     plot!([10, 10], [0, 6], color=:black, label = false, linewidth=2)
@@ -390,25 +377,28 @@ animy = @animate for i = 1:length(ttt)
 end
 
 animv = @animate for i = 1:length(ttt)
-    plot(ttt[1:i], vvv[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="opitmal control", linecolor=:red,  linewidth=2)
+    plot(ttt[1:i], vvv[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="opitmal control", 
+        linecolor=:red, linewidth=2)
 end 
 
 animq1 = @animate for i = 1:length(ttt)
-    plot(ttt[1:i], qq1[1:i], xlim=(0.,8.), ylim=(0.,2.) , label="costate p1", linecolor=:purple,  linewidth=2)
-end ;
+    plot(ttt[1:i], qq1[1:i], xlim=(0.,8.), ylim=(0.,2.) , label="costate p1", 
+        linecolor=:purple, linewidth=2)
+end
 
 animq2 = @animate for i = 1:length(ttt)
-    plot(ttt[1:i], qq2[1:i], xlim=(0.,8.), ylim=(-2.2,6.), label="costate p2", linecolor=:violet,  linewidth=2)
+    plot(ttt[1:i], qq2[1:i], xlim=(0.,8.), ylim=(-2.2,6.), label="costate p2", 
+        linecolor=:violet, linewidth=2)
 end 
 nothing # hide
 ```
 
 ```@example main
-gif(animy, "zer2_y.gif",   fps = 10)
+gif(animy, "zer2_y.gif", fps = 10)
 ```
 
 ```@example main
-gif(animv, "zer2_v.gif",   fps = 10)
+gif(animv, "zer2_v.gif", fps = 10)
 ```
 
 ```@example main

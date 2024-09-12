@@ -13,12 +13,12 @@ function smooth_indicator_tanh(x, a, b, ε)
 end
 
 # For bounded intervals
-fNC_bounded = (x, I, ϵ) -> flexible_smooth_indicator(x, I, ϵ; mode="bounded_intervals")
+fNC_bounded = (x, I, ε) -> flexible_smooth_indicator(x, I, ε; mode="bounded_intervals")
 
 # For [a, +∞)
 fNC_unboundedplus =
-    (x, a, ϵ) -> flexible_smooth_indicator(x, [(a, 0)], ϵ; mode="unbounded_intervals")
+    (x, a, ε) -> flexible_smooth_indicator(x, [(a, 0)], ε; mode="unbounded_intervals")
 
 # For (-∞,a]
 fNC_unboundedminus =
-    (x, a, ϵ) -> 1 - flexible_smooth_indicator(x, [(a, 0)], ϵ; mode="unbounded_intervals")
+    (x, a, ε) -> 1 - flexible_smooth_indicator(x, [(a, 0)], ε; mode="unbounded_intervals")
