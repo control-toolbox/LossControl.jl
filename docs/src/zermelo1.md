@@ -58,15 +58,13 @@ plot(fNC1,0., 5, label="fNC")
 
     t ∈ [ 0., tf ],                  time
 
-    q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
+    q = [ x1, x2, λ ] ∈ R^3, state
 
     ω = [u, v] ∈ R^2,                control
 
     #initial conditions
     x1(0) == 0
     x2(0) == 0
-    xu(0) == 0
-    xv(0) == 0
 
     #final condition
     x2(tf) == 4
@@ -77,15 +75,13 @@ plot(fNC1,0., 5, label="fNC")
     #state constraints
     -π/2  ≤  λ(t)  ≤ π/2
 
-    #hybrid control system
+    #control system
      q̇(t) == [fNC1(x2(t))*(x2(t) + cos(λ(t))) + (1-fNC1(x2(t)))*(x2(t) + cos(u(t))),
              fNC1(x2(t))*sin(λ(t)) +(1-fNC1(x2(t)))*sin(u(t)),
-             (1-fNC1(x2(t)))*v(t),
-             (v(t))^2,
-             fNC1(x2(t))*(u(t))^2]
+             (1-fNC1(x2(t)))*v(t)]
 
     #cost function        
-    -x1(tf) + ε*xv(tf) + xu(tf) → min    
+    -x1(tf) + ∫(ε*(v(t))^2+fNC1(x2(t))*(u(t))^2)  → min      
 end
 nothing # hide
 ```
