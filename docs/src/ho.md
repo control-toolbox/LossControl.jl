@@ -43,7 +43,7 @@ nothing # hide
 
 ```@example main
 a0  = 0.0 
-ε1 = 0.018
+ε1  = 0.018
 fNC(x) = fNC_unboundedminus(x,a0,ε1)
 plot(fNC,-1., 1, label="fNC")
 ```
@@ -57,7 +57,7 @@ plot(fNC,-1., 1, label="fNC")
 
     t ∈ [ 0., tf ],                  time
 
-    q = [ x1, x2, λ, xu, xv ] ∈ R^5, state
+    q = [ x1, x2, λ ] ∈ R^3,         state
 
     ω = [u, v] ∈ R^2,                control
 
@@ -66,8 +66,6 @@ plot(fNC,-1., 1, label="fNC")
     #initial conditions
     x1(0) == 2.5
     x2(0) == 4
-    xu(0) == 0
-    xv(0) == 0
 
     #final condition
     x1(tf) == 0
@@ -81,11 +79,13 @@ plot(fNC,-1., 1, label="fNC")
     -5 ≤ x1(t) ≤ 5,             (2)
     -5 ≤ x2(t) ≤ 5,             (3)
 
-    #hybrid control system
-    q̇(t) == [x2(t), (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t), (1-fNC(x2(t)))*v(t), (v(t))^2, fNC(x2(t))*(u(t))^2]
+    #control system
+    q̇(t) == [x2(t), 
+        (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t),
+        (1-fNC(x2(t)))*v(t)]
 
     #cost function        
-    tf + ε*xv(tf) + xu(tf) → min    
+    tf + ∫(ε*(v(t))^2 +fNC(x2(t))*(u(t))^2) → min  
 end
 nothing # hide
 ```
@@ -160,7 +160,7 @@ println("Fourth crossing/final time: ", t4)
 
 ```@example main
 d = diff(u.(tt))
-tstar = tt[findall(abs.(d) .> 0.9)[]]
+tstar = tt[findfirst(abs.(d) .> 0.9)[]]
 println("the switching time: ", tstar)
 ```
 
