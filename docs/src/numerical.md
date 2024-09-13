@@ -9,6 +9,7 @@ It is important to note that neither of these methods is fundamentally better th
 Often in the literature, one proceeds in two steps. The first step is to implement a direct method to determine the optimal solution's structure and extract the associated adjoint vector. The second step involves constructing an indirect shooting method, where the initial condition is based on the numerical results obtained from the direct method.
 
 
+
 ## Description of the direct method
 
 For some $\omega_0 \in \mathrm{U}$, some $\varepsilon_0>0$ and $\varepsilon>0$ small enough, we introduce the *regularized problem* given by
