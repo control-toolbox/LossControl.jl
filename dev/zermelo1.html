@@ -24,7 +24,7 @@ using Plots.PlotMeasures
 using OptimalControl
 using NLPModelsIpopt
 include(&quot;smooth.jl&quot;)</code></pre><pre><code class="language-julia hljs">fNC(x) = fNC_bounded(x, [(0.5, 3.5)], 0.01)
-plot(fNC, 0, 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo1-f712e908.svg" alt="Example block output"/><pre><code class="language-julia hljs">ε   = 1e-3
+plot(fNC, 0, 5, label=&quot;fNC&quot;)</code></pre><img src="zermelo1-31d53ae1.svg" alt="Example block output"/><pre><code class="language-julia hljs">ε   = 1e-3
 tf  = 8
 
 ocp = @def begin
@@ -58,27 +58,27 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 
-Number of Iterations....: 71
+Number of Iterations....: 73
 
                                    (scaled)                 (unscaled)
-Objective...............:  -3.0400890380010839e+01   -3.0400890380010839e+01
-Dual infeasibility......:   4.0492207364906108e-09    4.0492207364906108e-09
-Constraint violation....:   9.7932995046789983e-11    9.7932995046789983e-11
+Objective...............:  -3.0400890376150340e+01   -3.0400890376150340e+01
+Dual infeasibility......:   2.8853299471887084e-09    2.8853299471887084e-09
+Constraint violation....:   7.0104144711535810e-11    7.0104144711535810e-11
 Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
-Complementarity.........:   1.7173157853164832e-10    1.7173157853164832e-10
-Overall NLP error.......:   4.0492207364906108e-09    4.0492207364906108e-09
+Complementarity.........:   1.1828380049321849e-10    1.1828380049321849e-10
+Overall NLP error.......:   2.8853299471887084e-09    2.8853299471887084e-09
 
 
-Number of objective function evaluations             = 85
-Number of objective gradient evaluations             = 72
-Number of equality constraint evaluations            = 85
+Number of objective function evaluations             = 86
+Number of objective gradient evaluations             = 74
+Number of equality constraint evaluations            = 86
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 72
+Number of equality constraint Jacobian evaluations   = 74
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 71
-Total seconds in IPOPT                               = 3.493
+Number of Lagrangian Hessian evaluations             = 73
+Total seconds in IPOPT                               = 3.444
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo1-0c00af98.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt1 = (0:N+1) * (tf/(N+1))
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="zermelo1-c8434cde.svg" alt="Example block output"/><pre><code class="language-julia hljs">tt1 = (0:N+1) * (tf/(N+1))
 
 x1(t) = sol.state(t)[1]
 x2(t) = sol.state(t)[2]
@@ -88,9 +88,9 @@ p1(t) = sol.costate(t)[1]
 p2(t) = sol.costate(t)[2]
 a     = λ(tf)</code></pre><pre><code class="language-julia hljs">plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
 plot!([0, 31], [0.5, 0.5], color=:black, label = false, linewidth=2)
-plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo1-aa77ab2f.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( u, 0, tf, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(λ, 0, tf, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo1-cff3d09a.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( p1, 0, tf, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
-plot!(p2, 0, tf, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo1-ef956a03.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
+plot!([0, 31], [3.5, 3.5], color=:black, label = false, linewidth=2)</code></pre><img src="zermelo1-89a8ae91.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( u, 0, tf, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(λ, 0, tf, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="zermelo1-009100bb.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot( p1, 0, tf, label=&quot;costate p1&quot;, color=&quot;purple&quot;, linewidth=2)
+plot!(p2, 0, tf, label=&quot;costate p2&quot;, color=&quot;violet&quot;, linewidth=2)</code></pre><img src="zermelo1-9bf65001.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the first crossing time
 t1_index = findfirst(t -&gt; x2(t) ≥ 0.5, tt1)
 
 # If t1 is found, find the next crossing time
@@ -108,8 +108,8 @@ println(&quot;second crossing time: &quot;, t2)</code></pre><pre class="document
 second crossing time: 3.6087824351297404</code></pre><pre><code class="language-julia hljs">jmp1 = p2(t1+0.1)  - p2(t1-0.1)
 jmp2 = p2(t2+0.1)  - p2(t2-0.1)
 println(&quot;p2(t1+) - p2(t1-) = &quot;, jmp1)
-println(&quot;p2(t2+) - p2(t2-) = &quot;, jmp2)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">p2(t1+) - p2(t1-) = -0.26433548330303225
-p2(t2+) - p2(t2-) = -0.1274728094408637</code></pre><h2 id="Indirect-Method"><a class="docs-heading-anchor" href="#Indirect-Method">Indirect Method</a><a id="Indirect-Method-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-Method" title="Permalink"></a></h2><pre><code class="language-julia hljs">using NonlinearSolve
+println(&quot;p2(t2+) - p2(t2-) = &quot;, jmp2)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">p2(t1+) - p2(t1-) = -0.2643354816281649
+p2(t2+) - p2(t2-) = -0.1274727963834943</code></pre><h2 id="Indirect-Method"><a class="docs-heading-anchor" href="#Indirect-Method">Indirect Method</a><a id="Indirect-Method-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-Method" title="Permalink"></a></h2><pre><code class="language-julia hljs">using NonlinearSolve
 using OrdinaryDiffEq
 using Animations</code></pre><pre><code class="language-julia hljs"># Dynamics
 function F(x, u)
@@ -173,11 +173,11 @@ Algorithm: NewtonRaphson(
 ----     -------------        -----------
 Iter     f(u) inf-norm        Step 2-norm
 ----     -------------        -----------
-0        6.78465557e-01       5.08558705e+00
-1        7.29933888e-03       2.95908749e-01
-2        1.41339018e-05       6.13351960e-03
-3        1.09442518e-11       2.79632181e-06
-Final    1.09442518e-11
+0        6.78502106e-01       7.77906678e+00
+1        7.29809585e-03       2.95909237e-01
+2        1.40799868e-05       6.12838688e-03
+3        1.08502595e-11       2.78067578e-06
+Final    1.08502595e-11
 ----------------------</code></pre><pre><code class="language-julia hljs"># retrieves solution
 pp0   = indirect_sol[1:2]
 tt1   = indirect_sol[3]
@@ -188,8 +188,8 @@ jmp22 = indirect_sol[7]</code></pre><pre><code class="language-julia hljs"># jum
 println(&quot;jumps from indirect solution&quot;)
 println(&quot;p2(t1+) - p2(t1-) = &quot;, jmp11)
 println(&quot;p2(t2+) - p2(t2-) = &quot;, jmp22)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">jumps from indirect solution
-p2(t1+) - p2(t1-) = -0.012281989936461884
-p2(t2+) - p2(t2-) = 0.027541288721797248</code></pre><pre><code class="language-julia hljs">ode_sol = fc((t0, tt1), x0, pp0, saveat=0.1)
+p2(t1+) - p2(t1-) = -0.012281989936483688
+p2(t2+) - p2(t2-) = 0.027541288721808617</code></pre><pre><code class="language-julia hljs">ode_sol = fc((t0, tt1), x0, pp0, saveat=0.1)
 ttt1 = ode_sol.t
 xx1 = [ ode_sol[1:2, j] for j in 1:size(ttt1, 1) ]
 pp1 = [ ode_sol[3:4, j] for j in 1:size(ttt1, 1) ]
@@ -222,8 +222,8 @@ x22 = [ xsol[i][2] for i=1:m ]
 p11 = [ psol[i][1] for i=1:m ]
 p22 = [ psol[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs">plot(x11, x22, label=&quot;optimal trajectory&quot;, legend=false, linecolor=:blue, linewidth=2)
 hline!([(0., 0.5), (31., 0.5)], linecolor=:black, linewidth=2, label=false)
-hline!([(0., 3.5), (31., 3.5)], linecolor=:black, linewidth=2, label=false)</code></pre><img src="zermelo1-2722cbc2.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol, usol, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo1-43771e25.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol,  p11, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
-plot!(tsol, p22, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo1-dc3b1b80.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+hline!([(0., 3.5), (31., 3.5)], linecolor=:black, linewidth=2, label=false)</code></pre><img src="zermelo1-58265fd0.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol, usol, label=&quot;optimal control&quot; ,linecolor=:red ,linewidth=2)</code></pre><img src="zermelo1-6defcb5a.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tsol,  p11, label=&quot;costate p1&quot;, linecolor=:purple, linewidth=2)
+plot!(tsol, p22, label=&quot;costate p2&quot;, linecolor=:violet, linewidth=2)</code></pre><img src="zermelo1-1096a111.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animx = @animate for i = 1:length(tsol)
     plot(x11[1:i], x22[1:i],  xlim=(0.,31.), ylim=(-0.,5.5), label=&quot;optimal trajectory&quot;,
         linecolor=:blue, linewidth=2, legend=:topleft)
@@ -246,4 +246,4 @@ animp2 = @animate for i = 1:length(tsol)
     plot(tsol[1:i], p22[1:i], xlim=(0.,8.), ylim=(-2.2,6.), label=&quot;costate p2&quot;,
         linecolor=:violet, linewidth=2)
 end</code></pre><pre><code class="language-julia hljs"># display the animation
-gif(animx, &quot;zer1_x.gif&quot;, fps = 10)</code></pre><img src="zermelo1-bc1b74cf.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animu, &quot;zer1_u.gif&quot;, fps = 10)</code></pre><img src="zermelo1-525839ab.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animp2, &quot;zer1_p2.gif&quot;, fps = 10)</code></pre><img src="zermelo1-49cae6af.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="numerical.html">« Numerical approach</a><a class="docs-footer-nextpage" href="zermelo2.html">Zermelo navigation: Example 2 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Thursday 12 September 2024 20:27">Thursday 12 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+gif(animx, &quot;zer1_x.gif&quot;, fps = 10)</code></pre><img src="zermelo1-bc1b74cf.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animu, &quot;zer1_u.gif&quot;, fps = 10)</code></pre><img src="zermelo1-aafbad2e.gif" alt="Example block output"/><pre><code class="language-julia hljs">gif(animp2, &quot;zer1_p2.gif&quot;, fps = 10)</code></pre><img src="zermelo1-49cae6af.gif" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="numerical.html">« Numerical approach</a><a class="docs-footer-nextpage" href="zermelo2.html">Zermelo navigation: Example 2 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Wednesday 11 December 2024 14:15">Wednesday 11 December 2024</span>. Using Julia version 1.11.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
