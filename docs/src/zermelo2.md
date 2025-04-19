@@ -19,7 +19,7 @@
 
     \left\{
     \begin{array}{l}
-        \displaystyle \min - x_1(8) + \varepsilon \int_0^8 v^2(t)dt + \int_0^8 f_{NC}(x(t))u^2(t)dt, \\[0.5em]
+        \displaystyle \min - x_1(8) + \varepsilon \int_0^8 v^2(t)\, \mathrm{d}t + \int_0^8 f_{NC}(x(t))u^2(t)\, \mathrm{d}t, \\[0.5em]
         \dot{x}_1(t) = f_{C}(x(t)) (x_2(t) + \cos(u(t)))+f_{NC}(x(t)) (x_2(t) + \cos(\lambda(t))), \; \text{for a.e. } t\in [0,8],\\[0.5em]
         \dot{x}_2(t) =  f_{C}(x(t)) \sin(u(t))+f_{NC}(x(t)) \sin(\lambda(t)),  \; \text{for a.e. } t\in [0,8], \\[0.5em]
         \dot{\lambda}(t) = f_{C}(x(t))v(t),  \; \text{for a.e. } t\in [0,8], \\[0.5em]
@@ -83,12 +83,12 @@ plot(sol; layout=:group, size=(800, 300))
 
 ```@example main
 tt2 = (0:N+1) * (tf/(N+1))
-y1(t) = sol.state(t)[1]
-y2(t) = sol.state(t)[2]
-μ(t)  = sol.state(t)[3]
-v(t)  = sol.control(t)[1]
-q1(t) = sol.costate(t)[1]
-q2(t) = sol.costate(t)[2]
+y1(t) = state(sol)(t)[1]
+y2(t) = state(sol)(t)[2]
+μ(t)  = state(sol)(t)[3]
+v(t)  = control(sol)(t)[1]
+q1(t) = costate(sol)(t)[1]
+q2(t) = costate(sol)(t)[2]
 nothing # hide
 ```
 
@@ -268,7 +268,7 @@ nothing # hide
 ```
 
 ```@example main
-indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+indirect_sol = solve(prob, SimpleNewtonRaphson(); abstol=1e-8, reltol=1e-8, show_trace=Val(true))
 nothing # hide
 ```
 
