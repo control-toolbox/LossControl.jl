@@ -18,7 +18,7 @@
 ```math
     \left\{
     \begin{array}{l}
-        \displaystyle \min\,  T + \varepsilon \int_0^T v^2(t)dt + \int_0^T f_{NC}(x_2(t))u^2(t)dt, \\[0.5em]
+        \displaystyle \min\,  T + \varepsilon \int_0^T v^2(t)\, \mathrm{d}t + \int_0^T f_{NC}(x_2(t))u^2(t)\, \mathrm{d}t, \\[0.5em]
         \dot{x}_1(t) = x_2(t), \; t\in [0,T]\\[0.5em]
         \dot{x}_2(t) =f_{C}(x_2(t))(u(t) - x_1(t)) + f_{NC}(x_2(t))(\lambda(t) - x_1(t))
         , t\in [0,T]  \\[0.5em]
@@ -34,7 +34,7 @@ using Plots
 using Plots.PlotMeasures
 using OptimalControl
 using NLPModelsIpopt
-include("smooth.jl");
+include("smooth.jl")
 nothing # hide
 ```
 
@@ -44,7 +44,7 @@ plot(fNC, -1, 1, label="fNC")
 ```
 
 ```@example main
-ε = 1e-3
+const ε = 1e-3
 
 @def ocp begin
         
@@ -90,15 +90,15 @@ plot(sol; layout=:group, size=(800, 300))
 ```
 
 ```@example main
-tf = sol.variable
+tf = variable(sol)
 tt = (0:N+1) * (tf/(N+1))
 
-x1(t)  = sol.state(t)[1]
-x2(t)  = sol.state(t)[2]
-λ(t)   = sol.state(t)[3]
-u(t)   = sol.control(t)[1]
-p1(t)  = sol.costate(t)[1]
-p2(t)  = sol.costate(t)[2]
+x1(t)  = state(sol)(t)[1]
+x2(t)  = state(sol)(t)[2]
+λ(t)   = state(sol)(t)[3]
+u(t)   = control(sol)(t)[1]
+p1(t)  = costate(sol)(t)[1]
+p2(t)  = costate(sol)(t)[2]
 a      = λ(tf)
 nothing # hide
 ```
@@ -205,8 +205,8 @@ nothing # hide
 
 ```@example main
 # parameters
-t0 = 0
-x0 = [2.5; 4.0]
+const t0 = 0
+const x0 = [2.5; 4.0]
 nothing # hide
 ```
 
@@ -243,17 +243,17 @@ nothing # hide
 
 ```@example main
 # auxiliary function with aggregated inputs
-nle! =  (ξ, λ) -> shoot(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10])
+nle =  (ξ, λ) -> shoot(ξ[1:2], ξ[3], ξ[4], ξ[5],ξ[6],ξ[7],ξ[8], ξ[9], ξ[10])
 
 # initial guess
 ξ_guess = [p1(0) , p2(0), t1, t2, tstar , t3, a, jmp1, jmp2, t4]
 
-prob = NonlinearProblem(nle!, ξ_guess)
+prob = NonlinearProblem(nle, ξ_guess)
 nothing # hide
 ```
 
 ```@example main
-indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+indirect_sol = solve(prob, SimpleNewtonRaphson(); abstol=1e-8, reltol=1e-8, show_trace=Val(true))
 nothing # hide
 ```
 
@@ -273,34 +273,34 @@ nothing # hide
 
 ```@example main
 ode_sol = fm((t0, tt1), x0, pp0, saveat=0.1) 
-ttt1    = ode_sol.t 
+ttt1    = ode_sol.t
 xx1     = [ ode_sol[1:2, j] for j in 1:size(ttt1, 1) ] 
 pp1     = [ ode_sol[3:4, j] for j in 1:size(ttt1, 1) ] 
 uu1     = um.(xx1, pp1)
 
-ode_sol = fp((tt1, tt2), xx1[end], pp1[end] - [0., jmp1], saveat=0.1) 
-ttt2    = ode_sol.t ;
+ode_sol = fp((tt1, tt2), xx1[end], pp1[end] - [0, jmp1], saveat=0.1) 
+ttt2    = ode_sol.t
 xx2     = [ ode_sol[1:2, j] for j in 1:size(ttt2, 1) ] 
 pp2     = [ ode_sol[3:4, j] for j in 1:size(ttt2, 1) ] 
 uu2     = up.(xx2, pp2)  
 
 ode_sol = fp((tt2, ttstar), xx2[end], pp2[end] , saveat=0.1) 
-ttt3    = ode_sol.t ;
+ttt3    = ode_sol.t
 xx3     = [ ode_sol[1:2, j] for j in 1:size(ttt3, 1) ] 
 pp3     = [ ode_sol[3:4, j] for j in 1:size(ttt3, 1) ] 
 uu3     = up.(xx3, pp3)  
 
 ode_sol = fm((ttstar, tt3), xx3[end], pp3[end], saveat=0.1) 
-ttt4    = ode_sol.t ;
+ttt4    = ode_sol.t
 xx4     = [ ode_sol[1:2, j] for j in 1:size(ttt4, 1) ] 
 pp4     = [ ode_sol[3:4, j] for j in 1:size(ttt4, 1) ] 
 uu4     = um.(xx4, pp4)  
 
-ode_sol = fcl((tt3, T1), [xx4[end] ; b11 ; 0.0], [pp4[end] - [0., jmp2]; 0. ; 0.], saveat=0.1)
+ode_sol = fcl((tt3, T1), [xx4[end] ; b11 ; 0], [pp4[end] - [0, jmp2]; 0 ; 0], saveat=0.1)
 ttt5    = ode_sol.t
 xx5     = [ ode_sol[1:2, j] for j in 1:size(ttt5, 1) ]
 pp5     = [ ode_sol[5:6, j] for j in 1:size(ttt5, 1) ] 
-uu5     = b11.*ones(length(ttt5)) 
+uu5     = b11.*ones(length(ttt5))
 nothing # hide
 ```
 

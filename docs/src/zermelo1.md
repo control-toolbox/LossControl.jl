@@ -18,7 +18,7 @@
 ```math
     \left\{
     \begin{array}{l}
-        \displaystyle \min - x_1(8) + \epsilon\int_0^8 v^2(t)dt + \int_0^8 f_{NC}(x(t))u^2(t)dt, \\[0.5em]
+        \displaystyle \min - x_1(8) + \varepsilon\int_0^8 v^2(t)\, \mathrm{d}t + \int_0^8 f_{NC}(x(t))u^2(t)\, \mathrm{d}t, \\[0.5em]
         \dot{x}_1(t) = f_{C}(x(t))(x_2(t) + \cos(u(t))) + f_{NC}(x_2(t) + \cos(\lambda(t))), \; \text{for a.e. } t\in [0,8],\\[0.5em]
         \dot{x}_2(t) = f_{C}(x(t))\sin(u(t)) + f_{NC}(x(t))\sin(\lambda(t)),  \; \text{for a.e. } t\in [0,8], \\[0.5em]
         \dot{\lambda}(t) = f_{C}(x(t))v^2(t),  \; \text{for a.e. } t\in [0,8], \\[0.5em]
@@ -51,8 +51,8 @@ tf  = 8
 ocp = @def begin
 
     t ∈ [ 0, tf ],           time
-    q = [ x1, x2, λ ] ∈ R^3, state
-    ω = [u, v] ∈ R^2,        control
+    q = ( x1, x2, λ ) ∈ R^3, state
+    ω = (u, v) ∈ R^2,        control
 
     x1(0) == 0
     x2(0) == 0
@@ -84,12 +84,12 @@ plot(sol; layout=:group, size=(800, 300))
 ```@example main
 tt1 = (0:N+1) * (tf/(N+1))
 
-x1(t) = sol.state(t)[1]
-x2(t) = sol.state(t)[2]
-λ(t)  = sol.state(t)[3]
-u(t)  = sol.control(t)[1]
-p1(t) = sol.costate(t)[1]
-p2(t) = sol.costate(t)[2]
+x1(t) = state(sol)(t)[1]
+x2(t) = state(sol)(t)[2]
+λ(t)  = state(sol)(t)[3]
+u(t)  = control(sol)(t)[1]
+p1(t) = costate(sol)(t)[1]
+p2(t) = costate(sol)(t)[2]
 a     = λ(tf) 
 nothing # hide
 ```
@@ -218,7 +218,7 @@ nothing # hide
 ```
 
 ```@example main
-indirect_sol = solve(prob; abstol=1e-8, reltol=1e-8, show_trace=Val(true))
+indirect_sol = solve(prob, SimpleNewtonRaphson(); abstol=1e-8, reltol=1e-8, show_trace=Val(true))
 nothing # hide
 
 ```

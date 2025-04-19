@@ -134,7 +134,7 @@ for all $(x,u,p) \in \R^n \times \R^m \times \R^n$. We are now in a position to 
     - the *averaged Hamiltonian gradient condition*
     ```math
     \begin{equation*}
-       \int_{\tau^*_{k-1}}^{\tau^*_k} \nabla_{u} H(x^*(t),u^*_k,p(t))\, dt \in \mathrm{N}_{\mathrm{U}}[u^*_k],
+       \int_{\tau^*_{k-1}}^{\tau^*_k} \nabla_{u} H(x^*(t),u^*_k,p(t))\, \mathrm{d}t \in \mathrm{N}_{\mathrm{U}}[u^*_k],
     \end{equation*}
     ```
     for all $k \in \{1,\ldots,N\}$ such that $q_{j(k)}=0$;

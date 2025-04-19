@@ -6,8 +6,10 @@
 
 Typically, optimal control involves *permanent control*, allowing modification of the control function at each time instant. However, practical constraints can lead to *nonpermanent control*. For instance, digital controls result in *sampled-data control* with discrete changes[^3],[^4]. In aerospace, *eclipse constraints* limit control for solar-powered satellites in a shadow region where the control is reduced to zero[^5]. Hence, it is desirable to keep the system outside these regions.
 
-![aerospace](resources/aerospace.jpg) 
-
+```@raw html
+<img src="resources/aerospace.jpg" style="display: block; margin-left: auto; margin-right: auto;" width="500px">
+<br>
+```
 
 **Objective and approach.** Here, we address optimal control problems with *loss control regions* (we refer to [^2] for further details), where the state space is divided into *control regions* and *loss control regions*. In control regions, control can change at any time, while in loss control regions, control must remain constant, though its value is to be optimized and can vary with each visit.
 
@@ -31,11 +33,66 @@ We extend our previous work by using a permanent control for control regions and
 
 [^5]: T. Haberkorn, E. Trélat, *Convergence Results for Smooth Regularizations of Hybrid Nonlinear Optimal Control Problems*, SIAM Journal on Control and Optimization, **49** (2011) 1498–1522.
 
-## Dependencies
+## Reproducibility
 
-All the numerical simulations to generate this documentation are performed with the following packages.
+```@raw html
+<details><summary>The documentation of this package was built using these direct dependencies,</summary>
+```
 
 ```@example
-using Pkg
-Pkg.status()
+using Pkg # hide
+Pkg.status() # hide
+```
+
+```@raw html
+</details>
+```
+
+```@raw html
+<details><summary>and using this machine and Julia version.</summary>
+```
+
+```@example
+using InteractiveUtils # hide
+versioninfo() # hide
+```
+
+```@raw html
+</details>
+```
+
+```@raw html
+<details><summary>A more complete overview of all dependencies and their versions is also provided.</summary>
+```
+
+```@example
+using Pkg # hide
+Pkg.status(; mode = PKGMODE_MANIFEST) # hide
+```
+
+```@raw html
+</details>
+```
+
+```@eval
+using TOML
+using Markdown
+version = TOML.parse(read("../../Project.toml", String))["version"]
+name = TOML.parse(read("../../Project.toml", String))["name"]
+link_manifest = "https://github.com/SciML/" *
+                name *
+                ".jl/tree/gh-pages/v" *
+                version *
+                "/assets/Manifest.toml"
+link_project = "https://github.com/SciML/" *
+               name *
+               ".jl/tree/gh-pages/v" *
+               version *
+               "/assets/Project.toml"
+Markdown.parse("""You can also download the
+[manifest]($link_manifest)
+file and the
+[project]($link_project)
+file.
+""")
 ```

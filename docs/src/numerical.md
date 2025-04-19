@@ -14,7 +14,7 @@ For some $\omega_0 \in \mathrm{U}$, some $\varepsilon_0>0$ and $\varepsilon>0$ s
 ```math
 \begin{equation*}
 \begin{array}{lcl}
-     \text{minimize}&  & \phi(x(0),x(T)) + \varepsilon_0 \displaystyle\int_0^T v^2(t) \, dt + \displaystyle\int_0^T (1- \Psi_{\varepsilon}(x(t)))\|u(t)-\omega_0\|_{\R^m}^2 \, dt,\\[10pt]
+     \text{minimize}&  & \phi(x(0),x(T)) + \varepsilon_0 \displaystyle\int_0^T v^2(t) \, \mathrm{d}t + \displaystyle\int_0^T (1- \Psi_{\varepsilon}(x(t)))\|u(t)-\omega_0\|_{\R^m}^2 \, \mathrm{d}t,\\[10pt]
      \text{subject to}& &  (x,\lambda,u,v) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{AC}([0,T],\R^m) \times \mathrm{L}^\infty([0,T],\R^m)\times \mathrm{L}^\infty([0,T],\R), \\[2pt]
      & & \dot{x}(t) = \Psi_{\varepsilon}(x(t)) f(x(t),u(t)) + (1-\Psi_{\varepsilon}(x(t))) f(x(t),\lambda(t)), \quad \text{a.e.\ } t\in [0,T], \\[2pt]
      & & \dot{\lambda}(t) =\Psi_{\varepsilon}(x(t))v(t), \quad \text{a.e.\ } t\in [0,T], \\[2pt]
@@ -61,7 +61,7 @@ It is important to note that, since $y=0$, we recover the same Hamiltonian  $H$.
 Second, since  $u_k^*$ is assumed to be an interior value to  $\mathrm{U}$, we get that
 ```math
 \begin{equation*}
-    \int_{\tau^*_{k-1}}^{\tau^*_k} \nabla_{u} H(x^*(t),u^*_k,p(t)) \, dt = {p}_{y}(\tau^*_k)=0.
+    \int_{\tau^*_{k-1}}^{\tau^*_k} \nabla_{u} H(x^*(t),u^*_k,p(t)) \, \mathrm{d}t = {p}_{y}(\tau^*_k)=0.
 \end{equation*}
 ```    
 Hence there is no need to compute an integral in order to take into account the averaged Hamiltonian gradient condition. 
