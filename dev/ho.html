@@ -23,7 +23,7 @@ using Plots.PlotMeasures
 using OptimalControl
 using NLPModelsIpopt
 include(&quot;smooth.jl&quot;)</code></pre><pre><code class="language-julia hljs">fNC(x) = fNC_unboundedminus(x, 0, 0.018)
-plot(fNC, -1, 1, label=&quot;fNC&quot;)</code></pre><img src="ho-d115d752.svg" alt="Example block output"/><pre><code class="language-julia hljs">const ε = 1e-3
+plot(fNC, -1, 1, label=&quot;fNC&quot;)</code></pre><img src="ho-5c51872b.svg" alt="Example block output"/><pre><code class="language-julia hljs">const ε = 1e-3
 
 @def ocp begin
 
@@ -93,9 +93,9 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 378
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 377
-Total seconds in IPOPT                               = 13.100
+Total seconds in IPOPT                               = 13.303
 
-EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-cd5abad0.svg" alt="Example block output"/><pre><code class="language-julia hljs">tf = variable(sol)
+EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plot(sol; layout=:group, size=(800, 300))</code></pre><img src="ho-10352457.svg" alt="Example block output"/><pre><code class="language-julia hljs">tf = variable(sol)
 tt = (0:N+1) * (tf/(N+1))
 
 x1(t)  = state(sol)(t)[1]
@@ -105,8 +105,8 @@ u(t)   = control(sol)(t)[1]
 p1(t)  = costate(sol)(t)[1]
 p2(t)  = costate(sol)(t)[2]
 a      = λ(tf)</code></pre><pre><code class="language-julia hljs">plot(x1, x2, 0, tf, label=&quot;optimal trajectory&quot;, color=&quot;blue&quot;, linewidth=2)
-plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-02ac75d9.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
-plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="ho-9607334b.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
+plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-f5f301b5.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt, u, label=&quot;optimal control&quot;, color=&quot;red&quot;, linewidth=2)
+plot!(tt, λ, label=&quot;state λ&quot;, color=&quot;green&quot;, linewidth=2)</code></pre><img src="ho-e6a86dac.svg" alt="Example block output"/><pre><code class="language-julia hljs"># Find the crossing times based on conditions for x1
 t1_index = findfirst(t -&gt; x2(t) ≤ 0, tt)
 t2_index = nothing
 t3_index = nothing
@@ -258,8 +258,8 @@ x11 = [ xx[i][1] for i=1:m ]
 x22 = [ xx[i][2] for i=1:m ]
 p11 = [ pp[i][1] for i=1:m ]
 p22 = [ pp[i][2] for i=1:m ]</code></pre><pre><code class="language-julia hljs">plot(x11, x22, label=&quot;optimal trajectory&quot;,  linecolor=:blue , linewidth=2)
-plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-a782fd64.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,   uu, label=&quot;optimal control&quot;,  linecolor=:red , linewidth=2)</code></pre><img src="ho-20a3650f.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,  p11, label=&quot;costate p1&quot;, linecolor=:purple , linewidth=2)
-plot!(tt0,  p22, label=&quot;costate p2&quot;,  linecolor=:violet , linewidth=2)</code></pre><img src="ho-ac5e4b17.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
+plot!([-4, 5], [0, 0], color=:black, label=false, linewidth=2)</code></pre><img src="ho-0fa3be98.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,   uu, label=&quot;optimal control&quot;,  linecolor=:red , linewidth=2)</code></pre><img src="ho-611d8ab5.svg" alt="Example block output"/><pre><code class="language-julia hljs">plot(tt0,  p11, label=&quot;costate p1&quot;, linecolor=:purple , linewidth=2)
+plot!(tt0,  p22, label=&quot;costate p2&quot;,  linecolor=:violet , linewidth=2)</code></pre><img src="ho-01af6cb1.svg" alt="Example block output"/><pre><code class="language-julia hljs"># create an animation
 animx = @animate for i = 1:length(tt0)
     plot(x11[1:i], x22[1:i], xlim=(-3.,5.), ylim=(-4.,4.3), label=&quot;optimal trajectory&quot;,
         linecolor=:blue, linewidth=2, legend=:topleft)
