@@ -377,7 +377,7 @@ animy = @animate for i = 1:length(ttt)
 end
 
 animv = @animate for i = 1:length(ttt)
-    plot(ttt[1:i], vvv[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="opitmal control", 
+    plot(ttt[1:i], vvv[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="optimal control", 
         linecolor=:red, linewidth=2)
 end 
 
