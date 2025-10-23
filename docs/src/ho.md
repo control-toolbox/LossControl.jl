@@ -8,7 +8,7 @@
         \dot{x}_2(t) = u(t)-x_1(t), t\in [0,T]  \\[0.5em]
         u(t) \in [-1, 1], \; t\in [0,T]\\[0.5em]
         x(0) = (4.2,0) , \quad x(T) = 0_{\mathrm{R}^2}, \\[0.5em]
-        \{x \mid x_2 < 0\} \text{ is a control loss reigon.}
+        \{x \mid x_2 < 0\} \text{ is a control loss region.}
     \end{array}
     \right.
 ```
@@ -343,7 +343,7 @@ animx = @animate for i = 1:length(tt0)
 end
 
 animu = @animate for i = 1:length(tt0)
-    plot(tt0[1:i], uu[1:i], xlim=(0.,tt0[end]), ylim=(-1.2,1.2), label="opitmal control",
+    plot(tt0[1:i], uu[1:i], xlim=(0.,tt0[end]), ylim=(-1.2,1.2), label="optimal control",
         linecolor=:red, linewidth=2)
 end 
 

@@ -302,7 +302,7 @@ animx = @animate for i = 1:length(tsol)
 end
 
 animu = @animate for i = 1:length(tsol)
-    plot(tsol[1:i], usol[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="opitmal control", 
+    plot(tsol[1:i], usol[1:i], xlim=(0.,8.), ylim=(-pi/2,pi/2), label="optimal control", 
         linecolor=:red, linewidth=2)
 end 
 
