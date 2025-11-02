@@ -1,4 +1,6 @@
-# Statement of the problem
+# Optimal control problem with loss control regions
+
+## Statement of the problem
 
 Let $n$, $m$, $\ell \in \mathbb{N}^*$ be three positive integers and $T > 0$ be a positive real number. In this section, we consider a partition of the state space given by
 
@@ -32,7 +34,7 @@ Our aim in this section is to derive first-order necessary optimality conditions
 
 where the Mayer cost function $\phi: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, the dynamics $f: \mathbb{R}^n \times \mathbb{R}^m \to \mathbb{R}^n$, and the constraint function $g: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^\ell$ are of class $\mathrm{C}^1$, and where both subsets $\mathrm{S} \subset \mathbb{R}^\ell$ and $\mathrm{U} \subset \mathbb{R}^m$ are nonempty closed convex subsets.
 
-## Regular solution to the control system with loss control regions
+## Regular solution to the control system
 
 First, let us provide the definition of a solution to the following control system
 
@@ -49,28 +51,28 @@ u \text{ is constant when } x \text{ is in a loss control region}.
 ```
 
 !!! note "Definition (Solution to (CS))"
-    A pair $(x,u) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{L}^\infty([0,T],\R^m)$ is said to be a solution to (CS) if there exist a finite number $\mathbb{N}^*$ and a partition $\mathbb{T} = \{\tau_k\}_{k=0,\ldots,N}$ of the interval $[0,T]$ such that:               
+    A pair $(x,u) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{L}^\infty([0,T],\R^m)$ is said to be a solution to (CS) if there exist a finite number $\mathbb{N}^*$ and a partition $\mathbb{T} = \{\tau_k\}_{k=0,\ldots,N}$ of the interval $[0,T]$ such that:
     - It holds that
     ```math
-        \forall k \in \{ 1,\ldots,N \}, \quad \exists j(k) \in \mathcal{J}, \quad \forall t \in (\tau_{k-1},\tau_k), \quad x(t) \in X_{j(k)}, 
+        \forall k \in \{ 1,\ldots,N \}, \quad \exists j(k) \in \mathcal{J}, \quad \forall t \in (\tau_{k-1},\tau_k), \quad x(t) \in X_{j(k)},
     ```
     where $j(k) \neq j(k-1)$ for all $k \in \{ 2,\ldots,N \}$. The sequence $\{j(1),\ldots, j(N)\}$ is called the *switching sequence*.
     - It holds that $x(0) \in X_{j(1)}$ and $x(T) \in X_{j(N)}$.
     - For all $k \in \{1, \ldots, N\}$ such that $q_{j(k)}=0$, the control $u$ is constant over $(\tau_{k-1}, \tau_k)$ (the constant value being denoted by $u_k$ in the sequel).
     - It holds that $\dot x(t)=f(x(t),u(t))$ for almost every $t \in [0,T]$.
-    The times $\tau_k$ for $k \in \{1,\ldots,N-1\}$, called  \textit{crossing times}, correspond to the instants at which the trajectory $x$ goes from the region $X_{j(k)}$ to the region $X_{j(k+1)}$, and thus $x(\tau_k) \in \partial X_{j(k)} \cap \partial X_{j(k+1)}$. 
+    The times $\tau_k$ for $k \in \{1,\ldots,N-1\}$, called  \textit{crossing times}, correspond to the instants at which the trajectory $x$ goes from the region $X_{j(k)}$ to the region $X_{j(k+1)}$, and thus $x(\tau_k) \in \partial X_{j(k)} \cap \partial X_{j(k+1)}$.
 
 The PMP with loss control regions is based on some regularity assumptions made on the optimal pair of the optimal control problem with loss control regions given above at each of its crossing times. These hypotheses are made more precise in the next definition.
 
 !!! note "Definition (Regular solution to (CS))"
     Following the notations introduced in Definition given above, a solution $(x,u) \in \mathrm{AC}([0,T],\R^n) \times \mathrm{L}^\infty([0,T],\R^m)$ to (CS), associated with a finite number $N \in \mathbb{N}^*$, a partition $\mathbb{T} = \{ \tau_k \}_{k=0,\ldots,N}$ and a switching sequence $\{j(1), \ldots, j(N)\}$, is said to be *regular* if the following conditions are both satisfied:
-    - At each crossing time $\tau_k$, there exists a $\mathrm{C}^1$ function $F_k : \R^n \to \R$ such that 
+    - At each crossing time $\tau_k$, there exists a $\mathrm{C}^1$ function $F_k : \R^n \to \R$ such that
     ```math
         \begin{equation}
             \exists \nu_k > 0, \quad
             \forall z \in  \overline{\mathrm{B}}_{\R^n}(x(\tau_k),\nu_k), \quad  
             \left\{
-            \begin{array}{rcl} 
+            \begin{array}{rcl}
                 z \in X_{j(k)} & \Leftrightarrow & F_k(z)<0, \\[2pt]
                 z \in \partial X_{j(k)}\cap \partial X_{j(k+1)} & \Leftrightarrow & F_k(z)=0, \\[2pt]
                 z \in X_{j(k+1)} & \Leftrightarrow & F_k(z)>0.
@@ -87,12 +89,14 @@ The PMP with loss control regions is based on some regularity assumptions made o
     ```
     is satisfied.
 
-## Pontryagin maximum principle with loss control regions
+## Pontryagin maximum principle
 
 The Hamiltonian $H : \R^n \times \R^m \times \R^n \to \R$ associated with Problem \eqref{P} is defined by
+
 ```math
  H(x,u,p) := \langle  p , f(x,u) \rangle_{\R^n}
-``` 
+```
+
 for all $(x,u,p) \in \R^n \times \R^m \times \R^n$. We are now in a position to state the main result of this section.
 
 !!! tip "Theorem"
@@ -110,7 +114,7 @@ for all $(x,u,p) \in \R^n \times \R^m \times \R^n$. We are now in a position to 
     \begin{equation*}
     \left( \begin{array}{c}
     p(0) \\[5pt]
-    -p(T) 
+    -p(T)
     \end{array} \right)
     = p^0 \nabla \phi (x^*(0),x^*(T)) + \nabla g (x^*(0),x^*(T)) \xi,
     \end{equation*}
@@ -123,7 +127,7 @@ for all $(x,u,p) \in \R^n \times \R^m \times \R^n$. We are now in a position to 
     \nabla F^*_k(x^*(\tau^*_k)),
     \end{equation*}
     ```
-    for some $\sigma_k \in \R$ and for all $k \in \{ 1,\ldots , N-1\}$; 
+    for some $\sigma_k \in \R$ and for all $k \in \{ 1,\ldots , N-1\}$;
     - the *Hamiltonian maximization condition*
     ```math
     \begin{equation*}
@@ -138,9 +142,8 @@ for all $(x,u,p) \in \R^n \times \R^m \times \R^n$. We are now in a position to 
     \end{equation*}
     ```
     for all $k \in \{1,\ldots,N\}$ such that $q_{j(k)}=0$;
-    - the *Hamiltonian constancy condition* 
+    - the *Hamiltonian constancy condition*
     ```math
     H(x^*(t),u^*(t),p(t)) = c,
     ```
     for almost every $t\in [0,T]$, for some $c \in \R$.
-

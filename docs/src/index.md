@@ -13,7 +13,7 @@ Typically, optimal control involves *permanent control*, allowing modification o
 
 **Objective and approach.** Here, we address optimal control problems with *loss control regions* (we refer to [^2] for further details), where the state space is divided into *control regions* and *loss control regions*. In control regions, control can change at any time, while in loss control regions, control must remain constant, though its value is to be optimized and can vary with each visit.
 
-We extend our previous work by using a permanent control for control regions and a *regionally switching parameter* for loss control regions. This leads to a discontinuous dynamics framework, fitting into *optimal control problems involving spatially heterogenous dynamics*[^2],[^5]. The *hybrid maximum principle* (HMP, in short) extends the PMP to hybrid settings[^2],[^5], with a piecewise absolutely continuous adjoint vector.
+We extend our previous work by using a permanent control for control regions and a *regionally switching parameter* for loss control regions. This leads to a discontinuous dynamics framework, fitting into *optimal control problems involving spatially heterogeneous dynamics*[^2],[^5]. The *hybrid maximum principle* (HMP, in short) extends the PMP to hybrid settings[^2],[^5], with a piecewise absolutely continuous adjoint vector.
 
 **Numerical contribution.** In this note we illustrate a two-step numerical method for optimal control problems with loss control regions. First, a direct numerical approach is applied to a *regularized* problem to manage discontinuities and outline the optimal trajectory's structure. Second, this helps initialize an indirect numerical method for the original problem, using the PMP with loss control regions. The method incorporates the *averaged Hamiltonian gradient condition*[^3],[^4] and adjoint vector discontinuities to define an appropriate shooting function, adding to classical terms for non-hybrid optimal control problems.
 
@@ -21,7 +21,6 @@ We extend our previous work by using a permanent control for control regions and
     - Provide a statement of the **PMP with loss control regions**.
     - Provide a **direct method** for solving optimal control problems with loss control regions (based on a **regularization** technique).
     - Provide an **indirect method** (shooting method) for solving optimal control problems with loss control regions using the PMP with loss control regions.
-
 
 [^1]: L. S. Pontryagin, V. G. Boltyanskii, R. V. Gamkrelidze, E. F. Mishchenko, *The Mathematical Theory of Optimal Processes*, A Pergamon Press Book. The Macmillan Co., New York, 1964.
 

@@ -1,4 +1,4 @@
-## Harmonic oscillator problem
+# Harmonic oscillator problem
 
 ```math
     \left\{

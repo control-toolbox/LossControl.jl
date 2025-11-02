@@ -8,7 +8,7 @@ It is important to note that neither of these methods is fundamentally better th
 
 Often in the literature, one proceeds in two steps. The first step is to implement a direct method to determine the optimal solution's structure and extract the associated adjoint vector. The second step involves constructing an indirect shooting method, where the initial condition is based on the numerical results obtained from the direct method.
 
-## Description of the direct method
+## Direct method
 
 For some $\omega_0 \in \mathrm{U}$, some $\varepsilon_0>0$ and $\varepsilon>0$ small enough, we introduce the *regularized problem* given by
 ```math
@@ -30,7 +30,7 @@ where $\Psi_{\epsilon} : \R^n \to \R$ is the regularization of the characteristi
 ```
 for all $x\in \R^n$, where $\mathrm{d}_{j}: \R^n \to \R$ stands for the distance function to the set $\overline{X_j}$ defined by $\mathrm{d}_{j}(x) := \inf_{y \in \overline{X_j}} \|x-y\|_{\R^n}$ for all $x\in \R^n$ and every $j \in \mathcal{J}$. 
 
-## Description of the indirect method
+## Indirect method
 
 Recall that the direct method has captured the structure of the optimal pair $(x^*,u^*)$. In the indirect method, we address each arc separately. 
 We begin by defining the **flow** of the Hamiltonian associated with each arc. To accomplish this, we use the function `Flow` that can be found in the [OptimalControl.jl](https://github.com/control-toolbox/OptimalControl.jl) package. This latter allows to solve the Hamiltonian system over a given time interval from given initial values of the state and the adjoint vector. This function requires necessary libraries such as ForwardDiff.jl for calculating gradients and Jacobians and  OrdinaryDiffEq.jl for solving ordinary differential equations. 
