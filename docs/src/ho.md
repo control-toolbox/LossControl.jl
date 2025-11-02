@@ -161,14 +161,14 @@ println("p2(t1+) - p2(t1-) = ", jmp1)
 println("p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
-## Indirect Method 
+## Indirect Method
 
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
 nothing # hide
-``` 
+```
 
 ```@example main
 # Dynamics
@@ -210,7 +210,7 @@ const x0 = [2.5; 4.0]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 # Shooting function
 function shoot(p0, tt1, tt2, ttstar, tt3, b1, jump1, jump2, TT) 
     
@@ -239,7 +239,7 @@ function shoot(p0, tt1, tt2, ttstar, tt3, b1, jump1, jump2, TT)
 
 end
 nothing # hide
-``` 
+```
 
 ```@example main
 # auxiliary function with aggregated inputs

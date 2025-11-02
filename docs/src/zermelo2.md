@@ -13,6 +13,7 @@
     \end{array}
     \right.
 ```
+
 ## Reformulation for the direct method
 
 ```math
@@ -92,7 +93,7 @@ q2(t) = costate(sol)(t)[2]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 plot(y1, y2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
@@ -108,7 +109,7 @@ plot!(tt2, μ, label="state λ", color="green", linewidth=2)
 ```@example main
 plot( tt2, q1, label="costate p1", color="purple", linewidth=2)
 plot!(tt2, q2, label="costate p2", color="violet", linewidth=2)
-``` 
+```
 
 ```@example main
 # Find the crossing times based on conditions for x1
@@ -165,14 +166,14 @@ println("p1(t3+) - p1(t3-) = ", jmp3)
 println("p1(t4+) - p1(t4-) = ", jmp4)
 ```
 
-## Indirect Method 
+## Indirect Method
 
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
 nothing # hide
-``` 
+```
 
 ```@example main
 # Dynamics
@@ -210,7 +211,7 @@ x0  = [0, 0]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 # Shooting function
 function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4) 
     
@@ -253,8 +254,7 @@ function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4)
 
 end
 nothing # hide
-``` 
-
+```
 
 ```@example main
 # auxiliary function with aggregated inputs
@@ -347,7 +347,7 @@ qq2 = [ qqq[i][2] for i=1:m ]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 plot(yy1, yy2, label="optimal trajectory", legend=false, linecolor=:blue, linewidth=2)
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
@@ -362,7 +362,7 @@ plot(ttt, vvv, label="optimal control" ,linecolor=:red ,linewidth=2)
 ```@example main
 plot(ttt,  qq1, label="costate p1", linecolor=:purple, linewidth=2)
 plot!(ttt, qq2, label="costate p2", linecolor=:violet, linewidth=2)
-``` 
+```
 
 ```@example main
 # create an animation

@@ -108,7 +108,7 @@ plot!(λ, 0, tf, label="state λ", color="green", linewidth=2)
 ```@example main
 plot( p1, 0, tf, label="costate p1", color="purple", linewidth=2)
 plot!(p2, 0, tf, label="costate p2", color="violet", linewidth=2)
-``` 
+```
 
 ```@example main
 # Find the first crossing time
@@ -128,20 +128,20 @@ println("first crossing time: ",  t1)
 println("second crossing time: ", t2)
 ```
 
-```@example main 
+```@example main
 jmp1 = p2(t1+0.1)  - p2(t1-0.1)
 jmp2 = p2(t2+0.1)  - p2(t2-0.1)
 println("p2(t1+) - p2(t1-) = ", jmp1)
 println("p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
-## Indirect Method 
+## Indirect Method
 
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
-``` 
+```
 
 ```@example main
 # Dynamics
@@ -291,6 +291,7 @@ plot(tsol, usol, label="optimal control" ,linecolor=:red ,linewidth=2)
 plot(tsol,  p11, label="costate p1", linecolor=:purple, linewidth=2)
 plot!(tsol, p22, label="costate p2", linecolor=:violet, linewidth=2)
 ```
+
 ```@example main
 # create an animation
 animx = @animate for i = 1:length(tsol)
