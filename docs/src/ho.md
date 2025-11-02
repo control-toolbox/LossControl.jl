@@ -1,5 +1,11 @@
 # Harmonic oscillator problem
 
+This example considers a **minimum time problem** for the harmonic oscillator with a loss control region. Unlike the classical harmonic oscillator problem (without loss control region), optimal trajectories spiral around the origin and are expected to visit the loss control region **multiple times**. At each visit, the constant control value can be modified, which is a key feature of loss control regions.
+
+The main challenge here is that the trajectory spirals in a finite number of times before reaching the target, requiring careful handling of multiple visits to the loss control region.
+
+## Problem statement
+
 ```math
     \left\{
     \begin{array}{l}
@@ -12,6 +18,13 @@
     \end{array}
     \right.
 ```
+
+The partition of $\mathbb{R}^2$ consists of:
+
+- **Control region**: $X_1 = \{x \in \mathbb{R}^2 \mid x_2 > 0\}$ (where control can change at any time)
+- **Loss control region**: $X_2 = \{x \in \mathbb{R}^2 \mid x_2 < 0\}$ (where control must remain constant)
+
+Note that the final time $T$ is free in this problem, which can be handled using standard augmentation techniques.
 
 ## Reformulation for the direct method
 
@@ -161,7 +174,23 @@ println("p2(t1+) - p2(t1-) = ", jmp1)
 println("p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
+## Analysis of the direct method results
+
+The direct method reveals that the optimal trajectory visits the loss control region $X_2$ **twice**:
+
+- **First visit**: $\lambda = 1$ (an extremal value of the control set $[-1,1]$)
+- **Second visit**: $\lambda \in (-1,1)$ (an interior value)
+
+Additionally, the control exhibits a **bang-bang structure** with a single switching time during the second visit to the control region. This is characteristic of time-optimal control problems.
+
 ## Indirect Method
+
+Based on the direct method results, we deduce that the optimal solution $(x^*, u^*)$ consists of:
+
+1. **Three consecutive bang arcs**: the control switches from $-1$ to $+1$ at the first crossing time $\tau_1^*$, then from $+1$ to $-1$ at a switching time $\sigma^* \in (\tau_2^*, \tau_3^*)$
+2. **One constant arc**: from $-1$ to a constant value in $(-1,1)$ at the crossing time $\tau_3^*$
+
+An important observation is that an **extremal value** ($u_1^* = 1$) is possible when visiting a loss control region, which must satisfy the averaged Hamiltonian gradient condition (as an inequality). However, for the second visit, the interior value $u_2^* \approx 0.89$ requires an additional equation in the shooting function.
 
 ```@example main
 using NonlinearSolve  

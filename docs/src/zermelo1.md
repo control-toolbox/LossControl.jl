@@ -1,5 +1,9 @@
 # Zermelo navigation problem, example 1
 
+This example illustrates a Zermelo-type navigation problem with a single loss control region. The state space is partitioned into one loss control region (where $0.5 < x_2 < 3.5$) and two control regions. When the trajectory enters the loss control region, the control must remain constant, though its value is optimized and can differ at each visit.
+
+## Problem statement
+
 ```math
     \left\{
     \begin{array}{l}
@@ -12,6 +16,11 @@
     \end{array}
     \right.
 ```
+
+The partition of $\mathbb{R}^2$ consists of:
+
+- **Control regions**: $X_1 = \{x \in \mathbb{R}^2 \mid x_2 < 0.5\}$ and $X_3 = \{x \in \mathbb{R}^2 \mid x_2 > 3.5\}$ (where control can change at any time)
+- **Loss control region**: $X_2 = \{x \in \mathbb{R}^2 \mid 0.5 < x_2 < 3.5\}$ (where control must remain constant)
 
 ## Reformulation for the direct method
 
@@ -135,7 +144,19 @@ println("p2(t1+) - p2(t1-) = ", jmp1)
 println("p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
+## Analysis of the direct method results
+
+The direct method reveals that the optimal trajectory visits the loss control region $X_2$ once with a constant control value $\lambda \in (-\frac{\pi}{2}, \frac{\pi}{2})$. The adjoint vector $p_2$ exhibits discontinuity jumps at each crossing time, which is characteristic of spatially heterogeneous optimal control problems.
+
 ## Indirect Method
+
+Based on the direct method results, we deduce that the optimal solution $(x^*, u^*)$ has **three arcs**:
+
+1. **Feedback arc** (in $X_1$): the control is expressed as $u^*(t) = \arctan(p_2(t))$ using the Hamiltonian maximization condition
+2. **Constant arc** (in $X_2$): the control takes a constant value in $(-\frac{\pi}{2}, \frac{\pi}{2})$
+3. **Feedback arc** (in $X_3$): again $u^*(t) = \arctan(p_2(t))$
+
+Note that the adjoint vector $p_1$ is continuous over $[0,8]$ since the interfaces between regions are horizontal lines. Only $p_2$ may have jumps at crossing times.
 
 ```@example main
 using NonlinearSolve  

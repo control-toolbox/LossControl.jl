@@ -1,5 +1,9 @@
 # Zermelo problem, example 2
 
+This example extends the previous Zermelo navigation problem to the case of **multiple loss control regions**. The state space is now partitioned into two loss control regions and three control regions. This illustrates how the trajectory can visit different loss control regions with potentially different constant control values at each visit.
+
+## Problem statement
+
 ```math
 
     \left\{
@@ -13,6 +17,11 @@
     \end{array}
     \right.
 ```
+
+The partition of $\mathbb{R}^2$ consists of:
+
+- **Control regions**: $X_1 = \{x \in \mathbb{R}^2 \mid x_1 < 5\}$, $X_3 = \{x \in \mathbb{R}^2 \mid 10 < x_1 < 20\}$, and $X_5 = \{x \in \mathbb{R}^2 \mid x_1 > 25\}$
+- **Loss control regions**: $X_2 = \{x \in \mathbb{R}^2 \mid 5 < x_1 < 10\}$ and $X_4 = \{x \in \mathbb{R}^2 \mid 20 < x_1 < 25\}$
 
 ## Reformulation for the direct method
 
@@ -166,7 +175,21 @@ println("p1(t3+) - p1(t3-) = ", jmp3)
 println("p1(t4+) - p1(t4-) = ", jmp4)
 ```
 
+## Analysis of the direct method results
+
+The direct method shows that the optimal trajectory visits both loss control regions $X_2$ and $X_4$ with two different constant control values in $(-\frac{\pi}{2}, \frac{\pi}{2})$. The adjoint vector $p_1$ exhibits discontinuity jumps at each of the four crossing times.
+
 ## Indirect Method
+
+Based on the direct method results, we deduce that the optimal solution $(x^*, u^*)$ has **five arcs**:
+
+1. **Feedback arc** (in $X_1$)
+2. **Constant arc** (in $X_2$): first constant value
+3. **Feedback arc** (in $X_3$)
+4. **Constant arc** (in $X_4$): second constant value (potentially different from the first)
+5. **Feedback arc** (in $X_5$)
+
+Since the regions are vertical, $p_2$ is continuous over $[0,8]$, whereas $p_1$ may have jumps at crossing times. From the Hamiltonian maximization condition in control regions, we have $u^*(t) = \arctan(p_2(t))$.
 
 ```@example main
 using NonlinearSolve  

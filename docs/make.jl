@@ -29,7 +29,7 @@ Draft = false
 ```
 =#
 makedocs(;
-    draft=true,
+    draft=false,
     warnonly=:cross_references,
     sitename="Loss control",
     format=Documenter.HTML(;
@@ -57,4 +57,5 @@ makedocs(;
     ],
 )
 
-deploydocs(; repo=repo_url * ".git", devbranch="main")
+deploydocs(; repo=repo_url * ".git", devbranch="main", push_preview=true)
+# push_preview: use https://control-toolbox.org/LossControl.jl/previews/PRXXX where XXX is the pull request number
