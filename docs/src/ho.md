@@ -1,3 +1,6 @@
+```@meta
+Draft = false
+```
 # Harmonic oscillator problem
 
 This example considers a **minimum time problem** for the harmonic oscillator with a loss control region. Unlike the classical harmonic oscillator problem (without loss control region), optimal trajectories spiral around the origin and are expected to visit the loss control region **multiple times**. At each visit, the constant control value can be modified, which is a key feature of loss control regions.
