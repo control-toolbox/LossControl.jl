@@ -1254,7 +1254,7 @@ version = "1.2.0"
 [[deps.LossControl]]
 path = "/home/runner/work/LossControl.jl/LossControl.jl"
 uuid = "6a3a0e7e-9c90-4c26-bc64-8dd630726a7b"
-version = "0.2.4"
+version = "0.3.0"
 
 [[deps.METIS_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
