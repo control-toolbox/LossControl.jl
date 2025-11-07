@@ -104,7 +104,7 @@ for N in [50, 100, 500, 1000]
         grid_size=N,
         init=sol,
         tol=1e-8,
-        display=true,
+        display = N == 1000,
     )
 end
 N = 1000
