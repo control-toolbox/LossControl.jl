@@ -93,11 +93,19 @@ nothing # hide
 ```
 
 ```@example main
-N = 630 
-sol = solve(ocp; init = ( state = t -> [0.1, 0.1, 1], 
-                          control =[-1, 0], 
-                          variable =15
-                        ), grid_size=N, print_level=4)
+sol = ( state = t -> [0.1, 0.1, 1],
+               control =[-1, 0],
+               variable =15)
+
+for N in [50, 100 ,500, 1000] 
+          sol = solve(ocp, :direct, :adnlp, :ipopt;
+	                    disc_method = :gauss_legendre_3,
+	                    grid_size=N,
+	                    init=sol,
+                            tol=1e-8,
+	                    display=true)
+end
+N = 1000
 nothing # hide
 ```
 
