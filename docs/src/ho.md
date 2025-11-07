@@ -1,6 +1,3 @@
-```@meta
-Draft = false
-```
 # Harmonic oscillator problem
 
 This example considers a **minimum time problem** for the harmonic oscillator with a loss control region. Unlike the classical harmonic oscillator problem (without loss control region), optimal trajectories spiral around the origin and are expected to visit the loss control region **multiple times**. At each visit, the constant control value can be modified, which is a key feature of loss control regions.
@@ -101,7 +98,7 @@ sol = (
     variable = 15,
 )
 
-for N in [50, 100 ,500, 1000] 
+for N in [50, 100, 500, 1000] 
     global sol = solve(ocp, :direct, :adnlp, :ipopt;
         disc_method=:gauss_legendre_3,
         grid_size=N,
