@@ -71,9 +71,11 @@ tf = 8
     -π/2 ≤ u(t) ≤ π/2
     -π/2 ≤ λ(t) ≤ π/2
 
-    q̇(t) == [fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
-             fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
-             (1-fNC(x1(t)))*v(t)]
+    q̇(t) == [
+        fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
+        fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
+        (1-fNC(x1(t)))*v(t),
+    ]
 
     -x1(tf) + ∫(ε*(v(t))^2+fNC(x1(t))*(u(t))^2)  → min    
 

@@ -1,3 +1,6 @@
+```@meta
+Draft = false
+```
 # Harmonic oscillator problem
 
 This example considers a **minimum time problem** for the harmonic oscillator with a loss control region. Unlike the classical harmonic oscillator problem (without loss control region), optimal trajectories spiral around the origin and are expected to visit the loss control region **multiple times**. At each visit, the constant control value can be modified, which is a key feature of loss control regions.
@@ -79,9 +82,11 @@ const ε = 1e-3
     -5 ≤ x1(t) ≤ 5,             (2)
     -5 ≤ x2(t) ≤ 5,             (3)
 
-    q̇(t) == [x2(t), 
-            (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t),
-            (1-fNC(x2(t)))*v(t)]
+    q̇(t) == [
+        x2(t), 
+        (1-fNC(x2(t)))*u(t) + fNC(x2(t))*λ(t) - x1(t),
+        (1-fNC(x2(t)))*v(t),
+    ]
 
     tf + ∫(ε*(v(t))^2 +fNC(x2(t))*(u(t))^2) → min
 
@@ -90,17 +95,20 @@ nothing # hide
 ```
 
 ```@example main
-sol = ( state = t -> [0.1, 0.1, 1],
-               control =[-1, 0],
-               variable =15)
+sol = (
+    state    = t -> [0.1, 0.1, 1],
+    control  = [-1, 0],
+    variable = 15,
+)
 
 for N in [50, 100 ,500, 1000] 
-          sol = solve(ocp, :direct, :adnlp, :ipopt;
-	                    disc_method = :gauss_legendre_3,
-	                    grid_size=N,
-	                    init=sol,
-                            tol=1e-8,
-	                    display=true)
+    global sol = solve(ocp, :direct, :adnlp, :ipopt;
+        disc_method=:gauss_legendre_3,
+        grid_size=N,
+        init=sol,
+        tol=1e-8,
+        display=true,
+    )
 end
 N = 1000
 nothing # hide

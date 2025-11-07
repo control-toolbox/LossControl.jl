@@ -70,9 +70,11 @@ ocp = @def begin
     -π/2 ≤ u(t) ≤ π/2
     -π/2 ≤ λ(t) ≤ π/2
 
-    q̇(t) == [fNC(x2(t))*(x2(t) + cos(λ(t))) + (1-fNC(x2(t)))*(x2(t) + cos(u(t))),
-             fNC(x2(t))*sin(λ(t)) +(1-fNC(x2(t)))*sin(u(t)),
-             (1-fNC(x2(t)))*v(t)]
+    q̇(t) == [
+        fNC(x2(t))*(x2(t) + cos(λ(t))) + (1-fNC(x2(t)))*(x2(t) + cos(u(t))),
+        fNC(x2(t))*sin(λ(t)) +(1-fNC(x2(t)))*sin(u(t)),
+        (1-fNC(x2(t)))*v(t),
+    ]
 
     -x1(tf) + ∫(ε*(v(t))^2+fNC(x2(t))*(u(t))^2)  → min      
 

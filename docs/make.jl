@@ -29,7 +29,7 @@ Draft = false
 ```
 =#
 makedocs(;
-    draft=false,
+    draft=true,
     warnonly=:cross_references,
     sitename="Loss control",
     format=Documenter.HTML(;
