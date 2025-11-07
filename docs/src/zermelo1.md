@@ -1,5 +1,9 @@
 # Zermelo navigation problem, example 1
 
+This example illustrates a Zermelo-type navigation problem with a single loss control region. The state space is partitioned into one loss control region (where $0.5 < x_2 < 3.5$) and two control regions. When the trajectory enters the loss control region, the control must remain constant, though its value is optimized and can differ at each visit.
+
+## Problem statement
+
 ```math
     \left\{
     \begin{array}{l}
@@ -12,6 +16,11 @@
     \end{array}
     \right.
 ```
+
+The partition of $\mathbb{R}^2$ consists of:
+
+- **Control regions**: $X_1 = \{x \in \mathbb{R}^2 \mid x_2 < 0.5\}$ and $X_3 = \{x \in \mathbb{R}^2 \mid x_2 > 3.5\}$ (where control can change at any time)
+- **Loss control region**: $X_2 = \{x \in \mathbb{R}^2 \mid 0.5 < x_2 < 3.5\}$ (where control must remain constant)
 
 ## Reformulation for the direct method
 
@@ -61,9 +70,11 @@ ocp = @def begin
     -π/2 ≤ u(t) ≤ π/2
     -π/2 ≤ λ(t) ≤ π/2
 
-    q̇(t) == [fNC(x2(t))*(x2(t) + cos(λ(t))) + (1-fNC(x2(t)))*(x2(t) + cos(u(t))),
-             fNC(x2(t))*sin(λ(t)) +(1-fNC(x2(t)))*sin(u(t)),
-             (1-fNC(x2(t)))*v(t)]
+    q̇(t) == [
+        fNC(x2(t))*(x2(t) + cos(λ(t))) + (1-fNC(x2(t)))*(x2(t) + cos(u(t))),
+        fNC(x2(t))*sin(λ(t)) +(1-fNC(x2(t)))*sin(u(t)),
+        (1-fNC(x2(t)))*v(t),
+    ]
 
     -x1(tf) + ∫(ε*(v(t))^2+fNC(x2(t))*(u(t))^2)  → min      
 
@@ -108,7 +119,7 @@ plot!(λ, 0, tf, label="state λ", color="green", linewidth=2)
 ```@example main
 plot( p1, 0, tf, label="costate p1", color="purple", linewidth=2)
 plot!(p2, 0, tf, label="costate p2", color="violet", linewidth=2)
-``` 
+```
 
 ```@example main
 # Find the first crossing time
@@ -128,20 +139,32 @@ println("first crossing time: ",  t1)
 println("second crossing time: ", t2)
 ```
 
-```@example main 
+```@example main
 jmp1 = p2(t1+0.1)  - p2(t1-0.1)
 jmp2 = p2(t2+0.1)  - p2(t2-0.1)
 println("p2(t1+) - p2(t1-) = ", jmp1)
 println("p2(t2+) - p2(t2-) = ", jmp2)
 ```
 
-## Indirect Method 
+## Analysis of the direct method results
+
+The direct method reveals that the optimal trajectory visits the loss control region $X_2$ once with a constant control value $\lambda \in (-\frac{\pi}{2}, \frac{\pi}{2})$. The adjoint vector $p_2$ exhibits discontinuity jumps at each crossing time, which is characteristic of spatially heterogeneous optimal control problems.
+
+## Indirect Method
+
+Based on the direct method results, we deduce that the optimal solution $(x^*, u^*)$ has **three arcs**:
+
+1. **Feedback arc** (in $X_1$): the control is expressed as $u^*(t) = \arctan(p_2(t))$ using the Hamiltonian maximization condition
+2. **Constant arc** (in $X_2$): the control takes a constant value in $(-\frac{\pi}{2}, \frac{\pi}{2})$
+3. **Feedback arc** (in $X_3$): again $u^*(t) = \arctan(p_2(t))$
+
+Note that the adjoint vector $p_1$ is continuous over $[0,8]$ since the interfaces between regions are horizontal lines. Only $p_2$ may have jumps at crossing times.
 
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
-``` 
+```
 
 ```@example main
 # Dynamics
@@ -291,6 +314,7 @@ plot(tsol, usol, label="optimal control" ,linecolor=:red ,linewidth=2)
 plot(tsol,  p11, label="costate p1", linecolor=:purple, linewidth=2)
 plot!(tsol, p22, label="costate p2", linecolor=:violet, linewidth=2)
 ```
+
 ```@example main
 # create an animation
 animx = @animate for i = 1:length(tsol)

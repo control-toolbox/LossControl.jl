@@ -1,6 +1,8 @@
 using Documenter
 
-# For reproducibility
+# ===============================================
+# --- Copy Project Assets for reproducibility ---
+# ===============================================
 mkpath(joinpath(@__DIR__, "src", "assets"))
 cp(
     joinpath(@__DIR__, "Manifest.toml"),
@@ -13,9 +15,21 @@ cp(
     force=true,
 )
 
+# Repository URL (used for links in docs)
 repo_url = "github.com/control-toolbox/LossControl.jl"
 
+# ==============================
+# --- Generate Documentation ---
+# ==============================
+# If draft is true, the Julia code in markdown is not executed.
+# To disable draft mode in a specific markdown file, add:
+#=
+```@meta
+Draft = false
+```
+=#
 makedocs(;
+    draft=false,
     warnonly=:cross_references,
     sitename="Loss control",
     format=Documenter.HTML(;
@@ -31,12 +45,17 @@ makedocs(;
     ),
     pages=[
         "Introduction" => "index.md",
-        "Statement of the problem" => "statement.md",
-        "Numerical approach" => "numerical.md",
-        "Zermelo navigation: Example 1" => "zermelo1.md",
-        "Zermelo navigation: Example 2" => "zermelo2.md",
-        "Harmonic oscillator problem" => "ho.md",
+        "Mathematical background" => [
+            "Optimal control and loss control" => "statement.md",
+            "Numerical approach" => "numerical.md",
+        ],
+        "Examples" => [
+            "Zermelo navigation: Example 1" => "zermelo1.md",
+            "Zermelo navigation: Example 2" => "zermelo2.md",
+            "Harmonic oscillator problem" => "ho.md",
+        ],
     ],
 )
 
-deploydocs(; repo=repo_url * ".git", devbranch="main")
+deploydocs(; repo=repo_url * ".git", devbranch="main", push_preview=true)
+# push_preview: use https://control-toolbox.org/LossControl.jl/previews/PRXXX where XXX is the pull request number

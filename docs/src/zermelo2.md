@@ -1,5 +1,9 @@
 # Zermelo problem, example 2
 
+This example extends the previous Zermelo navigation problem to the case of **multiple loss control regions**. The state space is now partitioned into two loss control regions and three control regions. This illustrates how the trajectory can visit different loss control regions with potentially different constant control values at each visit.
+
+## Problem statement
+
 ```math
 
     \left\{
@@ -13,6 +17,12 @@
     \end{array}
     \right.
 ```
+
+The partition of $\mathbb{R}^2$ consists of:
+
+- **Control regions**: $X_1 = \{x \in \mathbb{R}^2 \mid x_1 < 5\}$, $X_3 = \{x \in \mathbb{R}^2 \mid 10 < x_1 < 20\}$, and $X_5 = \{x \in \mathbb{R}^2 \mid x_1 > 25\}$
+- **Loss control regions**: $X_2 = \{x \in \mathbb{R}^2 \mid 5 < x_1 < 10\}$ and $X_4 = \{x \in \mathbb{R}^2 \mid 20 < x_1 < 25\}$
+
 ## Reformulation for the direct method
 
 ```math
@@ -61,9 +71,11 @@ tf = 8
     -π/2 ≤ u(t) ≤ π/2
     -π/2 ≤ λ(t) ≤ π/2
 
-    q̇(t) == [fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
-             fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
-             (1-fNC(x1(t)))*v(t)]
+    q̇(t) == [
+        fNC(x1(t))*(x2(t) + cos(λ(t))) + (1-fNC(x1(t)))*(x2(t) + cos(u(t))),
+        fNC(x1(t))*sin(λ(t)) + (1-fNC(x1(t)))*sin(u(t)),
+        (1-fNC(x1(t)))*v(t),
+    ]
 
     -x1(tf) + ∫(ε*(v(t))^2+fNC(x1(t))*(u(t))^2)  → min    
 
@@ -92,7 +104,7 @@ q2(t) = costate(sol)(t)[2]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 plot(y1, y2, 0, tf, label="optimal trajectory", color="blue", linewidth=2)
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
@@ -108,7 +120,7 @@ plot!(tt2, μ, label="state λ", color="green", linewidth=2)
 ```@example main
 plot( tt2, q1, label="costate p1", color="purple", linewidth=2)
 plot!(tt2, q2, label="costate p2", color="violet", linewidth=2)
-``` 
+```
 
 ```@example main
 # Find the crossing times based on conditions for x1
@@ -165,14 +177,28 @@ println("p1(t3+) - p1(t3-) = ", jmp3)
 println("p1(t4+) - p1(t4-) = ", jmp4)
 ```
 
-## Indirect Method 
+## Analysis of the direct method results
+
+The direct method shows that the optimal trajectory visits both loss control regions $X_2$ and $X_4$ with two different constant control values in $(-\frac{\pi}{2}, \frac{\pi}{2})$. The adjoint vector $p_1$ exhibits discontinuity jumps at each of the four crossing times.
+
+## Indirect Method
+
+Based on the direct method results, we deduce that the optimal solution $(x^*, u^*)$ has **five arcs**:
+
+1. **Feedback arc** (in $X_1$)
+2. **Constant arc** (in $X_2$): first constant value
+3. **Feedback arc** (in $X_3$)
+4. **Constant arc** (in $X_4$): second constant value (potentially different from the first)
+5. **Feedback arc** (in $X_5$)
+
+Since the regions are vertical, $p_2$ is continuous over $[0,8]$, whereas $p_1$ may have jumps at crossing times. From the Hamiltonian maximization condition in control regions, we have $u^*(t) = \arctan(p_2(t))$.
 
 ```@example main
 using NonlinearSolve  
 using OrdinaryDiffEq
 using Animations
 nothing # hide
-``` 
+```
 
 ```@example main
 # Dynamics
@@ -210,7 +236,7 @@ x0  = [0, 0]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 # Shooting function
 function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4) 
     
@@ -253,8 +279,7 @@ function shoot2(p0, tt1, tt2, tt3, tt4, λ1, λ3, j1, j2, j3, j4)
 
 end
 nothing # hide
-``` 
-
+```
 
 ```@example main
 # auxiliary function with aggregated inputs
@@ -347,7 +372,7 @@ qq2 = [ qqq[i][2] for i=1:m ]
 nothing # hide
 ```
 
-```@example main 
+```@example main
 plot(yy1, yy2, label="optimal trajectory", legend=false, linecolor=:blue, linewidth=2)
 plot!([5, 5], [0, 6], color=:black, label = false, linewidth=2)
 plot!([10, 10], [0,6], color=:black, label = false, linewidth=2)
@@ -362,7 +387,7 @@ plot(ttt, vvv, label="optimal control" ,linecolor=:red ,linewidth=2)
 ```@example main
 plot(ttt,  qq1, label="costate p1", linecolor=:purple, linewidth=2)
 plot!(ttt, qq2, label="costate p2", linecolor=:violet, linewidth=2)
-``` 
+```
 
 ```@example main
 # create an animation

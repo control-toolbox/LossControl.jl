@@ -33,3 +33,4 @@ Manifest.toml
 
 #
 .ipynb_checkpoints
+tmp/
