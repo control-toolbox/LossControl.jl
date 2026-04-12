@@ -99,8 +99,8 @@ sol = (
 )
 
 for N in [50, 100, 500, 1000] 
-    global sol = solve(ocp, :direct, :adnlp, :ipopt;
-        disc_method=:gauss_legendre_3,
+    global sol = solve(ocp, :collocation, :adnlp, :ipopt;
+        scheme=:gauss_legendre_3,
         grid_size=N,
         init=sol,
         tol=1e-8,
@@ -239,9 +239,9 @@ H2(x, b, y, p) = H0(x, p) + b*H1(x, p) - y*p[2]     # pseudo-Hamiltonian
 Hcl(X, P)      = H2(X[1:2], X[3], X[4], P[1:2])     # control loss 2
 
 # Flows
-fp  = Flow(Hamiltonian(Hp))
-fm  = Flow(Hamiltonian(Hm))
-fcl = Flow(Hamiltonian(Hcl))
+fp  = Flow(OptimalControl.Hamiltonian(Hp))
+fm  = Flow(OptimalControl.Hamiltonian(Hm))
+fcl = Flow(OptimalControl.Hamiltonian(Hcl))
 nothing # hide
 ```
 

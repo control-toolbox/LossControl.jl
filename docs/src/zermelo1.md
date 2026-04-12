@@ -182,14 +182,14 @@ u11(x, p)   = atan(p[2]/p[1])              # maximizing control
 Hc(x, p)    = H1(x, u11(x, p) , p )        # Hamiltonian
 
 # Flow
-fc  = Flow(Hamiltonian(Hc))
+fc  = Flow(OptimalControl.Hamiltonian(Hc))
 
 # Hamiltonian: control loss region
 H2(x, λ, y, p) = p' * F(x, λ)   + y* p' *G(λ)    # pseudo-Hamiltonian
 Hcl(X, P)      = H2(X[1:2], X[3], X[4], P[1:2])  # Hamiltonian
 
 # Flow
-fcl = Flow(Hamiltonian(Hcl))
+fcl = Flow(OptimalControl.Hamiltonian(Hcl))
 nothing # hide
 ```
 
